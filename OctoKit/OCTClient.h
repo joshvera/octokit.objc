@@ -271,3 +271,9 @@ extern NSString * const OCTClientErrorHTTPStatusCodeKey;
 - (RACSignal *)muteNotificationThreadAtURL:(NSURL *)threadURL;
 
 @end
+
+@interface OCTClient (Notes)
+
+- (RACSignal *)fetchNotesForOrganization:(OCTOrganization *)organization;
+
+@end

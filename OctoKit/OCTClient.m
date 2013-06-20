@@ -18,6 +18,7 @@
 #import "OCTTeam.h"
 #import "OCTUser.h"
 #import "OCTNotification.h"
+#import "OCTNote.h"
 #import "RACSignal+OCTClientAdditions.h"
 
 NSString * const OCTClientErrorDomain = @"OCTClientErrorDomain";
@@ -563,6 +564,15 @@ static const NSInteger OCTClientNotModifiedStatusCode = 304;
 	NSMutableURLRequest *request = [self requestWithMethod:@"PUT" path:@"" parameters:@{ @"ignored": @YES }];
 	request.URL = [threadURL URLByAppendingPathComponent:@"subscription"];
 	return [[self enqueueRequest:request resultClass:nil] ignoreElements];
+}
+
+@end
+
+@implementation OCTClient (Notes)
+
+- (RACSignal *)fetchNotesForOrganization:(OCTOrganization *)organization {
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:[NSString stringWithFormat:@"orgs/%@/notes", organization.login] parameters:nil notMatchingEtag:nil];
+	return [[self enqueueRequest:request resultClass:OCTNote.class] oct_parsedResults];
 }
 
 @end

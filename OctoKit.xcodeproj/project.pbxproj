@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E53706017736FC800322984 /* OCTNote.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E53705E17736FC800322984 /* OCTNote.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1E53706117736FC800322984 /* OCTNote.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E53705E17736FC800322984 /* OCTNote.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1E53706217736FC800322984 /* OCTNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E53705F17736FC800322984 /* OCTNote.m */; };
+		1E53706317736FC800322984 /* OCTNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E53705F17736FC800322984 /* OCTNote.m */; };
 		8848E19D16AF630B005449AB /* OCTNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 8848E19B16AF630B005449AB /* OCTNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8848E19E16AF630B005449AB /* OCTNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 8848E19B16AF630B005449AB /* OCTNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8848E19F16AF630B005449AB /* OCTNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 8848E19C16AF630B005449AB /* OCTNotification.m */; };
@@ -413,6 +417,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E53705E17736FC800322984 /* OCTNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTNote.h; sourceTree = "<group>"; };
+		1E53705F17736FC800322984 /* OCTNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTNote.m; sourceTree = "<group>"; };
 		8848E19B16AF630B005449AB /* OCTNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTNotification.h; sourceTree = "<group>"; };
 		8848E19C16AF630B005449AB /* OCTNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTNotification.m; sourceTree = "<group>"; };
 		D058675516F2649800941A32 /* OCTResponseSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTResponseSpec.m; sourceTree = "<group>"; };
@@ -958,6 +964,8 @@
 				D0872156169E395F00016ACA /* OCTTeam.m */,
 				D0872157169E395F00016ACA /* OCTUser.h */,
 				D0872158169E395F00016ACA /* OCTUser.m */,
+				1E53705E17736FC800322984 /* OCTNote.h */,
+				1E53705F17736FC800322984 /* OCTNote.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -1059,6 +1067,7 @@
 				D08721B5169E395F00016ACA /* OCTTeam.h in Headers */,
 				D08721B9169E395F00016ACA /* OCTUser.h in Headers */,
 				D087229F169E3D6000016ACA /* OctoKit.h in Headers */,
+				1E53706017736FC800322984 /* OCTNote.h in Headers */,
 				8848E19D16AF630B005449AB /* OCTNotification.h in Headers */,
 				D0772E7316BD27B5009DFF72 /* NSDateFormatter+OCTFormattingAdditions.h in Headers */,
 				D0772E7716BD2A06009DFF72 /* NSValueTransformer+OCTPredefinedTransformerAdditions.h in Headers */,
@@ -1105,6 +1114,7 @@
 				D08721B6169E395F00016ACA /* OCTTeam.h in Headers */,
 				D08721BA169E395F00016ACA /* OCTUser.h in Headers */,
 				D08722A0169E3D6000016ACA /* OctoKit.h in Headers */,
+				1E53706117736FC800322984 /* OCTNote.h in Headers */,
 				8848E19E16AF630B005449AB /* OCTNotification.h in Headers */,
 				D0772E7416BD27B6009DFF72 /* NSDateFormatter+OCTFormattingAdditions.h in Headers */,
 				D0772E7816BD2A06009DFF72 /* NSValueTransformer+OCTPredefinedTransformerAdditions.h in Headers */,
@@ -1423,6 +1433,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E53706217736FC800322984 /* OCTNote.m in Sources */,
 				D0872032169E326800016ACA /* AFHTTPClient.m in Sources */,
 				D0872036169E326800016ACA /* AFHTTPRequestOperation.m in Sources */,
 				D087203A169E326800016ACA /* AFImageRequestOperation.m in Sources */,
@@ -1490,6 +1501,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E53706317736FC800322984 /* OCTNote.m in Sources */,
 				D0872033169E326800016ACA /* AFHTTPClient.m in Sources */,
 				D0872037169E326800016ACA /* AFHTTPRequestOperation.m in Sources */,
 				D087203B169E326800016ACA /* AFImageRequestOperation.m in Sources */,
