@@ -276,4 +276,7 @@ extern NSString * const OCTClientErrorHTTPStatusCodeKey;
 
 - (RACSignal *)fetchNotesForOrganization:(OCTOrganization *)organization;
 
+- (RACSignal *)createNoteWithBody:(NSString *)body
+  organization:(OCTOrganization *)organization;
+
 @end

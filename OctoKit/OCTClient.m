@@ -571,7 +571,24 @@ static const NSInteger OCTClientNotModifiedStatusCode = 304;
 @implementation OCTClient (Notes)
 
 - (RACSignal *)fetchNotesForOrganization:(OCTOrganization *)organization {
+	NSParameterAssert(organization != nil);
+
+	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
+
 	NSURLRequest *request = [self requestWithMethod:@"GET" path:[NSString stringWithFormat:@"orgs/%@/notes", organization.login] parameters:nil notMatchingEtag:nil];
+	return [[self enqueueRequest:request resultClass:OCTNote.class] oct_parsedResults];
+}
+
+- (RACSignal *)createNoteWithBody:(NSString *)body organization:(OCTOrganization *)organization {
+	NSParameterAssert(body != nil);
+	NSParameterAssert(organization != nil);
+
+	NSMutableDictionary *options = [NSMutableDictionary dictionary];
+	options[@"body"] = body;
+
+	NSString *path = [NSString stringWithFormat:@"orgs/%@/notes", organization.login];
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:path parameters:options notMatchingEtag:nil];
+
 	return [[self enqueueRequest:request resultClass:OCTNote.class] oct_parsedResults];
 }
 
