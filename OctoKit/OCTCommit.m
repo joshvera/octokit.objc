@@ -8,7 +8,7 @@
 
 #import "OCTCommit.h"
 #import "OCTUser.h"
-#import "OCTFile.h"
+#import "OCTDiffEntry.h"
 #import "NSValueTransformer+OCTPredefinedTransformerAdditions.h"
 
 @implementation OCTCommit
@@ -17,7 +17,7 @@
 	return [super.JSONKeyPathsByPropertyKey
 		mtl_dictionaryByAddingEntriesFromDictionary:@{
 			@"objectID": @"sha",
-			@"SHA": @"sha",
+			@"commitSHA": @"sha",
 			@"message": @"commit.message",
 			@"authoredDate": @"commit.author.date",
 			@"committedDate": @"commit.committer.date",
@@ -69,7 +69,7 @@
 
 
 + (NSValueTransformer *)filesJSONTransformer {
-	return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:OCTFile.class];
+	return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:OCTDiffEntry.class];
 }
 
 @end

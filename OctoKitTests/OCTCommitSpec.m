@@ -8,7 +8,7 @@
 
 #import "OCTCommit.h"
 #import "OCTUser.h"
-#import "OCTFile.h"
+#import "OCTDiffEntry.h"
 #import "OCTObjectSpec.h"
 
 SpecBegin(OCTCommit)
@@ -110,7 +110,7 @@ itShouldBehaveLike(OCTObjectArchivingSharedExamplesName, ^{
 });
 
 it(@"should initialize", ^{
-	expect(commit.commitSHA).to.equal(representation[@"commitSHA"]);
+	expect(commit.commitSHA).to.equal(representation[@"sha"]);
 	expect(commit.HTMLURL).to.equal([NSURL URLWithString:representation[@"html_url"]]);
 	expect(commit.commentsURL).to.equal([NSURL URLWithString:representation[@"comments_url"]]);
 	expect(commit.APIURL).to.equal([NSURL URLWithString:representation[@"url"]]);
@@ -135,7 +135,7 @@ it(@"should initialize", ^{
 
 	expect(commit.deletions).to.equal([representation[@"deletions"] unsignedIntegerValue]);
 
-	NSArray *array = [[NSValueTransformer mtl_JSONArrayTransformerWithModelClass:OCTFile.class] transformedValue:representation[@"files"]];
+	NSArray *array = [[NSValueTransformer mtl_JSONArrayTransformerWithModelClass:OCTDiffEntry.class] transformedValue:representation[@"files"]];
 	expect(commit.files).to.equal(array);
 });
 
