@@ -63,7 +63,7 @@
 	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTUser.class];
 }
 
-+ (NSValueTransformer *)committerURLJSONTransformer {
++ (NSValueTransformer *)committerJSONTransformer {
 	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTUser.class];
 }
 

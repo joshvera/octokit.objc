@@ -7,6 +7,7 @@
 //
 
 #import "OCTCommit.h"
+#import "OCTUser.h"
 #import "OCTFile.h"
 #import "OCTObjectSpec.h"
 
