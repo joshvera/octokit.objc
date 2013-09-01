@@ -9,6 +9,7 @@
 #import "OCTEntity.h"
 #import "OCTPlan.h"
 #import "OCTRepository.h"
+#import "OCTURITemplateTransformer.h"
 
 @implementation OCTEntity
 
@@ -28,7 +29,22 @@
 		@"publicRepoCount": @"public_repos",
 		@"privateRepoCount": @"owned_private_repos",
 		@"diskUsage": @"disk_usage",
+		@"APIURITemplate": @"url",
+		@"HTMLURL": @"html_url",
+		@"followersURITemplate": @"followers_url",
+		@"followingURITemplate": @"following_url",
+		@"gistsURITemplate": @"gists_url",
+		@"starredURITemplate": @"starred_url",
+		@"subscriptionsURITemplate": @"subscriptions_url",
+		@"organizationsURITemplate": @"organizations_url",
+		@"reposURITemplate": @"repos_url",
+		@"eventsURITemplate": @"events_url",
+		@"receivedEventsURITemplate": @"received_events_url"
 	}];
+}
+
++ (NSValueTransformer *)APIURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
 }
 
 + (NSValueTransformer *)repositoriesJSONTransformer {
@@ -42,6 +58,44 @@
 + (NSValueTransformer *)planJSONTransformer {
 	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTPlan.class];
 }
+
++ (NSValueTransformer *)HTMLURLTemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
++ (NSValueTransformer *)followersURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
++ (NSValueTransformer *)followingURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
++ (NSValueTransformer *)gistsURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
++ (NSValueTransformer *)starredURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
++ (NSValueTransformer *)organizationsURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
++ (NSValueTransformer *)reposURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
++ (NSValueTransformer *)eventsURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
++ (NSValueTransformer *)receivedEventsURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
+
 
 #pragma mark Merging
 

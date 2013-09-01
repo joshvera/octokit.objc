@@ -9,6 +9,7 @@
 #import "OCTObject.h"
 
 @class OCTPlan;
+@class CSURITemplate;
 
 // Represents any GitHub object which is capable of owning repositories.
 @interface OCTEntity : OCTObject
@@ -53,6 +54,39 @@
 
 // The plan that this account is on.
 @property (atomic, strong, readonly) OCTPlan *plan;
+
+// The entity's API URL.
+@property (nonatomic, copy, readonly) CSURITemplate *APIURITemplate;
+
+// The entity's HTML URL.
+@property (nonatomic, copy, readonly) NSURL *HTMLURL;
+
+// The entity's followers URL.
+@property (nonatomic, copy, readonly) CSURITemplate *followersURITemplate;
+
+// The entity's following URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *followingURITemplate;
+
+// The entity's starred repos URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *starredURITemplate;
+
+// The entity's gists URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *gistsURITemplate;
+
+// The entity's subscriptions URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *subscriptionsURITemplate;
+
+// The entity's organizations URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *organizationsURITemplate;
+
+// The entity's repos URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *reposURITemplate;
+
+// The entity's events URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *eventsURITemplate;
+
+// The entity's received events URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *receivedEventsURITemplate;
 
 // Updates the receiver's repositories with data from the set of remote
 // repositories.
