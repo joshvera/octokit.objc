@@ -238,6 +238,8 @@
 		D11D80E417D19C0900CA7039 /* OCTDiffEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = D11D80E017D19C0900CA7039 /* OCTDiffEntry.m */; };
 		D11D80ED17D1AEDC00CA7039 /* OCTDiffSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D11D80EC17D1AEDC00CA7039 /* OCTDiffSpec.m */; };
 		D11D80EE17D1AEDC00CA7039 /* OCTDiffSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D11D80EC17D1AEDC00CA7039 /* OCTDiffSpec.m */; };
+		D1A53CE417D2EFDC0063842D /* OCTEntitySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A53CE317D2EFDC0063842D /* OCTEntitySpec.m */; };
+		D1A53CE517D2EFDC0063842D /* OCTEntitySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A53CE317D2EFDC0063842D /* OCTEntitySpec.m */; };
 		D1C9871117D2CC6D0001FDFA /* libCSURITemplate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C986FF17D2C6E70001FDFA /* libCSURITemplate.a */; };
 		D1C9871417D2CDD90001FDFA /* OCTURITemplateTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = D1C9871217D2CDD90001FDFA /* OCTURITemplateTransformer.h */; };
 		D1C9871517D2CDD90001FDFA /* OCTURITemplateTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = D1C9871217D2CDD90001FDFA /* OCTURITemplateTransformer.h */; };
@@ -714,6 +716,7 @@
 		D11D80DF17D19C0900CA7039 /* OCTDiffEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTDiffEntry.h; sourceTree = "<group>"; };
 		D11D80E017D19C0900CA7039 /* OCTDiffEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTDiffEntry.m; sourceTree = "<group>"; };
 		D11D80EC17D1AEDC00CA7039 /* OCTDiffSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTDiffSpec.m; sourceTree = "<group>"; };
+		D1A53CE317D2EFDC0063842D /* OCTEntitySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTEntitySpec.m; sourceTree = "<group>"; };
 		D1C986F917D2C6E70001FDFA /* CSURITemplate.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CSURITemplate.xcodeproj; path = External/CSURITemplate/CSURITemplate.xcodeproj; sourceTree = "<group>"; };
 		D1C9871217D2CDD90001FDFA /* OCTURITemplateTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTURITemplateTransformer.h; sourceTree = "<group>"; };
 		D1C9871317D2CDD90001FDFA /* OCTURITemplateTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTURITemplateTransformer.m; sourceTree = "<group>"; };
@@ -1043,6 +1046,7 @@
 				D08721CF169E398C00016ACA /* OCTUserSpec.m */,
 				D11D80D817D18F9500CA7039 /* OCTCommitSpec.m */,
 				D11D80EC17D1AEDC00CA7039 /* OCTDiffSpec.m */,
+				D1A53CE317D2EFDC0063842D /* OCTEntitySpec.m */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -1799,6 +1803,7 @@
 				D08721D8169E398C00016ACA /* OCTServerSpec.m in Sources */,
 				D08721DA169E398C00016ACA /* OCTUserSpec.m in Sources */,
 				D0B9C8FD16BC7A260029C5B4 /* NSDateFormatterAdditionsSpec.m in Sources */,
+				D1A53CE417D2EFDC0063842D /* OCTEntitySpec.m in Sources */,
 				D0772E7C16BD2AD5009DFF72 /* NSValueTransformerAdditionsSpec.m in Sources */,
 				D05E752016D35886001AA17B /* OCTClientSpec.m in Sources */,
 				D11D80ED17D1AEDC00CA7039 /* OCTDiffSpec.m in Sources */,
@@ -1870,6 +1875,7 @@
 				D08721D9169E398C00016ACA /* OCTServerSpec.m in Sources */,
 				D08721DB169E398C00016ACA /* OCTUserSpec.m in Sources */,
 				D0B9C8FE16BC7A260029C5B4 /* NSDateFormatterAdditionsSpec.m in Sources */,
+				D1A53CE517D2EFDC0063842D /* OCTEntitySpec.m in Sources */,
 				D0772E7D16BD2AD5009DFF72 /* NSValueTransformerAdditionsSpec.m in Sources */,
 				D05E752116D35886001AA17B /* OCTClientSpec.m in Sources */,
 				D11D80EE17D1AEDC00CA7039 /* OCTDiffSpec.m in Sources */,
