@@ -7,12 +7,25 @@
 //
 
 #import "OCTNotification.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "NSValueTransformer+OCTPredefinedTransformerAdditions.h"
 #import "OCTRepository.h"
+#import "OCTCommit.h"
+#import "OCTIssue.h"
+#import "OCTPullRequest.h"
 
 @implementation OCTNotification
 
 #pragma mark MTLModel
+
++ (NSSet *)propertyKeys {
+	NSMutableSet *keys = [super.propertyKeys mutableCopy];
+
+	// This is a derived property.
+	[keys removeObject:@keypath(OCTNotification.new, subjectClass)];
+
+	return keys;
+}
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return [super.JSONKeyPathsByPropertyKey mtl_dictionaryByAddingEntriesFromDictionary:@{
@@ -71,6 +84,26 @@
 		} reverseBlock:^(NSNumber *type) {
 			return [typesByName allKeysForObject:type].lastObject;
 		}];
+}
+
+- (Class)subjectClass {
+	Class class;
+
+	switch (self.type) {
+		case OCTNotificationTypeCommit:
+			class = OCTCommit.class;
+			break;
+		case OCTNotificationTypeIssue:
+			class = OCTIssue.class;
+			break;
+		case OCTNotificationTypePullRequest:
+			class = OCTPullRequest.class;
+			break;
+		default:
+			break;
+	}
+
+	return class;
 }
 
 @end
