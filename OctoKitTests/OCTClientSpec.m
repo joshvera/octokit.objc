@@ -162,6 +162,9 @@ describe(@"without a user", ^{
 	});
 	
 	it(@"should GET a repository", ^{
+		NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"repository" withExtension:@"json"];
+		NSData *data = [NSData dataWithContentsOfURL:URL];
+		NSDictionary *representation = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
 		stubResponse(@"/repos/octokit/octokit.objc", @"repository.json");
 		
 		RACSignal *request = [client fetchRepositoryWithName:@"octokit.objc" owner:@"octokit"];
@@ -177,11 +180,11 @@ describe(@"without a user", ^{
 		expect(repository.defaultBranch).to.equal(@"master");
 		expect(repository.isPrivate).to.equal(@NO);
 		expect(repository.isFork).to.equal(@NO);
-		expect(repository.datePushed).to.equal([[[ISO8601DateFormatter alloc] init] dateFromString:@"2013-07-08T22:08:31Z"]);
-		expect(repository.SSHURL).to.equal(@"git@github.com:octokit/octokit.objc.git");
-		expect(repository.HTTPSURL).to.equal([NSURL URLWithString:@"https://github.com/octokit/octokit.objc.git"]);
-		expect(repository.gitURL).to.equal([NSURL URLWithString:@"git://github.com/octokit/octokit.objc.git"]);
-		expect(repository.HTMLURL).to.equal([NSURL URLWithString:@"https://github.com/octokit/octokit.objc"]);
+		expect(repository.datePushed).to.equal([[[ISO8601DateFormatter alloc] init] dateFromString:representation[@"pushed_at"]]);
+		expect(repository.SSHURL).to.equal([NSURL URLWithString:representation[@"ssh_url"]]);
+		expect(repository.HTTPSURL).to.equal([NSURL URLWithString:representation[@"clone_url"]]);
+		expect(repository.gitURL).to.equal([NSURL URLWithString:representation[@"git_url"]]);
+		expect(repository.HTMLURL).to.equal([NSURL URLWithString:representation[@"html_url"]]);
 	});
 	
 	it(@"should return nothing if repository is unmodified", ^{
@@ -249,6 +252,9 @@ describe(@"authenticated", ^{
 	});
 	
 	it(@"should fetch user starred repositories", ^{
+		NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"user_starred" withExtension:@"json"];
+		NSData *data = [NSData dataWithContentsOfURL:URL];
+		NSDictionary *representation = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL][0];
 		stubResponse(@"/user/starred", @"user_starred.json");
 		
 		RACSignal *request = [client fetchUserStarredRepositories];
@@ -257,17 +263,17 @@ describe(@"authenticated", ^{
 		expect(error).to.beNil();
 		
 		expect(repository).to.beKindOf(OCTRepository.class);
-		expect(repository.objectID).to.equal(@"3654804");
-		expect(repository.name).to.equal(@"ThisIsATest");
-		expect(repository.ownerLogin).to.equal(@"octocat");
-		expect(repository.repoDescription).to.beNil();
-		expect(repository.defaultBranch).to.equal(@"master");
-		expect(repository.isPrivate).to.equal(@NO);
-		expect(repository.datePushed).to.equal([[[ISO8601DateFormatter alloc] init] dateFromString:@"2013-03-26T08:31:42Z"]);
-		expect(repository.SSHURL).to.equal(@"git@github.com:octocat/ThisIsATest.git");
-		expect(repository.HTTPSURL).to.equal([NSURL URLWithString:@"https://github.com/octocat/ThisIsATest.git"]);
-		expect(repository.gitURL).to.equal([NSURL URLWithString:@"git://github.com/octocat/ThisIsATest.git"]);
-		expect(repository.HTMLURL).to.equal([NSURL URLWithString:@"https://github.com/octocat/ThisIsATest"]);
+		expect(repository.objectID).to.equal([representation[@"id"] stringValue]);
+		expect(repository.name).to.equal(representation[@"name"]);
+		expect(repository.ownerLogin).to.equal(representation[@"owner"][@"login"]);
+		expect(repository.repoDescription).to.equal(representation[@"description"]);
+		expect(repository.defaultBranch).to.equal(representation[@"default_branch"]);
+		expect(repository.isPrivate).to.equal(representation[@"private"]);
+		expect(repository.datePushed).to.equal([[[ISO8601DateFormatter alloc] init] dateFromString:representation[@"pushed_at"]]);
+		expect(repository.SSHURL).to.equal([NSURL URLWithString:representation[@"ssh_url"]]);
+		expect(repository.HTTPSURL).to.equal([NSURL URLWithString:representation[@"clone_url"]]);
+		expect(repository.gitURL).to.equal([NSURL URLWithString:representation[@"git_url"]]);
+		expect(repository.HTMLURL).to.equal([NSURL URLWithString:representation[@"html_url"]]);
 	});
 	
 	it(@"should return nothing if user starred repositories are unmodified", ^{
