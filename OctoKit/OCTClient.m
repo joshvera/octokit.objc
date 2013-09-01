@@ -40,8 +40,6 @@ static NSString * const OCTClientResponseLoggingEnvironmentKey = @"LOG_API_RESPO
 // allowed before the rate limit is enforced.
 static NSString * const OCTClientRateLimitLoggingEnvironmentKey = @"LOG_REMAINING_API_CALLS";
 
-static const NSInteger OCTClientNotModifiedStatusCode = 304;
-
 @interface OCTClient ()
 
 @property (nonatomic, strong, readwrite) OCTUser *user;
@@ -162,12 +160,6 @@ static const NSInteger OCTClientNotModifiedStatusCode = 304;
 		AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
 			if (NSProcessInfo.processInfo.environment[OCTClientResponseLoggingEnvironmentKey] != nil) {
 				NSLog(@"%@ %@ %@ => %li %@:\n%@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode, operation.response.allHeaderFields, responseObject);
-			}
-
-			if (operation.response.statusCode == OCTClientNotModifiedStatusCode) {
-				// No change in the data.
-				[subscriber sendCompleted];
-				return;
 			}
 
 			RACSignal *thisPageSignal = [[self parsedResponseOfClass:resultClass fromJSON:responseObject]
@@ -329,6 +321,8 @@ static const NSInteger OCTClientNotModifiedStatusCode = 304;
 		} else if (responseObject != nil) {
 			NSString *failureReason = [NSString stringWithFormat:NSLocalizedString(@"Response wasn't an array or dictionary (%@): %@", @""), [responseObject class], responseObject];
 			[subscriber sendError:[self parsingErrorWithFailureReason:failureReason]];
+		} else {
+			[subscriber sendCompleted];
 		}
 
 		return nil;
@@ -560,6 +554,17 @@ static const NSInteger OCTClientNotModifiedStatusCode = 304;
 	return [self enqueueRequest:request resultClass:OCTNotification.class];
 }
 
+- (RACSignal *)markNotificationThreadsAsReadForRepository:(OCTRepository *)repository {
+	NSParameterAssert(repository != nil);
+
+	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
+
+	NSString *path = [NSString stringWithFormat:@"repos/%@/%@/notifications", repository.ownerLogin, repository.name];
+	NSMutableURLRequest *request = [self requestWithMethod:@"PUT" path:path parameters:nil];
+
+	return [[self enqueueRequest:request resultClass:nil] ignoreValues];
+}
+
 - (RACSignal *)markNotificationThreadAsReadAtURL:(NSURL *)threadURL {
 	return [self patchThreadURL:threadURL withReadStatus:YES];
 }
@@ -571,6 +576,7 @@ static const NSInteger OCTClientNotModifiedStatusCode = 304;
 
 	NSMutableURLRequest *request = [self requestWithMethod:@"PATCH" path:@"" parameters:@{ @"read": @(read) }];
 	request.URL = threadURL;
+
 	return [[self enqueueRequest:request resultClass:nil] ignoreValues];
 }
 
@@ -581,6 +587,7 @@ static const NSInteger OCTClientNotModifiedStatusCode = 304;
 
 	NSMutableURLRequest *request = [self requestWithMethod:@"PUT" path:@"" parameters:@{ @"ignored": @YES }];
 	request.URL = [threadURL URLByAppendingPathComponent:@"subscription"];
+
 	return [[self enqueueRequest:request resultClass:nil] ignoreValues];
 }
 
