@@ -643,6 +643,15 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 
 @implementation OCTClient (Notifications)
 
+- (RACSignal *)fetchSubjectForNotification:(OCTNotification *)notification {
+	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
+
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"" parameters:nil notMatchingEtag:nil];
+	request.URL = notification.subjectURL;
+
+	return [self enqueueRequest:request resultClass:notification.subjectClass];
+}
+
 - (RACSignal *)fetchNotificationsNotMatchingEtag:(NSString *)etag includeReadNotifications:(BOOL)includeRead updatedSince:(NSDate *)since {
 	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
 

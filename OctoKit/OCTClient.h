@@ -371,6 +371,9 @@ typedef enum : NSUInteger {
 
 @interface OCTClient (Notifications)
 
+- (RACSignal *)fetchSubjectForNotification:(OCTNotification *)notification;
+
+
 // Conditionally fetch unread notifications for the user. If the latest data
 // matches `etag`, the call does not count toward the API rate limit.
 //
