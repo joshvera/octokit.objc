@@ -40,6 +40,8 @@ static NSString * const OCTClientResponseLoggingEnvironmentKey = @"LOG_API_RESPO
 // allowed before the rate limit is enforced.
 static NSString * const OCTClientRateLimitLoggingEnvironmentKey = @"LOG_REMAINING_API_CALLS";
 
+static const NSInteger OCTClientNotModifiedStatusCode = 304;
+
 @interface OCTClient ()
 
 @property (nonatomic, strong, readwrite) OCTUser *user;
@@ -632,6 +634,18 @@ static NSString * const OCTClientRateLimitLoggingEnvironmentKey = @"LOG_REMAININ
 	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:path parameters:nil notMatchingEtag:nil];
 	
 	return [[self enqueueRequest:request resultClass:OCTRepository.class] oct_parsedResults];
+}
+
+- (RACSignal *)unwatchRepository:(OCTRepository *)repository {
+	NSParameterAssert(repository != nil);
+
+	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
+
+	NSString *path = [NSString stringWithFormat:@"repos/%@/%@", repository.ownerLogin, repository.name];
+	NSMutableURLRequest *request = [self requestWithMethod:@"DELETE" path:path parameters:nil];
+
+	return [[self enqueueRequest:request resultClass:nil] ignoreValues];
+	
 }
 
 @end

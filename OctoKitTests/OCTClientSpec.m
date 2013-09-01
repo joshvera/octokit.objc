@@ -262,6 +262,23 @@ describe(@"authenticated", ^{
 		expect(error).to.beNil();
 	});
 
+	it(@"should return nothing when unwatching a repository", ^{
+		OCTRepository *repository = [[OCTRepository alloc] initWithDictionary:@{
+			@"name": @"github",
+			@"ownerLogin": @"github"
+		} error:NULL];
+
+		NSURL *URL = [NSURL URLWithString:@"https://github.com/repos/github/github/"];
+		NSString *path = [URL.path stringByAppendingPathComponent:@"subscription"];
+		stubResponseWithStatusCode(path, 205);
+
+		RACSignal *request = [client unwatchRepository:repository];
+	
+		expect([request asynchronousFirstOrDefault:nil success:&success error:&error]).to.beNil();
+		expect(success).to.beTruthy();
+		expect(error).to.beNil();
+	});
+
 	it(@"should return nothing when muting a notification thread", ^{
 		NSURL *URL = [NSURL URLWithString:@"https://github.com/notifications/threads/1"];
 		NSString *path = [URL.path stringByAppendingPathComponent:@"subscription"];
