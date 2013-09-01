@@ -10,6 +10,7 @@
 #import <OctoKit/NSValueTransformer+OCTPredefinedTransformerAdditions.h>
 #import <OctoKit/RACSignal+OCTClientAdditions.h>
 #import <OctoKit/OCTAuthorization.h>
+#import <OctoKit/OCTURITemplateTransformer.h>
 #import <OctoKit/OCTClient.h>
 #import <OctoKit/OCTComment.h>
 #import <OctoKit/OCTCommit.h>
