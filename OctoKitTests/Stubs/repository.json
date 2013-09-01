@@ -74,7 +74,7 @@
   "has_downloads": true,
   "has_wiki": true,
   "forks_count": 49,
-  "mirror_url": null,
+  "mirror_url": "https://api.github.com/github/github",
   "open_issues_count": 14,
   "forks": 49,
   "open_issues": 14,
