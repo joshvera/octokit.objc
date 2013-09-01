@@ -158,19 +158,31 @@ describe(@"from JSON", ^{
 		expect(repository.HTMLURL).to.equal([NSURL URLWithString:representation[@"html_url"]]);
 
 		expect(repository.homepage).to.equal(representation[@"homepage"]);
+
 		expect(repository.size).to.equal([representation[@"size"] unsignedIntegerValue]);
+
 		expect(repository.language).to.equal(representation[@"language"]);
+
 		expect(repository.hasIssues).to.equal([representation[@"has_issues"] boolValue]);
+
 		expect(repository.hasWiki).to.equal([representation[@"has_wiki"] boolValue]);
+
 		expect(repository.forkCount).to.equal(representation[@"forks"]);
+
 		expect(repository.openIssuesCount).to.equal(representation[@"open_issues"]);
+
 		expect(repository.watchersCount).to.equal(representation[@"watchers"]);
+
 		expect(repository.masterBranch).to.equal(representation[@"master_branch"]);
+
 		expect(repository.defaultBranch).to.equal(representation[@"default_branch"]);
 
 		expect(repository.admin).to.beTruthy();
+
 		expect(repository.canPush).to.beTruthy();
+
 		expect(repository.canPull).to.beTruthy();
+
 		expect(repository.networkCount).to.equal([representation[@"network_count"] unsignedIntegerValue]);
 
 		OCTOrganization *organization = [MTLJSONAdapter modelOfClass:OCTRepository.class fromJSONDictionary:representation[@"organization"] error:NULL];
@@ -184,10 +196,11 @@ describe(@"from JSON", ^{
 
 		NSDate *pushedAtDate = [[[ISO8601DateFormatter alloc] init] dateFromString:representation[@"pushed_at"]];
 		expect(repository.datePushed).to.equal(pushedAtDate);
+
 		expect(repository.pushedAtDate).to.equal(pushedAtDate);
 
-
 		expect(repository.defaultBranch).to.equal(representation[@"default_branch"]);
+		
 		expect(repository.masterBranch).to.equal(representation[@"master_branch"]);
 	});
 });
