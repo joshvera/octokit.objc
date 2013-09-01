@@ -6,10 +6,12 @@
 //  Copyright (c) 2012 GitHub. All rights reserved.
 //
 
-#import "OCTComment.h"
+#import "OCTObject.h"
+
+@class CSURITemplate;
 
 // A single comment on a commit.
-@interface OCTCommitComment : OCTComment
+@interface OCTCommitComment : OCTObject
 
 // The SHA of the commit being commented upon.
 @property (nonatomic, copy, readonly) NSString *commitSHA;
@@ -20,5 +22,26 @@
 // The line index in the commit's diff. This will be nil if the comment refers
 // to the entire commit.
 @property (nonatomic, copy, readonly) NSNumber *position;
+
+// The body of the comment.
+@property (nonatomic, copy, readonly) NSString *body;
+
+// The html body of the comment.
+@property (nonatomic, copy, readonly) NSString *HTMLBody;
+
+// The comment's webpage URL.
+@property (nonatomic, copy, readonly) NSURL *HTMLURL;
+
+// The comment's API URL.
+@property (nonatomic, copy, readonly) CSURITemplate *APIURITemplate;
+
+// The comment's created at date.
+@property (nonatomic, copy, readonly) NSDate *createdAtDate;
+
+// The comment's updated at date.
+@property (nonatomic, copy, readonly) NSDate *updatedAtDate;
+
+// The login of the user who created this comment.
+@property (nonatomic, copy, readonly) NSString *commenterLogin;
 
 @end

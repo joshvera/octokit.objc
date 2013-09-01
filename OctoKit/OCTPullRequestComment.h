@@ -8,6 +8,8 @@
 
 #import "OCTObject.h"
 
+@class CSURITemplate;
+
 // A single comment on a pull request.
 @interface OCTPullRequestComment : OCTObject
 
@@ -21,7 +23,7 @@
 @property (nonatomic, copy, readonly) NSURL *HTMLURL;
 
 // The comment's API URL.
-@property (nonatomic, copy, readonly) NSURL *APIURL;
+@property (nonatomic, copy, readonly) CSURITemplate *APIURITemplate;
 
 // The comment's created at date.
 @property (nonatomic, copy, readonly) NSDate *createdAtDate;

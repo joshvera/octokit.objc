@@ -8,10 +8,33 @@
 
 #import "OCTComment.h"
 
+@class CSURITemplate;
+
 // A single comment on an issue.
 @interface OCTIssueComment : OCTComment
 
 // The comment's issue URL.
 @property (nonatomic, copy, readonly) NSURL *issueURL;
+
+// The body of the comment.
+@property (nonatomic, copy, readonly) NSString *body;
+
+// The html body of the comment.
+@property (nonatomic, copy, readonly) NSString *HTMLBody;
+
+// The comment's webpage URL.
+@property (nonatomic, copy, readonly) NSURL *HTMLURL;
+
+// The comment's API URL.
+@property (nonatomic, copy, readonly) CSURITemplate *APIURITemplate;
+
+// The comment's created at date.
+@property (nonatomic, copy, readonly) NSDate *createdAtDate;
+
+// The comment's updated at date.
+@property (nonatomic, copy, readonly) NSDate *updatedAtDate;
+
+// The login of the user who created this comment.
+@property (nonatomic, copy, readonly) NSString *commenterLogin;
 
 @end
