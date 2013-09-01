@@ -531,6 +531,13 @@
 			remoteGlobalIDString = 88F440AA153DAC820097B4C3;
 			remoteInfo = "ReactiveCocoa-iOS";
 		};
+		D1B621F617D305310022A270 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D1C986F917D2C6E70001FDFA /* CSURITemplate.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BE84571016DCC1BE00DFD1C0;
+			remoteInfo = CSURITemplate;
+		};
 		D1C986FE17D2C6E70001FDFA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D1C986F917D2C6E70001FDFA /* CSURITemplate.xcodeproj */;
@@ -1405,6 +1412,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				D1B621F717D305310022A270 /* PBXTargetDependency */,
 				D05E74E716D3550E001AA17B /* PBXTargetDependency */,
 				D087211F169E360300016ACA /* PBXTargetDependency */,
 				D0872121169E360300016ACA /* PBXTargetDependency */,
@@ -1966,6 +1974,11 @@
 			isa = PBXTargetDependency;
 			name = "ReactiveCocoa-iOS";
 			targetProxy = D0C636741777ABD700F486A9 /* PBXContainerItemProxy */;
+		};
+		D1B621F717D305310022A270 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CSURITemplate;
+			targetProxy = D1B621F617D305310022A270 /* PBXContainerItemProxy */;
 		};
 		D1C9870E17D2C7050001FDFA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

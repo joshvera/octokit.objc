@@ -14,6 +14,7 @@
 	#import <Mantle/Mantle.h>
 	#import <ReactiveCocoa/ReactiveCocoa.h>
 	#import <OctoKit/OctoKit.h>
+	#import <CSURITemplate/CSURITemplate.h>
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
 	#import <OHHTTPStubs-iOS/OHHTTPStubs.h>
