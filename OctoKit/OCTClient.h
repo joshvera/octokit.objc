@@ -16,6 +16,8 @@
 @class OCTServer;
 @class OCTTeam;
 @class OCTUser;
+@class OCTIssue;
+@class OCTPullRequest;
 @class RACSignal;
 
 // The domain for all errors originating in OCTClient.
@@ -485,5 +487,13 @@ typedef enum : NSUInteger {
 // Returns a signal which will send the created OCTGist and complete. If the client
 // is not `authenticated`, the signal will error immediately.
 - (RACSignal *)createGistWithEdit:(OCTGistEdit *)edit;
+
+@end
+
+@interface OCTClient (Comments)
+
+- (RACSignal *)fetchIssueCommentsForSubject:(OCTIssue *)issue;
+
+- (RACSignal *)fetchReviewCommentsForPullRequest:(OCTPullRequest *)pullRequest;
 
 @end

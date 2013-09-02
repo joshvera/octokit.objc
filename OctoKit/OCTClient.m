@@ -21,8 +21,13 @@
 #import "OCTTeam.h"
 #import "OCTUser.h"
 #import "OCTNotification.h"
+#import "OCTPullRequest.h"
+#import "OCTIssue.h"
+#import "OCTIssueComment.h"
+#import "OCTPullRequestComment.h"
 #import "RACSignal+OCTClientAdditions.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <CSURITemplate/CSURITemplate.h>
 #import "OCTAuthorization.h"
 
 NSString * const OCTClientErrorDomain = @"OCTClientErrorDomain";
@@ -787,6 +792,28 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	NSDictionary *parameters = [MTLJSONAdapter JSONDictionaryFromModel:edit];
 	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"gists" parameters:parameters notMatchingEtag:nil];
 	return [[self enqueueRequest:request resultClass:OCTGist.class] oct_parsedResults];
+}
+
+@end
+
+@implementation OCTClient (Comments)
+
+- (RACSignal *)fetchIssueCommentsForSubject:(OCTIssue *)subject {
+	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
+
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"" parameters:nil notMatchingEtag:nil];
+	request.URL = [subject.commentsURITemplate URLWithVariables:@{} relativeToBaseURL:nil error:NULL];
+
+	return [self enqueueRequest:request resultClass:OCTIssueComment.class];
+}
+
+- (RACSignal *)fetchReviewCommentsForPullRequest:(OCTPullRequest *)pullRequest {
+	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
+
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"" parameters:nil notMatchingEtag:nil];
+	request.URL = [pullRequest.reviewCommentsURITemplate URLWithVariables:@{} relativeToBaseURL:nil error:NULL];
+
+	return [self enqueueRequest:request resultClass:OCTPullRequestComment.class];
 }
 
 @end
