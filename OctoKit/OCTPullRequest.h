@@ -8,6 +8,9 @@
 
 #import "OCTObject.h"
 
+@class CSURITemplate;
+@class OCTUser;
+
 // The state of the pull request. open or closed.
 //
 // OCTPullRequestStateOpen   - The pull request is open.
@@ -38,8 +41,28 @@ typedef enum : NSUInteger {
 // The body text for this pull request.
 @property (nonatomic, copy, readonly) NSString *body;
 
+// The pull request number in its repository.
+@property (nonatomic, assign, readonly) NSUInteger remoteID;
+
+@property (nonatomic, copy, readonly) NSString *HTMLBody;
+
+@property (nonatomic, copy, readonly) NSString *assignee;
+
+@property (nonatomic, copy, readonly) NSString *milestone;
+
+@property (nonatomic, copy, readonly) NSDate *createdAtDate;
+
+@property (nonatomic, copy, readonly) NSDate *updatedAtDate;
+
+@property (nonatomic, copy, readonly) OCTUser *user;
+
 // The state of this pull request.
 @property (nonatomic, readonly) OCTPullRequestState state;
 
+@property (nonatomic, copy, readonly) CSURITemplate *APIURITemplate;
+
+@property (nonatomic, copy, readonly) CSURITemplate *commentsURITemplate;
+
+@property (nonatomic, copy, readonly) CSURITemplate *reviewCommentsURITemplate;
 
 @end

@@ -9,6 +9,7 @@
 #import "OCTNotification.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "NSValueTransformer+OCTPredefinedTransformerAdditions.h"
+#import "OCTURITemplateTransformer.h"
 #import "OCTRepository.h"
 #import "OCTCommit.h"
 #import "OCTIssue.h"
@@ -31,7 +32,7 @@
 	return [super.JSONKeyPathsByPropertyKey mtl_dictionaryByAddingEntriesFromDictionary:@{
 		@"title": @"subject.title",
 		@"threadURL": @"url",
-		@"subjectURL": @"subject.url",
+		@"subjectURITemplate": @"subject.url",
 		@"latestCommentURL": @"subject.latest_comment_url",
 		@"type": @"subject.type",
 		@"repository": @"repository",
@@ -55,8 +56,8 @@
 	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
-+ (NSValueTransformer *)subjectURLJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
++ (NSValueTransformer *)subjectURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
 }
 
 + (NSValueTransformer *)latestCommentURLJSONTransformer {

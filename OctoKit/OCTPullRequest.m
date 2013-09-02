@@ -7,6 +7,9 @@
 //
 
 #import "OCTPullRequest.h"
+#import "OCTURITemplateTransformer.h"
+#import "NSValueTransformer+OCTPredefinedTransformerAdditions.h"
+#import "OCTUser.h"
 
 @implementation OCTPullRequest
 
@@ -14,11 +17,20 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return [super.JSONKeyPathsByPropertyKey mtl_dictionaryByAddingEntriesFromDictionary:@{
+		@"HTMLBody": @"body_html",
+		@"user": @"user",
+		@"assignee": @"assignee",
+		@"milestone": @"milestone",
 		@"HTMLURL": @"html_url",
 		@"diffURL": @"diff_url",
 		@"patchURL": @"patch_url",
 		@"issueURL": @"issue_url",
-		@"objectID": @"number",
+		@"remoteID": @"number",
+		@"createdAtDate": @"created_at",
+		@"updatedAtDate": @"updated_at",
+		@"APIURITemplate": @"url",
+		@"reviewCommentsURITemplate": @"review_comments_url",
+		@"commentsURITemplate": @"comments_url",
 	}];
 }
 
@@ -38,6 +50,18 @@
 	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
++ (NSValueTransformer *)updatedAtDateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTDateValueTransformerName];
+}
+
++ (NSValueTransformer *)createdAtDateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTDateValueTransformerName];
+}
+
++ (NSValueTransformer *)userJSONTransformer {
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTUser.class];
+}
+
 + (NSValueTransformer *)stateJSONTransformer {
 	NSDictionary *statesByName = @{
 		@"open": @(OCTPullRequestStateOpen),
@@ -51,6 +75,18 @@
 		reverseBlock:^(NSNumber *state) {
 			return [statesByName allKeysForObject:state].lastObject;
 		}];
+}
+
++ (NSValueTransformer *)APIURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
++ (NSValueTransformer *)reviewCommentsURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
++ (NSValueTransformer *)commentsURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
 }
 
 @end
