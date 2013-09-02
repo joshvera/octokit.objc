@@ -6,12 +6,13 @@
 //  Copyright (c) 2012 GitHub. All rights reserved.
 //
 
-#import "OCTComment.h"
+#import "OCTObject.h"
 
 @class CSURITemplate;
+@class OCTUser;
 
 // A single comment on an issue.
-@interface OCTIssueComment : OCTComment
+@interface OCTIssueComment : OCTObject
 
 // The comment's issue URL.
 @property (nonatomic, copy, readonly) NSURL *issueURL;
@@ -36,5 +37,7 @@
 
 // The login of the user who created this comment.
 @property (nonatomic, copy, readonly) NSString *commenterLogin;
+
+@property (nonatomic, copy, readonly) OCTUser *user;
 
 @end

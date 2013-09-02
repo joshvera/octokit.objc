@@ -10,6 +10,7 @@
 #import "NSValueTransformer+OCTPredefinedTransformerAdditions.h"
 #import <CSURITemplate/CSURITemplate.h>
 #import "OCTURITemplateTransformer.h"
+#import "OCTUser.h"
 
 @implementation OCTIssueComment
 
@@ -25,7 +26,8 @@
 			@"updatedAtDate": @"updated_at",
 			@"HTMLURL": @"html_url",
 			@"commenterLogin": @"user.login",
-			@"APIURITemplate": @"url"
+			@"APIURITemplate": @"url",
+			@"user": @"user"
 		}];
 }
 
@@ -49,5 +51,8 @@
 	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
++ (NSValueTransformer *)userJSONTransformer {
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTUser.class];
+}
 
 @end
