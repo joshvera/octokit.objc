@@ -95,7 +95,9 @@
 	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
 }
 
-
++ (NSValueTransformer *)subscriptionsURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
 
 #pragma mark Merging
 
