@@ -35,6 +35,6 @@
 @property (nonatomic, copy, readonly) NSString *commenterLogin;
 
 // The API URL for the pull request upon which this comment appears.
-@property (nonatomic, copy, readonly) NSURL *pullRequestAPIURL;
+@property (nonatomic, copy, readonly) CSURITemplate *pullRequestURITemplate;
 
 @end

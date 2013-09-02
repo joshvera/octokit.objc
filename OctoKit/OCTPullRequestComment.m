@@ -8,7 +8,6 @@
 
 #import "OCTPullRequestComment.h"
 #import "NSValueTransformer+OCTPredefinedTransformerAdditions.h"
-#import <CSURITemplate/CSURITemplate.h>
 #import "OCTURITemplateTransformer.h"
 
 @implementation OCTPullRequestComment
@@ -17,7 +16,7 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return [super.JSONKeyPathsByPropertyKey mtl_dictionaryByAddingEntriesFromDictionary:@{
-		@"pullRequestAPIURL": @"pull_request_url",
+		@"pullRequestURITemplate": @"pull_request_url",
 		@"body": @"body",
 		@"HTMLBody": @"body_html",
 		@"createdAtDate": @"created_at",
@@ -28,8 +27,8 @@
 	}];
 }
 
-+ (NSValueTransformer *)pullRequestAPIURLJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
++ (NSValueTransformer *)pullRequestURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
 }
 
 + (NSValueTransformer *)APIURITemplateJSONTransformer {
