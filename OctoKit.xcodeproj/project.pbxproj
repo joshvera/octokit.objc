@@ -245,7 +245,7 @@
 		D10A1F7617D15FDD0073B758 /* OCTCommentSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D10A1F4C17D15BC60073B758 /* OCTCommentSpec.m */; };
 		D10A1F7717D15FDE0073B758 /* OCTCommentSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D10A1F4C17D15BC60073B758 /* OCTCommentSpec.m */; };
 		D11D80C817D18F7900CA7039 /* OCTCommit.h in Headers */ = {isa = PBXBuildFile; fileRef = D11D80C617D18F7900CA7039 /* OCTCommit.h */; };
-		D11D80C917D18F7900CA7039 /* OCTCommit.h in Headers */ = {isa = PBXBuildFile; fileRef = D11D80C617D18F7900CA7039 /* OCTCommit.h */; };
+		D11D80C917D18F7900CA7039 /* OCTCommit.h in Headers */ = {isa = PBXBuildFile; fileRef = D11D80C617D18F7900CA7039 /* OCTCommit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D11D80CA17D18F7900CA7039 /* OCTCommit.m in Sources */ = {isa = PBXBuildFile; fileRef = D11D80C717D18F7900CA7039 /* OCTCommit.m */; };
 		D11D80CB17D18F7900CA7039 /* OCTCommit.m in Sources */ = {isa = PBXBuildFile; fileRef = D11D80C717D18F7900CA7039 /* OCTCommit.m */; };
 		D11D80DD17D190C900CA7039 /* OCTCommitSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D11D80D817D18F9500CA7039 /* OCTCommitSpec.m */; };
@@ -1345,6 +1345,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D087215A169E395F00016ACA /* OCTClient.h in Headers */,
+				D11D80C917D18F7900CA7039 /* OCTCommit.h in Headers */,
 				9CB0588617933F26002CF498 /* OCTSubmoduleContent.h in Headers */,
 				D087215E169E395F00016ACA /* OCTCommitComment.h in Headers */,
 				D0872162169E395F00016ACA /* OCTCommitCommentEvent.h in Headers */,
@@ -1381,7 +1382,6 @@
 				8848E19E16AF630B005449AB /* OCTNotification.h in Headers */,
 				D0772E7416BD27B6009DFF72 /* NSDateFormatter+OCTFormattingAdditions.h in Headers */,
 				D0772E7816BD2A06009DFF72 /* NSValueTransformer+OCTPredefinedTransformerAdditions.h in Headers */,
-				D11D80C917D18F7900CA7039 /* OCTCommit.h in Headers */,
 				9CB0588A17933F26002CF498 /* OCTSymlinkContent.h in Headers */,
 				9CB0587E17933F26002CF498 /* OCTDirectoryContent.h in Headers */,
 				F6CF78D516E993A500A75F63 /* RACSignal+OCTClientAdditions.h in Headers */,

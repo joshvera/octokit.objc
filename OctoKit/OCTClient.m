@@ -133,7 +133,7 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	if (self == nil) return nil;
 	
 	self.parameterEncoding = AFJSONParameterEncoding;
-	[AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"application/vnd.github.beta+json"]];
+	[AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObjects:@"application/vnd.github.beta+json", @"application/vnd.github.beta.html+json", nil]];
 	[self registerHTTPOperationClass:AFJSONRequestOperation.class];
 	[self setDefaultHeader:@"Accept" value:@"application/vnd.github.beta+json"];
 	[AFHTTPRequestOperation addAcceptableStatusCodes:[NSIndexSet indexSetWithIndex:OCTClientNotModifiedStatusCode]];
@@ -653,6 +653,7 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 
 	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"" parameters:nil notMatchingEtag:nil];
 	request.URL = [notification.subjectURITemplate URLWithVariables:@{} relativeToBaseURL:nil error:NULL];
+	[request setValue:@"application/vnd.github.beta.html+json" forHTTPHeaderField:@"Accept"];
 
 	return [self enqueueRequest:request resultClass:notification.subjectClass];
 }
@@ -803,6 +804,7 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 
 	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"" parameters:nil notMatchingEtag:nil];
 	request.URL = [subject.commentsURITemplate URLWithVariables:@{} relativeToBaseURL:nil error:NULL];
+	[request setValue:@"application/vnd.github.beta.html+json" forHTTPHeaderField:@"Accept"];
 
 	return [self enqueueRequest:request resultClass:OCTIssueComment.class];
 }
@@ -812,6 +814,7 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 
 	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"" parameters:nil notMatchingEtag:nil];
 	request.URL = [pullRequest.reviewCommentsURITemplate URLWithVariables:@{} relativeToBaseURL:nil error:NULL];
+	[request setValue:@"application/vnd.github.beta.html+json" forHTTPHeaderField:@"Accept"];
 
 	return [self enqueueRequest:request resultClass:OCTPullRequestComment.class];
 }
