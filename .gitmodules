@@ -15,4 +15,4 @@
 	url = https://github.com/github/OHHTTPStubs.git
 [submodule "External/CSURITemplate"]
 	path = External/CSURITemplate
-	url = https://github.com/cogenta/CSURITemplate
+	url = https://github.com/joshvera/CSURITemplate
