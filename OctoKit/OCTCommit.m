@@ -19,6 +19,7 @@
 			@"objectID": @"sha",
 			@"commitSHA": @"sha",
 			@"message": @"commit.message",
+			@"avatarURL": @"author.avatar_url",
 			@"authoredDate": @"commit.author.date",
 			@"committedDate": @"commit.committer.date",
 			@"APIURL": @"url",

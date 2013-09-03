@@ -31,6 +31,9 @@
 // The commit's HTML URL.
 @property (nonatomic, copy, readonly) NSURL *HTMLURL;
 
+// The commit's avatar URL.
+@property (nonatomic, copy, readonly) NSURL *avatarURL;
+
 // The commit's comments URL.
 @property (nonatomic, copy, readonly) NSURL *commentsURL;
 
