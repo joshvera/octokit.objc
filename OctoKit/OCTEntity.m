@@ -59,7 +59,7 @@
 	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTPlan.class];
 }
 
-+ (NSValueTransformer *)HTMLURLTemplateJSONTransformer {
++ (NSValueTransformer *)HTMLURLJSONTransformer {
 	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 

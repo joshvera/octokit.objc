@@ -29,7 +29,7 @@
 		@"createdAtDate": @"created_at",
 		@"updatedAtDate": @"updated_at",
 		@"APIURITemplate": @"url",
-		@"reviewCommentsURITemplate": @"review_comments_url",
+		@"reviewCommentsURITemplate": @"_links.review_comments.href",
 		@"commentsURITemplate": @"comments_url",
 	}];
 }
@@ -59,6 +59,10 @@
 }
 
 + (NSValueTransformer *)userJSONTransformer {
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTUser.class];
+}
+
++ (NSValueTransformer *)assigneeJSONTransformer {
 	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTUser.class];
 }
 
