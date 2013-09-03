@@ -9,6 +9,7 @@
 #import "OCTPullRequestComment.h"
 #import "NSValueTransformer+OCTPredefinedTransformerAdditions.h"
 #import "OCTURITemplateTransformer.h"
+#import "OCTUser.h"
 
 @implementation OCTPullRequestComment
 
@@ -23,7 +24,14 @@
 		@"updatedAtDate": @"updated_at",
 		@"HTMLURL": @"html_url",
 		@"commenterLogin": @"user.login",
-		@"APIURITemplate": @"url"
+		@"APIURITemplate": @"url",
+		@"user": @"user",
+		@"diffHunk": @"diff_hunk",
+		@"position": @"position",
+		@"originalPosition": @"original_position",
+		@"path": @"path",
+		@"commitSHA": @"commit_id",
+		@"originalCommitSHA": @"original_commit_id",
 	}];
 }
 
@@ -45,6 +53,10 @@
 
 + (NSValueTransformer *)updatedAtDateJSONTransformer {
 	return [NSValueTransformer valueTransformerForName:OCTDateValueTransformerName];
+}
+
++ (NSValueTransformer *)userJSONTransformer {
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTUser.class];
 }
 
 @end
