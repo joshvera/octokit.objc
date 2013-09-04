@@ -10,6 +10,8 @@
 
 @class CSURITemplate;
 @class OCTUser;
+@class OCTPullRequest;
+@class OCTIssue;
 
 // A single comment on an issue.
 @interface OCTIssueComment : OCTObject
@@ -39,5 +41,9 @@
 @property (nonatomic, copy, readonly) NSString *commenterLogin;
 
 @property (nonatomic, copy, readonly) OCTUser *user;
+
+@property (atomic, strong) OCTPullRequest *pullRequest;
+
+@property (atomic, strong) OCTIssue *issue;
 
 @end

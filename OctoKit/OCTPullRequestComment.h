@@ -10,9 +10,12 @@
 
 @class CSURITemplate;
 @class OCTUser;
+@class OCTPullRequest;
 
 // A single comment on a pull request.
 @interface OCTPullRequestComment : OCTObject
+
+@property (atomic, strong) OCTPullRequest *pullRequest;
 
 // The body of the comment.
 @property (nonatomic, copy, readonly) NSString *body;
