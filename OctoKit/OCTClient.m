@@ -677,7 +677,7 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
 
 	NSString *path = [NSString stringWithFormat:@"repos/%@/%@/notifications", repository.ownerLogin, repository.name];
-	NSMutableURLRequest *request = [self requestWithMethod:@"PUT" path:path parameters:nil];
+	NSMutableURLRequest *request = [self requestWithMethod:@"PUT" path:path parameters:@{}];
 
 	return [[self enqueueRequest:request resultClass:nil] ignoreValues];
 }
