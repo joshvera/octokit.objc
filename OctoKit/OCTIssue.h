@@ -57,4 +57,6 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, copy, readonly) CSURITemplate *commentsURITemplate;
 
+@property (nonatomic, assign, readonly) NSUInteger commentCount;
+
 @end

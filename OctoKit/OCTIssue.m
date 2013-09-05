@@ -55,6 +55,7 @@
 		@"APIURITemplate": @"url",
 		@"reviewCommentsURITemplate": @"review_comments_url",
 		@"commentsURITemplate": @"comments_url",
+		@"commentCount": @"comments",
 	}];
 }
 
