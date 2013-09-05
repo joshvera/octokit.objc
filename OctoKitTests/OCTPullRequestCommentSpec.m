@@ -50,7 +50,6 @@ itShouldBehaveLike(OCTObjectArchivingSharedExamplesName, ^{
 it(@"should initialize", ^{
 	expect(comment.objectID).to.equal(@"1");
 	expect(comment.HTMLURL).to.equal([NSURL URLWithString:@"https://github.com/octocat/Hello-World/pull/1#discussion-diff-1"]);
-	expect(comment.pullRequestAPIURL).to.equal([NSURL URLWithString:@"https://api.github.com/octocat/Hello-World/pulls/1"]);
 });
 
 SpecEnd

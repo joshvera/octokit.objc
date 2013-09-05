@@ -233,7 +233,6 @@ describe(@"authenticated", ^{
 		expect(notification.objectID).to.equal(@"1");
 		expect(notification.title).to.equal(@"Greetings");
 		expect(notification.threadURL).to.equal([NSURL URLWithString:@"https://api.github.com/notifications/threads/1"]);
-		expect(notification.subjectURL).to.equal([NSURL URLWithString:@"https://api.github.com/repos/pengwynn/octokit/issues/123"]);
 		expect(notification.latestCommentURL).to.equal([NSURL URLWithString:@"https://api.github.com/repos/pengwynn/octokit/issues/comments/123"]);
 		expect(notification.type).to.equal(OCTNotificationTypeIssue);
 		expect(notification.lastUpdatedDate).to.equal([[[ISO8601DateFormatter alloc] init] dateFromString:@"2012-09-25T07:54:41-07:00"]);
