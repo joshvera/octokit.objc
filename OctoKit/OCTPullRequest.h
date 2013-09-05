@@ -50,6 +50,10 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, copy, readonly) NSString *milestone;
 
+@property (nonatomic, assign, readonly) NSUInteger additions;
+
+@property (nonatomic, assign, readonly) NSUInteger deletions;
+
 @property (nonatomic, copy, readonly) NSDate *createdAtDate;
 
 @property (nonatomic, copy, readonly) NSDate *updatedAtDate;

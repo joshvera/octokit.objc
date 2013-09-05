@@ -28,6 +28,8 @@
 		@"remoteID": @"number",
 		@"createdAtDate": @"created_at",
 		@"updatedAtDate": @"updated_at",
+		@"additions": @"additions",
+		@"deletions": @"deletions",
 		@"APIURITemplate": @"url",
 		@"reviewCommentsURITemplate": @"_links.review_comments.href",
 		@"commentsURITemplate": @"comments_url",
