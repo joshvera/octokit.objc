@@ -10,6 +10,7 @@
 
 @class CSURITemplate;
 @class OCTUser;
+@class OCTMilestone;
 
 // The state of the pull request. open or closed.
 //
@@ -48,7 +49,7 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, copy, readonly) NSString *assignee;
 
-@property (nonatomic, copy, readonly) NSString *milestone;
+@property (nonatomic, copy, readonly) OCTMilestone *milestone;
 
 @property (nonatomic, assign, readonly) NSUInteger additions;
 

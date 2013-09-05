@@ -11,6 +11,7 @@
 @class OCTPullRequest;
 @class CSURITemplate;
 @class OCTUser;
+@class OCTMilestone;
 
 // The state of the issue. open or closed.
 //
@@ -36,7 +37,7 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, copy, readonly) OCTUser *assignee;
 
-@property (nonatomic, copy, readonly) NSString *milestone;
+@property (nonatomic, copy, readonly) OCTMilestone *milestone;
 
 @property (nonatomic, assign, readonly) OCTIssueState state;
 

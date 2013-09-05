@@ -12,6 +12,7 @@
 #import "OCTURITemplateTransformer.h"
 #import "NSValueTransformer+OCTPredefinedTransformerAdditions.h"
 #import "OCTUser.h"
+#import "OCTMilestone.h"
 
 @interface OCTIssue ()
 
@@ -79,6 +80,10 @@
 
 + (NSValueTransformer *)assigneeJSONTransformer {
 	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTUser.class];
+}
+
++ (NSValueTransformer *)milestoneJSONTransformer {
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTMilestone.class];
 }
 
 + (NSValueTransformer *)APIURITemplateJSONTransformer {
