@@ -659,14 +659,25 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 }
 
 - (RACSignal *)fetchNotificationsNotMatchingEtag:(NSString *)etag includeReadNotifications:(BOOL)includeRead updatedSince:(NSDate *)since {
+	return [self fetchNotificationsNotMatchingEtag:etag onlyParticipating:NO includeReadNotifications:includeRead updatedSince:since];
+}
+
+- (RACSignal *)fetchParticipatingNotificationsNotMatchingEtag:(NSString *)etag {
+	return [self fetchNotificationsNotMatchingEtag:etag onlyParticipating:YES includeReadNotifications:NO updatedSince:nil];
+}
+
+- (RACSignal *)fetchNotificationsNotMatchingEtag:(NSString *)etag onlyParticipating:(BOOL)onlyParticipating includeReadNotifications:(BOOL)includeRead updatedSince:(NSDate *)since {
 	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
 
 	NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-	parameters[@"all"] = @(includeRead);
+	parameters[@"all"] = includeRead ? @"true": @"false";
+
+	parameters[@"participating"] = onlyParticipating ? @"true" : @"false";
 
 	if (since != nil) {
 		parameters[@"since"] = [NSDateFormatter oct_stringFromDate:since];
 	}
+
 	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"notifications" parameters:parameters notMatchingEtag:etag];
 	return [self enqueueRequest:request resultClass:OCTNotification.class];
 }

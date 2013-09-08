@@ -391,6 +391,11 @@ typedef enum : NSUInteger {
 // `authenticated`, the signal will error immediately.
 - (RACSignal *)fetchNotificationsNotMatchingEtag:(NSString *)etag includeReadNotifications:(BOOL)includeRead updatedSince:(NSDate *)since;
 
+- (RACSignal *)fetchParticipatingNotificationsNotMatchingEtag:(NSString *)etag;
+
+- (RACSignal *)fetchNotificationsNotMatchingEtag:(NSString *)etag
+  onlyParticipating:(BOOL)onlyParticipating includeReadNotifications:(BOOL)includeRead updatedSince:(NSDate *)since;
+
 // Mark a notification thread as having been read.
 //
 // threadURL - The API URL of the thread to mark as read. Cannot be nil.
