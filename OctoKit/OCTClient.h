@@ -504,3 +504,9 @@ typedef enum : NSUInteger {
 - (RACSignal *)fetchReviewCommentsForPullRequest:(OCTPullRequest *)pullRequest;
 
 @end
+
+@interface OCTClient (Watching)
+
+- (RACSignal *)fetchWatchedRepositories;
+
+@end
