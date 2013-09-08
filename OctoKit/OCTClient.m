@@ -852,7 +852,7 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"" parameters:nil];
 	request.URL = [self.user.subscriptionsURITemplate URLWithVariables:@{} relativeToBaseURL:nil error:NULL];
 
-	return [self enqueueRequest:request resultClass:OCTRepository.class];
+	return [[self enqueueRequest:request resultClass:OCTRepository.class] oct_parsedResults];
 }
 
 @end
