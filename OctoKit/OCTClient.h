@@ -421,6 +421,8 @@ typedef enum : NSUInteger {
 - (RACSignal *)markNotificationThreadsAsReadForRepository:(OCTRepository
   *)repository;
 
+- (RACSignal *)fetchNotificationsForRepository:(OCTRepository *)repository;
+
 @end
 
 @interface OCTClient (Repository)
