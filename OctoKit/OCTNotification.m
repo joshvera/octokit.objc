@@ -15,6 +15,10 @@
 #import "OCTIssue.h"
 #import "OCTPullRequest.h"
 
+NSString * const OCTNotificationErrorDomain = @"OCTNotificationErrorDomain";
+
+NSInteger const OCTNotificationErrorTypeUnknown = -600;
+
 @implementation OCTNotification
 
 #pragma mark MTLModel
@@ -85,6 +89,23 @@
 		} reverseBlock:^(NSNumber *type) {
 			return [typesByName allKeysForObject:type].lastObject;
 		}];
+}
+
+# pragma mark - Initialization
+
+- (BOOL)validateType:(NSNumber **)type error:(NSError **)error {
+	if ([*type unsignedIntegerValue] == OCTNotificationTypeUnknown) {
+		if (error != NULL) {
+			NSDictionary *userInfo = @{
+				NSLocalizedDescriptionKey: NSLocalizedString(@"The notification type was unknown.", @"")
+			};
+
+			*error = [NSError errorWithDomain:OCTNotificationErrorDomain code:OCTNotificationErrorTypeUnknown userInfo:userInfo];
+		}
+		return  NO;
+	}
+
+	return YES;
 }
 
 - (Class)subjectClass {

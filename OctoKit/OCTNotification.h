@@ -11,6 +11,12 @@
 @class OCTRepository;
 @class CSURITemplate;
 
+// The domain for all errors originating in OCTNotification
+extern NSString * const OCTNotificationErrorDomain;
+
+// The notification's type could not be identified.
+extern NSInteger const OCTNotificationErrorTypeUnknown;
+
 // The type of the notification.
 //
 // OCTNotificationTypeUnknown     - An unknown type of notification.
