@@ -1250,8 +1250,8 @@
 				D0C6366A1777AB9300F486A9 /* libReactiveCocoa-iOS.a */,
 				D0C6366C1777AB9300F486A9 /* ReactiveCocoaTests.octest */,
 				D0C6366E1777AB9300F486A9 /* ReactiveCocoaTests-iOS.octest */,
-				8829F2CD17A0DF5400F06991 /* ReactiveCocoa-iOS-UIKitTestHost.app */,
-				8829F2CF17A0DF5400F06991 /* ReactiveCocoa-iOS-UIKitTestHostTests.octest */,
+				F688019717C1CE0F00ECC7EC /* ReactiveCocoa-iOS-UIKitTestHost.app */,
+				F688019917C1CE0F00ECC7EC /* ReactiveCocoa-iOS-UIKitTestHostTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";

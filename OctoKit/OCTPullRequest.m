@@ -22,6 +22,7 @@
 		@"user": @"user",
 		@"assignee": @"assignee",
 		@"milestone": @"milestone",
+		@"URL" : @"url",
 		@"HTMLURL": @"html_url",
 		@"diffURL": @"diff_url",
 		@"patchURL": @"patch_url",
@@ -35,6 +36,10 @@
 		@"reviewCommentsURITemplate": @"_links.review_comments.href",
 		@"commentsURITemplate": @"comments_url",
 	}];
+}
+
++ (NSValueTransformer *)URLJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
 + (NSValueTransformer *)HTMLURLJSONTransformer {

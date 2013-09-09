@@ -37,9 +37,11 @@ const NSInteger OCTClientErrorConnectionFailed = 668;
 const NSInteger OCTClientErrorJSONParsingFailed = 669;
 const NSInteger OCTClientErrorBadRequest = 670;
 const NSInteger OCTClientErrorTwoFactorAuthenticationOneTimePasswordRequired = 671;
+const NSInteger OCTClientErrorUnsupportedServer = 672;
 
 NSString * const OCTClientErrorRequestURLKey = @"OCTClientErrorRequestURLKey";
 NSString * const OCTClientErrorHTTPStatusCodeKey = @"OCTClientErrorHTTPStatusCodeKey";
+NSString * const OCTClientErrorOneTimePasswordMediumKey = @"OCTClientErrorOneTimePasswordMediumKey";
 
 // An environment variable that, when present, will enable logging of all
 // responses.
@@ -48,8 +50,6 @@ static NSString * const OCTClientResponseLoggingEnvironmentKey = @"LOG_API_RESPO
 // An environment variable that, when present, will log the remaining API calls
 // allowed before the rate limit is enforced.
 static NSString * const OCTClientRateLimitLoggingEnvironmentKey = @"LOG_REMAINING_API_CALLS";
-
-NSString * const OCTClientErrorOneTimePasswordMediumKey = @"OCTClientErrorOneTimePasswordMediumKey";
 
 static const NSInteger OCTClientNotModifiedStatusCode = 304;
 
@@ -517,9 +517,25 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	// they're both sent to the server the same way: as the Basic Auth password.
 	OCTClient *authedClient = [OCTClient authenticatedClientWithUser:self.user token:password];
 	NSMutableURLRequest *request = [authedClient requestWithMethod:method path:path parameters:parameters];
+	request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
 	if (oneTimePassword != nil) [request setValue:oneTimePassword forHTTPHeaderField:OCTClientOneTimePasswordHeaderField];
 
-	return [self enqueueRequest:request resultClass:OCTAuthorization.class];
+	return [[self
+		enqueueRequest:request resultClass:OCTAuthorization.class]
+		catch:^(NSError *error) {
+			NSNumber *statusCode = error.userInfo[OCTClientErrorHTTPStatusCodeKey];
+
+			// 404s mean we tried to authorize in an unsupported way.
+			if (statusCode.integerValue == 404) {
+				NSMutableDictionary *userInfo = [error.userInfo mutableCopy];
+				userInfo[NSLocalizedDescriptionKey] = NSLocalizedString(@"The server's version is unsupported.", @"");
+				userInfo[NSUnderlyingErrorKey] = error;
+
+				error = [NSError errorWithDomain:OCTClientErrorDomain code:OCTClientErrorUnsupportedServer userInfo:userInfo];
+			}
+
+			return [RACSignal error:error];
+		}];
 }
 
 - (RACSignal *)requestAuthorizationWithPassword:(NSString *)password oneTimePassword:(NSString *)oneTimePassword scopes:(OCTClientAuthorizationScopes)scopes clientID:(NSString *)clientID clientSecret:(NSString *)clientSecret {
