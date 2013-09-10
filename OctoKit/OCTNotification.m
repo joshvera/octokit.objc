@@ -93,21 +93,6 @@ NSInteger const OCTNotificationErrorTypeUnknown = -600;
 
 # pragma mark - Initialization
 
-- (BOOL)validateType:(NSNumber **)type error:(NSError **)error {
-	if ([*type unsignedIntegerValue] == OCTNotificationTypeUnknown) {
-		if (error != NULL) {
-			NSDictionary *userInfo = @{
-				NSLocalizedDescriptionKey: NSLocalizedString(@"The notification type was unknown.", @"")
-			};
-
-			*error = [NSError errorWithDomain:OCTNotificationErrorDomain code:OCTNotificationErrorTypeUnknown userInfo:userInfo];
-		}
-		return  NO;
-	}
-
-	return YES;
-}
-
 - (Class)subjectClass {
 	Class class;
 
