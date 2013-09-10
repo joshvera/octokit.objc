@@ -153,15 +153,25 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	}
 
 	NSMutableURLRequest *request = [self requestWithMethod:method path:[path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] parameters:parameters];
-	if (etag != nil) {
-		[request setValue:etag forHTTPHeaderField:@"If-None-Match"];
+
+
+	return [self etagRequestWithRequest:request];
+}
+
+- (NSMutableURLRequest *)etagRequestWithRequest:(NSURLRequest *)request {
+	NSMutableURLRequest *mutableRequest = [request mutableCopy];
+	NSCachedURLResponse *cachedResponse = [NSURLCache.sharedURLCache cachedResponseForRequest:request];
+
+	NSString *cachedEtag = [(NSHTTPURLResponse *)cachedResponse.response allHeaderFields][@"Etag"];
+	if (cachedEtag != nil) {
+		[mutableRequest setValue:cachedEtag forHTTPHeaderField:@"If-None-Match"];
 
 		// If an etag is specified, we want 304 responses to be treated as 304s,
 		// not served from NSURLCache with a status of 200.
-		request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+		mutableRequest.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
 	}
 
-	return request;
+	return mutableRequest;
 }
 
 #pragma mark Request Enqueuing
@@ -201,6 +211,7 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 				// If we got this far, the etag is out of date, so don't pass it on.
 				NSMutableURLRequest *nextRequest = [request mutableCopy];
 				nextRequest.URL = nextPageURL;
+				nextRequest = [self etagRequestWithRequest:nextRequest];
 
 				nextPageSignal = [self enqueueRequest:nextRequest resultClass:resultClass fetchAllPages:YES];
 			}
