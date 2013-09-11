@@ -29,6 +29,7 @@ NSString * const OCTURITemplateValueTransformerName = @"OCTURITemplateValueTrans
 }
 
 - (CSURITemplate *)transformedValue:(NSString *)value {
+	if (![value isKindOfClass:NSString.class]) return nil;
 	return [CSURITemplate URITemplateWithString:value error:NULL];
 }
 
