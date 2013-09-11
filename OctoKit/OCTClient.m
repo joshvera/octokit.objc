@@ -143,6 +143,15 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 
 #pragma mark Request Creation
 
+- (NSMutableURLRequest *)requestWithMethod:(NSString *)method template:(CSURITemplate *)template parameters:(NSDictionary *)parameters {
+	NSParameterAssert(method != nil);
+	NSParameterAssert(template != nil);
+
+	NSMutableURLRequest *request = [self requestWithMethod:method path:@"" parameters:parameters notMatchingEtag:nil];
+	request.URL = [template URLWithVariables:@{} relativeToBaseURL:nil error:NULL];
+	return [self etagRequestWithRequest:request];
+}
+
 - (NSMutableURLRequest *)requestWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters notMatchingEtag:(NSString *)etag {
 	NSParameterAssert(method != nil);
 	
@@ -153,7 +162,6 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	}
 
 	NSMutableURLRequest *request = [self requestWithMethod:method path:[path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] parameters:parameters];
-
 
 	return [self etagRequestWithRequest:request];
 }
@@ -678,8 +686,7 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 - (RACSignal *)fetchSubjectForNotification:(OCTNotification *)notification {
 	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
 
-	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"" parameters:nil notMatchingEtag:nil];
-	request.URL = [notification.subjectURITemplate URLWithVariables:@{} relativeToBaseURL:nil error:NULL];
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" template:notification.subjectURITemplate parameters:nil];
 	[request setValue:@"application/vnd.github.beta.html+json" forHTTPHeaderField:@"Accept"];
 
 	return [self enqueueRequest:request resultClass:notification.subjectClass];
@@ -751,8 +758,7 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 
 	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
 
-	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"" parameters:nil];
-	request.URL = [repository.notificationsURITemplate URLWithVariables:@{} relativeToBaseURL:nil error:NULL];
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" template:repository.notificationsURITemplate parameters:nil];
 
 	return [self enqueueRequest:request resultClass:OCTNotification.class];
 
@@ -852,8 +858,7 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 - (RACSignal *)fetchIssueCommentsForSubject:(OCTIssue *)subject {
 	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
 
-	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"" parameters:nil notMatchingEtag:nil];
-	request.URL = [subject.commentsURITemplate URLWithVariables:@{} relativeToBaseURL:nil error:NULL];
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" template:subject.commentsURITemplate parameters:nil];
 	[request setValue:@"application/vnd.github.beta.html+json" forHTTPHeaderField:@"Accept"];
 
 	return [self enqueueRequest:request resultClass:OCTIssueComment.class];
@@ -862,8 +867,7 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 - (RACSignal *)fetchReviewCommentsForPullRequest:(OCTPullRequest *)pullRequest {
 	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
 
-	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"" parameters:nil notMatchingEtag:nil];
-	request.URL = [pullRequest.reviewCommentsURITemplate URLWithVariables:@{} relativeToBaseURL:nil error:NULL];
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" template:pullRequest.reviewCommentsURITemplate parameters:nil];
 	[request setValue:@"application/vnd.github.beta.html+json" forHTTPHeaderField:@"Accept"];
 
 	return [self enqueueRequest:request resultClass:OCTPullRequestComment.class];
@@ -876,8 +880,7 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 - (RACSignal *)fetchWatchedRepositories {
 	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
 	
-	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"" parameters:nil];
-	request.URL = [self.user.subscriptionsURITemplate URLWithVariables:@{} relativeToBaseURL:nil error:NULL];
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" template:self.user.subscriptionsURITemplate parameters:nil];
 
 	return [[self enqueueRequest:request resultClass:OCTRepository.class] oct_parsedResults];
 }
