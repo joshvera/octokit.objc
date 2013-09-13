@@ -10,6 +10,7 @@
 #import "OCTUser.h"
 #import "OCTDiffEntry.h"
 #import "NSValueTransformer+OCTPredefinedTransformerAdditions.h"
+#import "OCTURITemplateTransformer.h"
 
 @implementation OCTCommit
 
@@ -19,12 +20,11 @@
 			@"objectID": @"sha",
 			@"commitSHA": @"sha",
 			@"message": @"commit.message",
-			@"avatarURL": @"author.avatar_url",
 			@"authoredDate": @"commit.author.date",
 			@"committedDate": @"commit.committer.date",
-			@"APIURL": @"url",
+			@"APIURITemplate": @"url",
 			@"HTMLURL": @"html_url",
-			@"commentsURL": @"comments_url",
+			@"commentsURITemplate": @"comments_url",
 			@"committer": @"committer",
 			@"author": @"author",
 			@"total": @"total",
@@ -48,16 +48,16 @@
 	return [NSValueTransformer valueTransformerForName:OCTDateValueTransformerName];
 }
 
-+ (NSValueTransformer *)APIURLJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
++ (NSValueTransformer *)APIURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
 }
 
 + (NSValueTransformer *)HTMLURLJSONTransformer {
 	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
-+ (NSValueTransformer *)commentsURLJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
++ (NSValueTransformer *)commentsURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
 }
 
 + (NSValueTransformer *)authorJSONTransformer {

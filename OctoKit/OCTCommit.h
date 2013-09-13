@@ -9,6 +9,7 @@
 #import "OCTObject.h"
 
 @class OCTUser;
+@class CSURITemplate;
 
 // A commit on a repository
 @interface OCTCommit : OCTObject
@@ -26,16 +27,13 @@
 @property (nonatomic, copy, readonly) NSDate *committedDate;
 
 // The commit's API URL.
-@property (nonatomic, copy, readonly) NSURL *APIURL;
+@property (nonatomic, copy, readonly) CSURITemplate *APIURITemplate;
 
 // The commit's HTML URL.
 @property (nonatomic, copy, readonly) NSURL *HTMLURL;
 
-// The commit's avatar URL.
-@property (nonatomic, copy, readonly) NSURL *avatarURL;
-
 // The commit's comments URL.
-@property (nonatomic, copy, readonly) NSURL *commentsURL;
+@property (nonatomic, copy, readonly) CSURITemplate *commentsURITemplate;
 
 // The commit's author.
 @property (nonatomic, copy, readonly) OCTUser *author;
