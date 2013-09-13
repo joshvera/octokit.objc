@@ -8,6 +8,8 @@
 
 #import "OCTObject.h"
 
+@class OCTCommit;
+@class OCTUser;
 @class CSURITemplate;
 
 // A single comment on a commit.
@@ -22,6 +24,8 @@
 // The line index in the commit's diff. This will be nil if the comment refers
 // to the entire commit.
 @property (nonatomic, copy, readonly) NSNumber *position;
+
+@property (nonatomic, copy, readonly) NSNumber *line;
 
 // The body of the comment.
 @property (nonatomic, copy, readonly) NSString *body;
@@ -43,5 +47,9 @@
 
 // The login of the user who created this comment.
 @property (nonatomic, copy, readonly) NSString *commenterLogin;
+
+@property (atomic, strong) OCTCommit *commit;
+
+@property (nonatomic, copy, readonly) OCTUser *user;
 
 @end

@@ -9,7 +9,7 @@
 #import "OCTCommitComment.h"
 #import "NSValueTransformer+OCTPredefinedTransformerAdditions.h"
 #import "OCTURITemplateTransformer.h"
-#import <CSURITemplate/CSURITemplate.h>
+#import "OCTUser.h"
 
 @implementation OCTCommitComment
 
@@ -19,6 +19,7 @@
 	return [super.JSONKeyPathsByPropertyKey mtl_dictionaryByAddingEntriesFromDictionary:@{
 		@"commitSHA": @"commit_id",
 		@"path": @"path",
+		@"line": @"line",
 		@"position": @"position",
 		@"body": @"body",
 		@"HTMLBody": @"body_html",
@@ -26,7 +27,8 @@
 		@"updatedAtDate": @"updated_at",
 		@"HTMLURL": @"html_url",
 		@"commenterLogin": @"user.login",
-		@"APIURITemplate": @"url"
+		@"APIURITemplate": @"url",
+		@"user": @"user"
 	}];
 }
 
@@ -44,6 +46,10 @@
 
 + (NSValueTransformer *)updatedAtDateJSONTransformer {
 	return [NSValueTransformer valueTransformerForName:OCTDateValueTransformerName];
+}
+
++ (NSValueTransformer *)userJSONTransformer {
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTUser.class];
 }
 
 @end
