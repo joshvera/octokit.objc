@@ -254,7 +254,7 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	if (self.user == nil) return [RACSignal error:self.class.userRequiredError];
 		
 	NSString *path = (self.authenticated ? [NSString stringWithFormat:@"user%@", relativePath] : [NSString stringWithFormat:@"users/%@%@", self.user.login, relativePath]);
-	NSMutableURLRequest *request = [self requestWithMethod:method path:path parameters:parameters notMatchingEtag:nil];
+	NSMutableURLRequest *request = [self requestWithMethod:method path:path parameters:parameters];
 	if (self.authenticated) request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
 	
 	return [self enqueueRequest:request resultClass:resultClass];
