@@ -855,13 +855,17 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 
 @implementation OCTClient (Comments)
 
-- (RACSignal *)fetchIssueCommentsForSubject:(OCTIssue *)subject {
+- (RACSignal *)fetchIssueCommentsForSubject:(OCTIssue *)issue {
+	return [self fetchCommentsAtURITemplate:issue.commentsURITemplate resultClass:OCTIssueComment.class];
+}
+
+- (RACSignal *)fetchCommentsAtURITemplate:(CSURITemplate *)template resultClass:(Class)class {
 	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
 
-	NSMutableURLRequest *request = [self requestWithMethod:@"GET" template:subject.commentsURITemplate parameters:nil];
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" template:template parameters:nil];
 	[request setValue:@"application/vnd.github.beta.html+json" forHTTPHeaderField:@"Accept"];
 
-	return [self enqueueRequest:request resultClass:OCTIssueComment.class];
+	return [self enqueueRequest:request resultClass:class];
 }
 
 - (RACSignal *)fetchReviewCommentsForPullRequest:(OCTPullRequest *)pullRequest {

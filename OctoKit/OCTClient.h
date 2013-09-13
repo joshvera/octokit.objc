@@ -19,6 +19,7 @@
 @class OCTIssue;
 @class OCTPullRequest;
 @class RACSignal;
+@class CSURITemplate;
 
 // The domain for all errors originating in OCTClient.
 extern NSString * const OCTClientErrorDomain;
@@ -507,6 +508,8 @@ typedef enum : NSUInteger {
 @interface OCTClient (Comments)
 
 - (RACSignal *)fetchIssueCommentsForSubject:(OCTIssue *)issue;
+
+- (RACSignal *)fetchCommentsAtURITemplate:(CSURITemplate *)template resultClass:(Class)class;
 
 - (RACSignal *)fetchReviewCommentsForPullRequest:(OCTPullRequest *)pullRequest;
 
