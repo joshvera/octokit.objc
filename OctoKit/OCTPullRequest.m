@@ -11,6 +11,7 @@
 #import "NSValueTransformer+OCTPredefinedTransformerAdditions.h"
 #import "OCTUser.h"
 #import "OCTMilestone.h"
+#import "OCTRepository.h"
 
 @implementation OCTPullRequest
 
@@ -35,6 +36,16 @@
 		@"APIURITemplate": @"url",
 		@"reviewCommentsURITemplate": @"_links.review_comments.href",
 		@"commentsURITemplate": @"comments_url",
+		@"headSHA": @"head.sha",
+		@"headRefName": @"head.ref",
+		@"headUser": @"head.user",
+		@"headRepository": @"head.repo",
+		@"headLabel": @"head.label",
+		@"baseSHA": @"base.sha",
+		@"baseRefName": @"base.ref",
+		@"baseLabel": @"base.label",
+		@"baseUser": @"base.user",
+		@"baseRepository": @"base.repo"
 	}];
 }
 
@@ -76,6 +87,22 @@
 
 + (NSValueTransformer *)milestoneJSONTransformer {
 	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTMilestone.class];
+}
+
++ (NSValueTransformer *)baseUserJSONTransformer {
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTUser.class];
+}
+
++ (NSValueTransformer *)baseRepositoryJSONTransformer {
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTRepository.class];
+}
+
++ (NSValueTransformer *)headUserJSONTransformer {
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTUser.class];
+}
+
++ (NSValueTransformer *)headRepositoryJSONTransformer {
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTRepository.class];
 }
 
 + (NSValueTransformer *)stateJSONTransformer {

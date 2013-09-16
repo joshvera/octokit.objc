@@ -11,6 +11,7 @@
 @class CSURITemplate;
 @class OCTUser;
 @class OCTMilestone;
+@class OCTRepository;
 
 // The state of the pull request. open or closed.
 //
@@ -63,6 +64,26 @@ typedef enum : NSUInteger {
 @property (nonatomic, copy, readonly) NSDate *updatedAtDate;
 
 @property (nonatomic, copy, readonly) OCTUser *user;
+
+@property (nonatomic, copy, readonly) NSString *baseSHA;
+
+@property (nonatomic, copy, readonly) NSString *baseRefName;
+
+@property (nonatomic, copy, readonly) OCTRepository *baseRepository;
+
+@property (nonatomic, copy, readonly) OCTUser *baseUser;
+
+@property (nonatomic, copy, readonly) NSString *baseLabel;
+
+@property (nonatomic, copy, readonly) NSString *headRefName;
+
+@property (nonatomic, copy, readonly) NSString *headSHA;
+
+@property (nonatomic, copy, readonly) OCTRepository *headRepository;
+
+@property (nonatomic, copy, readonly) OCTUser *headUser;
+
+@property (nonatomic, copy, readonly) NSString *headLabel;
 
 // The state of this pull request.
 @property (nonatomic, readonly) OCTPullRequestState state;
