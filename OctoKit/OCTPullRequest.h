@@ -94,4 +94,8 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, copy, readonly) CSURITemplate *reviewCommentsURITemplate;
 
+@property (atomic, strong) NSArray *commits;
+
+@property (nonatomic, copy, readonly) CSURITemplate *commitsURITemplate;
+
 @end

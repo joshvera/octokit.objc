@@ -36,6 +36,7 @@
 		@"APIURITemplate": @"url",
 		@"reviewCommentsURITemplate": @"_links.review_comments.href",
 		@"commentsURITemplate": @"comments_url",
+		@"commitsURITemplate": @"commits_url",
 		@"headSHA": @"head.sha",
 		@"headRefName": @"head.ref",
 		@"headUser": @"head.user",
@@ -129,6 +130,10 @@
 }
 
 + (NSValueTransformer *)commentsURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
++ (NSValueTransformer *)commitsURITemplateJSONTransformer {
 	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
 }
 
