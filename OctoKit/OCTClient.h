@@ -515,6 +515,12 @@ typedef enum : NSUInteger {
 
 @end
 
+@interface OCTClient (Commits)
+
+- (RACSignal *)fetchCommitsAtPullRequestURITemplate:(CSURITemplate *)template;
+
+@end
+
 @interface OCTClient (Watching)
 
 - (RACSignal *)fetchWatchedRepositories;

@@ -22,6 +22,7 @@
 #import "OCTUser.h"
 #import "OCTNotification.h"
 #import "OCTPullRequest.h"
+#import "OCTCommit.h"
 #import "OCTIssue.h"
 #import "OCTIssueComment.h"
 #import "OCTPullRequestComment.h"
@@ -879,6 +880,20 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	[request setValue:@"application/vnd.github.beta.html+json" forHTTPHeaderField:@"Accept"];
 
 	return [self enqueueRequest:request resultClass:OCTPullRequestComment.class];
+}
+
+@end
+
+@implementation OCTClient (Commits)
+
+- (RACSignal *)fetchCommitsAtPullRequestURITemplate:(CSURITemplate *)template {
+	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
+
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" template:template parameters:nil];
+	request.URL = [request.URL URLByAppendingPathComponent:@"commits"];
+	[request setValue:@"application/vnd.github.beta.html+json" forHTTPHeaderField:@"Accept"];
+
+	return [[self enqueueRequest:request resultClass:OCTCommit.class] oct_parsedResults];
 }
 
 @end
