@@ -53,4 +53,6 @@
 // An array of OCTFiles.
 @property (nonatomic, copy, readonly) NSArray *files;
 
+@property (atomic, strong) NSArray *pullRequests;
+
 @end
