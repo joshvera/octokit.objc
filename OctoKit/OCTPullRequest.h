@@ -22,6 +22,8 @@ typedef enum : NSUInteger {
     OCTPullRequestStateClosed
 } OCTPullRequestState;
 
+@class CSURITemplate;
+
 // A pull request on a repository.
 @interface OCTPullRequest : OCTObject
 

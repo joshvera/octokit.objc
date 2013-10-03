@@ -50,6 +50,10 @@
 	}];
 }
 
++ (NSValueTransformer *)APIURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
 + (NSValueTransformer *)URLJSONTransformer {
 	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
@@ -119,10 +123,6 @@
 		reverseBlock:^(NSNumber *state) {
 			return [statesByName allKeysForObject:state].lastObject;
 		}];
-}
-
-+ (NSValueTransformer *)APIURITemplateJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
 }
 
 + (NSValueTransformer *)reviewCommentsURITemplateJSONTransformer {

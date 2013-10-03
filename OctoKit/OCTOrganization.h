@@ -17,4 +17,8 @@
 // a convenience for persistence and model merging.
 @property (atomic, copy) NSArray *teams;
 
+@property (atomic, copy) NSArray *notifications;
+
+@property (atomic, copy) NSArray *users;
+
 @end

@@ -36,6 +36,7 @@
 #import <OctoKit/OCTPullRequestComment.h>
 #import <OctoKit/OCTPullRequestCommentEvent.h>
 #import <OctoKit/OCTPullRequestEvent.h>
+#import <OctoKit/OCTTimeline.h>
 #import <OctoKit/OCTPushEvent.h>
 #import <OctoKit/OCTRefEvent.h>
 #import <OctoKit/OCTRepository.h>
@@ -44,5 +45,7 @@
 #import <OctoKit/OCTSubmoduleContent.h>
 #import <OctoKit/OCTSymlinkContent.h>
 #import <OctoKit/OCTTeam.h>
+#import <OctoKit/OCTTimeline.h>
+#import <OctoKit/OCTCrossReference.h>
 #import <OctoKit/OCTUser.h>
 #import <OctoKit/OCTMilestone.h>

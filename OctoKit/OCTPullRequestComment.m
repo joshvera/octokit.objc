@@ -29,6 +29,7 @@
 		@"diffHunk": @"diff_hunk",
 		@"position": @"position",
 		@"originalPosition": @"original_position",
+		@"line": @"line",
 		@"path": @"path",
 		@"commitSHA": @"commit_id",
 		@"originalCommitSHA": @"original_commit_id",

@@ -10,4 +10,10 @@
 
 @implementation OCTFileContent
 
+#pragma mark NSKeyValueCoding
+
+- (BOOL)validateSize:(NSNumber **)sizePtr error:(NSError **)error {
+	return (*sizePtr != nil);
+}
+
 @end

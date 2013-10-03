@@ -8,6 +8,7 @@
 
 #import "OCTObject.h"
 
+@class OCTRepository;
 @class OCTPullRequest;
 @class CSURITemplate;
 @class OCTUser;
@@ -52,6 +53,8 @@ typedef enum : NSUInteger {
 // The pull request that is attached to (i.e., the same as) this issue, or nil
 // if this issue does not have code attached.
 @property (nonatomic, copy, readonly) OCTPullRequest *pullRequest;
+
+@property (atomic, strong) OCTRepository *repository;
 
 @property (nonatomic, copy, readonly) CSURITemplate *APIURITemplate;
 

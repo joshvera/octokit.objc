@@ -381,7 +381,7 @@ typedef enum : NSUInteger {
 
 @interface OCTClient (Notifications)
 
-- (RACSignal *)fetchSubjectForNotification:(OCTNotification *)notification;
+- (RACSignal *)fetchSubjectAtURITemplate:(CSURITemplate *)template resultClass:(Class)class;
 
 
 // Conditionally fetch unread notifications for the user. If the latest data
@@ -515,9 +515,27 @@ typedef enum : NSUInteger {
 
 @end
 
+@interface OCTClient (Issues)
+
+- (RACSignal *)fetchIssuesAtURITemplate:(CSURITemplate *)template;
+
+@end
+
+@interface OCTClient (PullRequests)
+
+- (RACSignal *)fetchPullRequestsAtURITemplate:(CSURITemplate *)template;
+
+@end
+
 @interface OCTClient (Commits)
 
 - (RACSignal *)fetchCommitsAtPullRequestURITemplate:(CSURITemplate *)template;
+
+@end
+
+@interface OCTClient (Timeline)
+
+- (RACSignal *)fetchTimelineAtPullRequestURITemplate:(CSURITemplate *)template;
 
 @end
 

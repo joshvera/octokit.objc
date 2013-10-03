@@ -45,9 +45,11 @@
 
 @property (nonatomic, copy, readonly) NSString *diffHunk;
 
-@property (nonatomic, assign, readonly) NSNumber *position;
+@property (nonatomic, copy, readonly) NSNumber *position;
 
-@property (nonatomic, assign, readonly) NSNumber *originalPosition;
+@property (nonatomic, copy, readonly) NSNumber *originalPosition;
+
+@property (nonatomic, copy, readonly) NSNumber *line;
 
 @property (nonatomic, copy, readonly) NSString *path;
 

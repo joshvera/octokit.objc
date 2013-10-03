@@ -26,6 +26,7 @@
 #import "OCTIssue.h"
 #import "OCTIssueComment.h"
 #import "OCTPullRequestComment.h"
+#import "OCTTimeline.h"
 #import "RACSignal+OCTClientAdditions.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <CSURITemplate/CSURITemplate.h>
@@ -172,9 +173,9 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	NSCachedURLResponse *cachedResponse = [NSURLCache.sharedURLCache cachedResponseForRequest:request];
 
 	NSString *cachedEtag = [(NSHTTPURLResponse *)cachedResponse.response allHeaderFields][@"Etag"];
-	if (cachedEtag != nil) {
-		[mutableRequest setValue:cachedEtag forHTTPHeaderField:@"If-None-Match"];
+	[mutableRequest setValue:cachedEtag forHTTPHeaderField:@"If-None-Match"];
 
+	if (cachedEtag != nil) {
 		// If an etag is specified, we want 304 responses to be treated as 304s,
 		// not served from NSURLCache with a status of 200.
 		mutableRequest.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
@@ -266,6 +267,17 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 - (NSURL *)nextPageURLFromOperation:(AFHTTPRequestOperation *)operation {
 	NSDictionary *header = operation.response.allHeaderFields;
 	NSString *linksString = header[@"Link"];
+	NSString *query = operation.response.URL.query;
+	NSArray *components = [query componentsSeparatedByString:@"&"];
+	NSUInteger idx = [components indexOfObjectPassingTest:^(NSString *string, NSUInteger idx, BOOL *stop) {
+		return [string hasPrefix:@"page="];
+	}];
+	if (idx != NSNotFound) {
+		NSString *number = [[components objectAtIndex:idx] substringFromIndex:4];
+		NSDecimalNumber *num = [NSDecimalNumber decimalNumberWithString:number];
+		return components.query 
+	}
+
 	if (linksString.length < 1) return nil;
 
 	NSError *error = nil;
@@ -684,13 +696,13 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 
 @implementation OCTClient (Notifications)
 
-- (RACSignal *)fetchSubjectForNotification:(OCTNotification *)notification {
+- (RACSignal *)fetchSubjectAtURITemplate:(CSURITemplate *)template resultClass:(Class)class {
 	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
 
-	NSMutableURLRequest *request = [self requestWithMethod:@"GET" template:notification.subjectURITemplate parameters:nil];
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" template:template parameters:nil];
 	[request setValue:@"application/vnd.github.beta.html+json" forHTTPHeaderField:@"Accept"];
 
-	return [self enqueueRequest:request resultClass:notification.subjectClass];
+	return [[self enqueueRequest:request resultClass:class] oct_parsedResults];
 }
 
 - (RACSignal *)fetchNotificationsNotMatchingEtag:(NSString *)etag includeReadNotifications:(BOOL)includeRead updatedSince:(NSDate *)since {
@@ -884,6 +896,30 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 
 @end
 
+@implementation OCTClient (Issues)
+
+- (RACSignal *)fetchIssuesAtURITemplate:(CSURITemplate *)template {
+	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
+
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" template:template parameters:nil];
+
+	return [[self enqueueRequest:request resultClass:OCTIssue.class] oct_parsedResults];
+}
+
+@end
+
+@implementation OCTClient (PullRequests)
+
+- (RACSignal *)fetchPullRequestsAtURITemplate:(CSURITemplate *)template {
+	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
+
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" template:template parameters:nil];
+
+	return [[self enqueueRequest:request resultClass:OCTPullRequest.class] oct_parsedResults];
+}
+
+@end
+
 @implementation OCTClient (Commits)
 
 - (RACSignal *)fetchCommitsAtPullRequestURITemplate:(CSURITemplate *)template {
@@ -894,6 +930,20 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	[request setValue:@"application/vnd.github.beta.html+json" forHTTPHeaderField:@"Accept"];
 
 	return [[self enqueueRequest:request resultClass:OCTCommit.class] oct_parsedResults];
+}
+
+@end
+
+@implementation OCTClient (Timeline)
+
+- (RACSignal *)fetchTimelineAtPullRequestURITemplate:(CSURITemplate *)template {
+	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
+
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" template:template parameters:nil];
+	request.URL = [request.URL URLByAppendingPathComponent:@"timeline"];
+	[request setValue:@"application/vnd.github.beta.html+json" forHTTPHeaderField:@"Accept"];
+
+	return [[self enqueueRequest:[self etagRequestWithRequest:request] resultClass:OCTTimeline.class] oct_parsedResults];
 }
 
 @end

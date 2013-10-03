@@ -14,9 +14,6 @@
 
 @interface OCTContent ()
 
-// The type of content which the reciever represents.
-@property (nonatomic, copy, readonly) NSString *type;
-
 @end
 
 @implementation OCTContent
@@ -37,7 +34,24 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return [super.JSONKeyPathsByPropertyKey mtl_dictionaryByAddingEntriesFromDictionary:@{
 		@"SHA": @"sha",
+		@"objectID": @"sha",
+		@"relativePath": @"path"
 	}];
+}
+
++ (NSValueTransformer *)objectIDJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithBlock:^(NSString *objectID) {
+		return objectID;
+	}];
+}
+
+- (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error {
+	self = [super initWithDictionary:dictionaryValue error:error];
+	if (self == nil) return nil;
+
+	_relativePath = [self.path stringByDeletingLastPathComponent];
+
+	return self;
 }
 
 + (Class)classForParsingJSONDictionary:(NSDictionary *)JSONDictionary {

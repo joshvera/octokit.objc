@@ -9,16 +9,32 @@
 #import "OCTEntity.h"
 #import "OCTPlan.h"
 #import "OCTRepository.h"
+#import "OCTUser.h"
+#import "OCTOrganization.h"
 #import "OCTURITemplateTransformer.h"
 
 @implementation OCTEntity
 
+#pragma mark Class Cluster
+
++ (NSDictionary *)entityClassesByType {
+	return @{
+		@"User": OCTUser.class,
+		@"Organization": OCTOrganization.class,
+	};
+}
+
 #pragma mark Properties
 
 @synthesize name = _name;
+@synthesize type = _type;
 
 - (NSString *)name {
 	return _name ?: self.login;
+}
+
+- (NSString *)type {
+	return _type ?: @"Organization";
 }
 
 #pragma mark MTLJSONSerializing
@@ -161,6 +177,14 @@
 	dictionaryValue[@"plan"] = [self.planJSONTransformer transformedValue:externalRepresentation[@"plan"]] ?: NSNull.null;
 
 	return dictionaryValue;
+}
+
++ (Class)classForParsingJSONDictionary:(NSDictionary *)JSONDictionary {
+	NSString *type = JSONDictionary[@"type"] ?: @"Organization";
+
+	Class class = self.entityClassesByType[type];
+	NSAssert(class != Nil, @"No known OCTEntity class for the type '%@'.", type);
+	return class;
 }
 
 @end

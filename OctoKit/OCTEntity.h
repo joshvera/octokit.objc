@@ -52,6 +52,8 @@
 // The number of kilobytes occupied by this account's repositories on disk.
 @property (atomic, assign, readonly) NSUInteger diskUsage;
 
+@property (nonatomic, copy, readonly) NSString *type;
+
 // The plan that this account is on.
 @property (atomic, strong, readonly) OCTPlan *plan;
 
@@ -91,5 +93,7 @@
 // Updates the receiver's repositories with data from the set of remote
 // repositories.
 - (void)mergeRepositoriesWithRemoteCounterparts:(NSArray *)remoteRepositories;
+
++ (NSDictionary *)entityClassesByType;
 
 @end
