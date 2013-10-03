@@ -273,15 +273,23 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 - (NSURL *)nextPageURLFromOperation:(AFHTTPRequestOperation *)operation {
 	NSDictionary *header = operation.response.allHeaderFields;
 	NSString *linksString = header[@"Link"];
-	NSString *query = operation.response.URL.query;
-	NSArray *components = [query componentsSeparatedByString:@"&"];
-	NSUInteger idx = [components indexOfObjectPassingTest:^(NSString *string, NSUInteger idx, BOOL *stop) {
-		return [string hasPrefix:@"page="];
-	}];
-	if (idx != NSNotFound) {
-		NSString *number = [[components objectAtIndex:idx] substringFromIndex:4];
-		NSDecimalNumber *num = [NSDecimalNumber decimalNumberWithString:number];
-		return components.query 
+
+	NSURLComponents *components = [NSURLComponents componentsWithURL:operation.response.URL resolvingAgainstBaseURL:NO];
+	NSString *query = components.query;
+	if (query != nil && operation.responseData.length > 2) {
+
+		NSRegularExpression *expression = [NSRegularExpression regularExpressionWithPattern:@"&page=(\\d+)&" options:0 error:NULL];
+		NSTextCheckingResult *result = [expression firstMatchInString:query options:0 range:NSMakeRange(0, query.length)];
+
+		if (result != nil) {
+			NSRange pageRange = [result rangeAtIndex:1];
+			NSString *page = [query substringWithRange:pageRange];
+			NSUInteger pageNumber = [NSDecimalNumber decimalNumberWithString:page].unsignedIntegerValue;
+			NSString *nextIndex = [@(pageNumber + 1) stringValue];
+
+			components.query = [components.query stringByReplacingCharactersInRange:pageRange withString:nextIndex];
+			return components.URL;
+		}
 	}
 
 	if (linksString.length < 1) return nil;
@@ -724,6 +732,7 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 
 	NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
 	parameters[@"all"] = includeRead ? @"true": @"false";
+	parameters[@"page"] = @(1);
 
 	parameters[@"participating"] = onlyParticipating ? @"true" : @"false";
 
@@ -778,13 +787,13 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
 
 	NSDictionary *parameters = @{
-		@"all": @"false"
+		@"all": @"false",
+		@"page": @(1)
 	};
 
 	NSMutableURLRequest *request = [self requestWithMethod:@"GET" template:repository.notificationsURITemplate parameters:parameters];
 
 	return [self enqueueRequest:request resultClass:OCTNotification.class];
-
 }
 
 @end
