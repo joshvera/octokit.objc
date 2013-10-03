@@ -150,7 +150,13 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	NSParameterAssert(template != nil);
 
 	NSMutableURLRequest *request = [self requestWithMethod:method path:@"" parameters:parameters notMatchingEtag:nil];
-	request.URL = [template URLWithVariables:@{} relativeToBaseURL:nil error:NULL];
+
+	NSURL *templateURL = [template URLWithVariables:@{} relativeToBaseURL:nil error:NULL];
+	NSURLComponents *components = [NSURLComponents componentsWithURL:templateURL resolvingAgainstBaseURL:NO];
+	components.query = request.URL.query;
+
+	request.URL = components.URL;
+
 	return [self etagRequestWithRequest:request];
 }
 
