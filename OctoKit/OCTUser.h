@@ -17,4 +17,6 @@
 // Returns a user with the given username and OCTServer instance.
 + (instancetype)userWithLogin:(NSString *)login server:(OCTServer *)server;
 
+@property (atomic, copy) NSArray *watchedRepositories;
+
 @end
