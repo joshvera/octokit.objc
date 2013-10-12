@@ -614,6 +614,17 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	return [[self enqueueUserRequestWithMethod:@"GET" relativePath:@"" parameters:nil resultClass:OCTUser.class] oct_parsedResults];
 }
 
+- (RACSignal *)fetchRepositoriesAtURITemplate:(CSURITemplate *)template {
+	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
+
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" template:template parameters:nil];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+	[request setValue:nil forHTTPHeaderField:@"Accept-Language"];
+	request = [self etagRequestWithRequest:request];
+
+	return [[self enqueueRequest:request resultClass:OCTRepository.class] oct_parsedResults];
+}
+
 - (RACSignal *)fetchUserRepositories {
 	return [[self enqueueUserRequestWithMethod:@"GET" relativePath:@"/repos" parameters:nil resultClass:OCTRepository.class] oct_parsedResults];
 }
@@ -634,6 +645,17 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 
 - (RACSignal *)fetchUserOrganizations {
 	return [[self enqueueUserRequestWithMethod:@"GET" relativePath:@"/orgs" parameters:nil resultClass:OCTOrganization.class] oct_parsedResults];
+}
+
+- (RACSignal *)fetchOrganizationsAtURITemplate:(CSURITemplate *)template {
+	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
+
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" template:template parameters:nil];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+	[request setValue:nil forHTTPHeaderField:@"Accept-Language"];
+	request = [self etagRequestWithRequest:request];
+
+	return [[self enqueueRequest:request resultClass:OCTOrganization.class] oct_parsedResults];
 }
 
 - (RACSignal *)fetchOrganizationInfo:(OCTOrganization *)organization {

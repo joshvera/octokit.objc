@@ -283,6 +283,8 @@ typedef enum : NSUInteger {
 
 @interface OCTClient (User)
 
+- (RACSignal *)fetchRepositoriesAtURITemplate:(CSURITemplate *)template;
+
 // Fetches the full information of the current `user`.
 //
 // Returns a signal which sends a new OCTUser. The user may contain different
@@ -313,6 +315,8 @@ typedef enum : NSUInteger {
 @end
 
 @interface OCTClient (Organizations)
+
+- (RACSignal *)fetchOrganizationsAtURITemplate:(CSURITemplate *)template;
 
 // Fetches the organizations that the current user is a member of.
 //
