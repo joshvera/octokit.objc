@@ -763,7 +763,7 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	}
 
 	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"notifications" parameters:parameters notMatchingEtag:etag];
-	return [self enqueueRequest:request resultClass:OCTNotification.class];
+	return [[self enqueueRequest:request resultClass:OCTNotification.class] oct_parsedResults];
 }
 
 - (RACSignal *)markNotificationThreadsAsReadForRepository:(OCTRepository *)repository {
