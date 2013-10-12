@@ -84,6 +84,7 @@ static NSString *const OCTRepositoryHTMLIssuesPath = @"issues";
 		@"statusesURITemplate": @"statuses_url",
 		@"cloneURL": @"clone_url",
 		@"mirrorURL": @"mirror_url",
+		@"watchers": NSNull.null
 	}];
 }
 

@@ -212,4 +212,10 @@
 // The repository's trees API URL.
 @property (nonatomic, copy, readonly) CSURITemplate *treesURITemplate;
 
+@property (atomic, strong) NSArray *notifications;
+
+@property (atomic, strong) NSArray *watchers;
+
+@property (atomic, strong) NSArray *members;
+
 @end
