@@ -94,6 +94,8 @@
 // repositories.
 - (void)mergeRepositoriesWithRemoteCounterparts:(NSArray *)remoteRepositories;
 
+@property (atomic, strong) NSArray *ownedRepositories;
+
 + (NSDictionary *)entityClassesByType;
 
 @end
