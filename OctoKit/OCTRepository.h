@@ -8,7 +8,7 @@
 
 #import "OCTObject.h"
 
-@class OCTUser;
+@class OCTOwner;
 @class OCTOrganization;
 @class CSURITemplate;
 
@@ -46,7 +46,7 @@
 @property (nonatomic, assign, getter = isFork, readonly) BOOL fork;
 
 // The repository's owner.
-@property (nonatomic, copy, readonly) OCTUser *owner;
+@property (nonatomic, copy, readonly) OCTOwner *owner;
 
 @property (nonatomic, copy, readonly) OCTOrganization *organization;
 
