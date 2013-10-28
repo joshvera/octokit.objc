@@ -7,6 +7,7 @@
 //
 
 #import "OCTDiffEntry.h"
+#import "OCTURITemplateTransformer.h"
 
 @implementation OCTDiffEntry
 
@@ -15,16 +16,10 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return [super.JSONKeyPathsByPropertyKey mtl_dictionaryByAddingEntriesFromDictionary:@{
         @"objectID": @"sha",
-        @"diffSHA": @"sha",
-        @"filename": @"filename",
-        @"status": @"status",
-        @"additions": @"additions",
-        @"deletions": @"deletions",
-        @"changes": @"changes",
+        @"blobSHA": @"sha",
         @"blobURL": @"blob_url",
         @"rawURL": @"raw_url",
-        @"contentsURL": @"contents_url",
-        @"patch": @"patch",
+        @"contentsURITemplate": @"contents_url",
     }];
 }
 
@@ -36,8 +31,8 @@
 	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
-+ (NSValueTransformer *)contentsURLJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
++ (NSValueTransformer *)contentsURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
 }
 
 + (NSValueTransformer *)objectIDJSONTransformer {

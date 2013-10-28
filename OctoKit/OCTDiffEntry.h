@@ -8,10 +8,12 @@
 
 #import "OCTObject.h"
 
+@class CSURITemplate;
+
 @interface OCTDiffEntry : OCTObject
 
 // The diff entry's unique SHA.
-@property (nonatomic, copy, readonly) NSString *diffSHA;
+@property (nonatomic, copy, readonly) NSString *blobSHA;
 
 // The diff entry's filename.
 @property (nonatomic, copy, readonly) NSString *filename;
@@ -35,7 +37,7 @@
 @property (nonatomic, copy, readonly) NSURL *rawURL;
 
 // The diff entry's contents URL.
-@property (nonatomic, copy, readonly) NSURL *contentsURL;
+@property (nonatomic, copy, readonly) CSURITemplate *contentsURITemplate;
 
 // The diff entry's patch.
 @property (nonatomic, copy, readonly) NSString *patch;
