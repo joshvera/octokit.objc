@@ -108,11 +108,29 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	NSParameterAssert(user != nil);
 	NSParameterAssert(token != nil);
 
+	OCTClient *client = [self authenticatedClientWithUser:user];
+
+	NSString *tokenValue = [NSString stringWithFormat:@"token %@", token];
+	[client setDefaultHeader:@"Authorization" value:tokenValue];
+
+	return client;
+}
+
++ (instancetype)authenticatedClientWithUser:(OCTUser *)user {
 	OCTClient *client = [[self alloc] initWithServer:user.server];
 	client.authenticated = YES;
 	client.user = user;
+	return client;
+}
 
-	[client setAuthorizationHeaderWithUsername:user.login password:token];
++ (instancetype)authenticatedClientWithUser:(OCTUser *)user password:(NSString *)password {
+	NSParameterAssert(user != nil);
+	NSParameterAssert(password != nil);
+
+	OCTClient *client = [self authenticatedClientWithUser:user];
+
+	[client setAuthorizationHeaderWithUsername:user.login password:password];
+
 	return client;
 }
 
@@ -585,7 +603,7 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	//
 	// Note that we're using `password` as the token, which works because
 	// they're both sent to the server the same way: as the Basic Auth password.
-	OCTClient *authedClient = [OCTClient authenticatedClientWithUser:self.user token:password];
+	OCTClient *authedClient = [OCTClient authenticatedClientWithUser:self.user password:password];
 	NSMutableURLRequest *request = [authedClient requestWithMethod:method path:path parameters:parameters];
 	request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
 	if (oneTimePassword != nil) [request setValue:oneTimePassword forHTTPHeaderField:OCTClientOneTimePasswordHeaderField];
