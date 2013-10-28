@@ -52,8 +52,6 @@ typedef enum : NSUInteger {
 // The notification type.
 @property (nonatomic, readonly, assign) OCTNotificationType type;
 
-@property (nonatomic, readonly, strong) Class subjectClass;
-
 // The repository to which the notification belongs.
 @property (nonatomic, readonly, strong) OCTRepository *repository;
 
@@ -62,5 +60,7 @@ typedef enum : NSUInteger {
 
 // Whether this notification has yet to be read.
 @property (nonatomic, readonly, getter = isUnread) BOOL unread;
+
++ (Class)subjectClassesByType:(OCTNotificationType)type;
 
 @end

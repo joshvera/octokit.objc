@@ -23,15 +23,6 @@ NSInteger const OCTNotificationErrorTypeUnknown = -600;
 
 #pragma mark MTLModel
 
-+ (NSSet *)propertyKeys {
-	NSMutableSet *keys = [super.propertyKeys mutableCopy];
-
-	// This is a derived property.
-	[keys removeObject:@keypath(OCTNotification.new, subjectClass)];
-
-	return keys;
-}
-
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return [super.JSONKeyPathsByPropertyKey mtl_dictionaryByAddingEntriesFromDictionary:@{
 		@"title": @"subject.title",
@@ -93,10 +84,10 @@ NSInteger const OCTNotificationErrorTypeUnknown = -600;
 
 # pragma mark - Initialization
 
-- (Class)subjectClass {
++ (Class)subjectClassesByType:(OCTNotificationType)type {
 	Class class;
 
-	switch (self.type) {
+	switch (type) {
 		case OCTNotificationTypeCommit:
 			class = OCTCommit.class;
 			break;
