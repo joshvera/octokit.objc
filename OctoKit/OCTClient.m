@@ -14,6 +14,7 @@
 #import "OCTGistFile.h"
 #import "OCTObject+Private.h"
 #import "OCTOrganization.h"
+#import "OCTUserOrganization.h"
 #import "OCTPublicKey.h"
 #import "OCTRepository.h"
 #import "OCTResponse.h"
@@ -678,7 +679,7 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	[request setValue:nil forHTTPHeaderField:@"Accept-Language"];
 	request = [self etagRequestWithRequest:request];
 
-	return [[self enqueueRequest:request resultClass:OCTOrganization.class] oct_parsedResults];
+	return [[self enqueueRequest:request resultClass:OCTUserOrganization.class] oct_parsedResults];
 }
 
 - (RACSignal *)fetchOrganizationInfo:(OCTOrganization *)organization {
