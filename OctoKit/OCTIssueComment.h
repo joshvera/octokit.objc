@@ -16,8 +16,8 @@
 // A single comment on an issue.
 @interface OCTIssueComment : OCTObject
 
-// The comment's issue URL.
-@property (nonatomic, copy, readonly) NSURL *issueURL;
+// The comment's issue URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *issueURITemplate;
 
 // The body of the comment.
 @property (nonatomic, copy, readonly) NSString *body;
@@ -41,9 +41,5 @@
 @property (nonatomic, copy, readonly) NSString *commenterLogin;
 
 @property (nonatomic, copy, readonly) OCTUser *user;
-
-@property (atomic, strong) OCTPullRequest *pullRequest;
-
-@property (atomic, strong) OCTIssue *issue;
 
 @end

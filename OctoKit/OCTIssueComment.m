@@ -19,7 +19,7 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return [super.JSONKeyPathsByPropertyKey
 		mtl_dictionaryByAddingEntriesFromDictionary:@{
-			@"issueURL": @"issue_url",
+			@"issueURITemplate": @"issue_url",
 			@"body": @"body",
 			@"HTMLBody": @"body_html",
 			@"createdAtDate": @"created_at",
@@ -47,8 +47,8 @@
 	return [NSValueTransformer valueTransformerForName:OCTDateValueTransformerName];
 }
 
-+ (NSValueTransformer *)issueURLJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
++ (NSValueTransformer *)issueURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
 }
 
 + (NSValueTransformer *)userJSONTransformer {
