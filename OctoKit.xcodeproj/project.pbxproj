@@ -222,7 +222,7 @@
 		D0B9C8FE16BC7A260029C5B4 /* NSDateFormatterAdditionsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B9C8FC16BC7A260029C5B4 /* NSDateFormatterAdditionsSpec.m */; };
 		D0C636731777ABD300F486A9 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0C636681777AB9300F486A9 /* ReactiveCocoa.framework */; };
 		D0C636771777ABE000F486A9 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0C636681777AB9300F486A9 /* ReactiveCocoa.framework */; };
-		D0C636931777B00900F486A9 /* libMantle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D087206D169E328B00016ACA /* libMantle.a */; };
+		D0C636931777B00900F486A9 /* libMantle-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D087206D169E328B00016ACA /* libMantle-iOS.a */; };
 		D0C636941777B00900F486A9 /* libReactiveCocoa-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0C6366A1777AB9300F486A9 /* libReactiveCocoa-iOS.a */; };
 		D0D8C09516DFF1540070399E /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D8C09016DFF1540070399E /* events.json */; };
 		D0D8C09616DFF1540070399E /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = D0D8C09016DFF1540070399E /* events.json */; };
@@ -264,6 +264,14 @@
 		D11D80E417D19C0900CA7039 /* OCTDiffEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = D11D80E017D19C0900CA7039 /* OCTDiffEntry.m */; };
 		D11D80ED17D1AEDC00CA7039 /* OCTDiffSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D11D80EC17D1AEDC00CA7039 /* OCTDiffSpec.m */; };
 		D11D80EE17D1AEDC00CA7039 /* OCTDiffSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D11D80EC17D1AEDC00CA7039 /* OCTDiffSpec.m */; };
+		D12F33941815C37B00B591B6 /* OCTUserOrganization.h in Headers */ = {isa = PBXBuildFile; fileRef = D12F33921815C37B00B591B6 /* OCTUserOrganization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D12F33951815C37B00B591B6 /* OCTUserOrganization.h in Headers */ = {isa = PBXBuildFile; fileRef = D12F33921815C37B00B591B6 /* OCTUserOrganization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D12F33961815C37B00B591B6 /* OCTUserOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = D12F33931815C37B00B591B6 /* OCTUserOrganization.m */; };
+		D12F33971815C37B00B591B6 /* OCTUserOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = D12F33931815C37B00B591B6 /* OCTUserOrganization.m */; };
+		D15388A11812CE5900E6797A /* OCTOwner.h in Headers */ = {isa = PBXBuildFile; fileRef = D153889F1812CE5900E6797A /* OCTOwner.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D15388A21812CE5900E6797A /* OCTOwner.h in Headers */ = {isa = PBXBuildFile; fileRef = D153889F1812CE5900E6797A /* OCTOwner.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D15388A31812CE5900E6797A /* OCTOwner.m in Sources */ = {isa = PBXBuildFile; fileRef = D15388A01812CE5900E6797A /* OCTOwner.m */; };
+		D15388A41812CE5900E6797A /* OCTOwner.m in Sources */ = {isa = PBXBuildFile; fileRef = D15388A01812CE5900E6797A /* OCTOwner.m */; };
 		D1A53CE417D2EFDC0063842D /* OCTEntitySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A53CE317D2EFDC0063842D /* OCTEntitySpec.m */; };
 		D1A53CE517D2EFDC0063842D /* OCTEntitySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D1A53CE317D2EFDC0063842D /* OCTEntitySpec.m */; };
 		D1C1B30217D830E800F830C8 /* OCTMilestone.h in Headers */ = {isa = PBXBuildFile; fileRef = D1C1B30017D830E800F830C8 /* OCTMilestone.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -575,6 +583,20 @@
 			remoteGlobalIDString = 1860F430177C91B500C7B3C9;
 			remoteInfo = "ReactiveCocoa-iOS-UIKitTestHostTests";
 		};
+		D15388AB1812CE5900E6797A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0872056169E328A00016ACA /* Mantle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D0A56B461804B04900A84EDC;
+			remoteInfo = "Mantle-Mac";
+		};
+		D15388B31812CE5900E6797A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0C636591777AB9300F486A9 /* ReactiveCocoa.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D05AD39417F2D56F0080895B;
+			remoteInfo = "ReactiveCocoa-Mac";
+		};
 		D1B621F617D305310022A270 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D1C986F917D2C6E70001FDFA /* CSURITemplate.xcodeproj */;
@@ -766,6 +788,10 @@
 		D11D80DF17D19C0900CA7039 /* OCTDiffEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTDiffEntry.h; sourceTree = "<group>"; };
 		D11D80E017D19C0900CA7039 /* OCTDiffEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTDiffEntry.m; sourceTree = "<group>"; };
 		D11D80EC17D1AEDC00CA7039 /* OCTDiffSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTDiffSpec.m; sourceTree = "<group>"; };
+		D12F33921815C37B00B591B6 /* OCTUserOrganization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTUserOrganization.h; sourceTree = "<group>"; };
+		D12F33931815C37B00B591B6 /* OCTUserOrganization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTUserOrganization.m; sourceTree = "<group>"; };
+		D153889F1812CE5900E6797A /* OCTOwner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTOwner.h; sourceTree = "<group>"; };
+		D15388A01812CE5900E6797A /* OCTOwner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTOwner.m; sourceTree = "<group>"; };
 		D1A53CE317D2EFDC0063842D /* OCTEntitySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTEntitySpec.m; sourceTree = "<group>"; };
 		D1C1B30017D830E800F830C8 /* OCTMilestone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTMilestone.h; sourceTree = "<group>"; };
 		D1C1B30117D830E800F830C8 /* OCTMilestone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTMilestone.m; sourceTree = "<group>"; };
@@ -831,7 +857,7 @@
 				F688018C17C1CE0F00ECC7EC /* Security.framework in Frameworks */,
 				D0476EC117791C470071F3CB /* libISO8601DateFormatter.a in Frameworks */,
 				D0476E4F177919F70071F3CB /* libAFNetworking.a in Frameworks */,
-				D0C636931777B00900F486A9 /* libMantle.a in Frameworks */,
+				D0C636931777B00900F486A9 /* libMantle-iOS.a in Frameworks */,
 				D0C636941777B00900F486A9 /* libReactiveCocoa-iOS.a in Frameworks */,
 				D05E74E816D35513001AA17B /* libOHHTTPStubs-iOS.a in Frameworks */,
 				D0871FF4169E309A00016ACA /* SenTestingKit.framework in Frameworks */,
@@ -1053,9 +1079,10 @@
 			isa = PBXGroup;
 			children = (
 				D0872069169E328B00016ACA /* Mantle.framework */,
-				D087206B169E328B00016ACA /* Mantle Mac Tests.octest */,
-				D087206D169E328B00016ACA /* libMantle.a */,
-				D087206F169E328B00016ACA /* Mantle iOS Tests.octest */,
+				D087206B169E328B00016ACA /* Mantle Tests.octest */,
+				D087206D169E328B00016ACA /* libMantle-iOS.a */,
+				D087206F169E328B00016ACA /* Mantle-iOS Tests.octest */,
+				D15388AC1812CE5900E6797A /* libMantle-Mac.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1191,6 +1218,8 @@
 		D08B5997169E3E0C006003B8 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				D153889F1812CE5900E6797A /* OCTOwner.h */,
+				D15388A01812CE5900E6797A /* OCTOwner.m */,
 				D087212D169E395F00016ACA /* OCTEntity.h */,
 				D087212E169E395F00016ACA /* OCTEntity.m */,
 				D087213C169E395F00016ACA /* OCTOrganization.h */,
@@ -1203,6 +1232,8 @@
 				D0872156169E395F00016ACA /* OCTTeam.m */,
 				D0872157169E395F00016ACA /* OCTUser.h */,
 				D0872158169E395F00016ACA /* OCTUser.m */,
+				D12F33921815C37B00B591B6 /* OCTUserOrganization.h */,
+				D12F33931815C37B00B591B6 /* OCTUserOrganization.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -1268,6 +1299,7 @@
 				D0C6366E1777AB9300F486A9 /* ReactiveCocoaTests-iOS.octest */,
 				D12C46B817ECCE6600E90D10 /* ReactiveCocoa-iOS-UIKitTestHost.app */,
 				D12C46BA17ECCE6600E90D10 /* ReactiveCocoa-iOS-UIKitTestHostTests.octest */,
+				D15388B41812CE5900E6797A /* libReactiveCocoa-Mac.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1331,6 +1363,7 @@
 				D0872171169E395F00016ACA /* OCTIssueComment.h in Headers */,
 				9CB0588117933F26002CF498 /* OCTFileContent.h in Headers */,
 				D11D80E117D19C0900CA7039 /* OCTDiffEntry.h in Headers */,
+				D15388A11812CE5900E6797A /* OCTOwner.h in Headers */,
 				9CB0587917933F26002CF498 /* OCTContent.h in Headers */,
 				D10A32B217ED594C00C554E7 /* OCTCrossReference.h in Headers */,
 				D10A32C417EFA86E00C554E7 /* OCTTimeline.h in Headers */,
@@ -1360,6 +1393,7 @@
 				8848E19D16AF630B005449AB /* OCTNotification.h in Headers */,
 				D0772E7316BD27B5009DFF72 /* NSDateFormatter+OCTFormattingAdditions.h in Headers */,
 				D0772E7716BD2A06009DFF72 /* NSValueTransformer+OCTPredefinedTransformerAdditions.h in Headers */,
+				D12F33941815C37B00B591B6 /* OCTUserOrganization.h in Headers */,
 				D11D80C817D18F7900CA7039 /* OCTCommit.h in Headers */,
 				9CB0588917933F26002CF498 /* OCTSymlinkContent.h in Headers */,
 				9CB0587D17933F26002CF498 /* OCTDirectoryContent.h in Headers */,
@@ -1382,6 +1416,7 @@
 				D087216E169E395F00016ACA /* OCTIssue.h in Headers */,
 				D0872172169E395F00016ACA /* OCTIssueComment.h in Headers */,
 				9CB0588217933F26002CF498 /* OCTFileContent.h in Headers */,
+				D15388A21812CE5900E6797A /* OCTOwner.h in Headers */,
 				D11D80E217D19C0900CA7039 /* OCTDiffEntry.h in Headers */,
 				D10A32B317ED594C00C554E7 /* OCTCrossReference.h in Headers */,
 				D10A32C517EFA86E00C554E7 /* OCTTimeline.h in Headers */,
@@ -1411,6 +1446,7 @@
 				8829F2C017A0DF5300F06991 /* OCTAuthorization.h in Headers */,
 				8848E19E16AF630B005449AB /* OCTNotification.h in Headers */,
 				D0772E7416BD27B6009DFF72 /* NSDateFormatter+OCTFormattingAdditions.h in Headers */,
+				D12F33951815C37B00B591B6 /* OCTUserOrganization.h in Headers */,
 				D0772E7816BD2A06009DFF72 /* NSValueTransformer+OCTPredefinedTransformerAdditions.h in Headers */,
 				9CB0588A17933F26002CF498 /* OCTSymlinkContent.h in Headers */,
 				9CB0587E17933F26002CF498 /* OCTDirectoryContent.h in Headers */,
@@ -1627,24 +1663,24 @@
 			remoteRef = D0872068169E328B00016ACA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		D087206B169E328B00016ACA /* Mantle Mac Tests.octest */ = {
+		D087206B169E328B00016ACA /* Mantle Tests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = "Mantle Mac Tests.octest";
+			path = "Mantle Tests.octest";
 			remoteRef = D087206A169E328B00016ACA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		D087206D169E328B00016ACA /* libMantle.a */ = {
+		D087206D169E328B00016ACA /* libMantle-iOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libMantle.a;
+			path = "libMantle-iOS.a";
 			remoteRef = D087206C169E328B00016ACA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		D087206F169E328B00016ACA /* Mantle iOS Tests.octest */ = {
+		D087206F169E328B00016ACA /* Mantle-iOS Tests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = "Mantle iOS Tests.octest";
+			path = "Mantle-iOS Tests.octest";
 			remoteRef = D087206E169E328B00016ACA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1744,6 +1780,20 @@
 			fileType = wrapper.cfbundle;
 			path = "ReactiveCocoa-iOS-UIKitTestHostTests.octest";
 			remoteRef = D12C46B917ECCE6600E90D10 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D15388AC1812CE5900E6797A /* libMantle-Mac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libMantle-Mac.a";
+			remoteRef = D15388AB1812CE5900E6797A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D15388B41812CE5900E6797A /* libReactiveCocoa-Mac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libReactiveCocoa-Mac.a";
+			remoteRef = D15388B31812CE5900E6797A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		D1C986FF17D2C6E70001FDFA /* libCSURITemplate.a */ = {
@@ -1859,6 +1909,7 @@
 				D0872189169E395F00016ACA /* OCTPlan.m in Sources */,
 				D087218D169E395F00016ACA /* OCTPublicKey.m in Sources */,
 				D0872191169E395F00016ACA /* OCTPullRequest.m in Sources */,
+				D12F33961815C37B00B591B6 /* OCTUserOrganization.m in Sources */,
 				D11D80CA17D18F7900CA7039 /* OCTCommit.m in Sources */,
 				D0872195169E395F00016ACA /* OCTPullRequestComment.m in Sources */,
 				D0872199169E395F00016ACA /* OCTPullRequestCommentEvent.m in Sources */,
@@ -1880,6 +1931,7 @@
 				D11D80E317D19C0900CA7039 /* OCTDiffEntry.m in Sources */,
 				9CB0588317933F26002CF498 /* OCTFileContent.m in Sources */,
 				D1C9871617D2CDD90001FDFA /* OCTURITemplateTransformer.m in Sources */,
+				D15388A31812CE5900E6797A /* OCTOwner.m in Sources */,
 				D0B9C8F416BC78970029C5B4 /* NSDateFormatter+OCTFormattingAdditions.m in Sources */,
 				D10A1F6117D15E650073B758 /* OCTComment.m in Sources */,
 				D0772E7916BD2A06009DFF72 /* NSValueTransformer+OCTPredefinedTransformerAdditions.m in Sources */,
@@ -1939,6 +1991,7 @@
 				D087218A169E395F00016ACA /* OCTPlan.m in Sources */,
 				D087218E169E395F00016ACA /* OCTPublicKey.m in Sources */,
 				D0872192169E395F00016ACA /* OCTPullRequest.m in Sources */,
+				D12F33971815C37B00B591B6 /* OCTUserOrganization.m in Sources */,
 				D11D80CB17D18F7900CA7039 /* OCTCommit.m in Sources */,
 				D0872196169E395F00016ACA /* OCTPullRequestComment.m in Sources */,
 				D087219A169E395F00016ACA /* OCTPullRequestCommentEvent.m in Sources */,
@@ -1960,6 +2013,7 @@
 				8848E1A016AF630B005449AB /* OCTNotification.m in Sources */,
 				D11D80E417D19C0900CA7039 /* OCTDiffEntry.m in Sources */,
 				9CB0588417933F26002CF498 /* OCTFileContent.m in Sources */,
+				D15388A41812CE5900E6797A /* OCTOwner.m in Sources */,
 				D1C9871717D2CDD90001FDFA /* OCTURITemplateTransformer.m in Sources */,
 				D0B9C8F516BC78970029C5B4 /* NSDateFormatter+OCTFormattingAdditions.m in Sources */,
 				D10A1F6217D15E650073B758 /* OCTComment.m in Sources */,
