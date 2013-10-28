@@ -299,7 +299,7 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 
 	NSURLComponents *components = [NSURLComponents componentsWithURL:operation.response.URL resolvingAgainstBaseURL:NO];
 	NSString *query = components.query;
-	if (query != nil && operation.responseData.length > 2) {
+	if (linksString == nil && query != nil && operation.responseData.length > 2) {
 
 		NSRegularExpression *expression = [NSRegularExpression regularExpressionWithPattern:@"&page=(\\d+)&" options:0 error:NULL];
 		NSTextCheckingResult *result = [expression firstMatchInString:query options:0 range:NSMakeRange(0, query.length)];
