@@ -8,6 +8,8 @@
 
 #import "OCTContent.h"
 
+@class CSURITemplate;
+
 // A submodule in a git repository.
 @interface OCTSubmoduleContent : OCTContent
 
@@ -16,6 +18,6 @@
 
 @property (nonatomic, copy, readonly) NSURL *submoduleTreeURL;
 
-@property (nonatomic, copy, readonly) NSURL *APIURL;
+@property (nonatomic, copy, readonly) CSURITemplate *APIURITemplate;
 
 @end
