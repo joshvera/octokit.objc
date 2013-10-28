@@ -40,7 +40,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, copy, readonly) NSURL *patchURL;
 
 // The issue URL for this pull request.
-@property (nonatomic, copy, readonly) NSURL *issueURL;
+@property (nonatomic, copy, readonly) CSURITemplate *issueURITemplate;
 
 // The title of this pull request.
 @property (nonatomic, copy, readonly) NSString *title;

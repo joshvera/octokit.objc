@@ -27,7 +27,7 @@
 		@"HTMLURL": @"html_url",
 		@"diffURL": @"diff_url",
 		@"patchURL": @"patch_url",
-		@"issueURL": @"issue_url",
+		@"issueURITemplate": @"_links.issue.href",
 		@"remoteID": @"number",
 		@"createdAtDate": @"created_at",
 		@"updatedAtDate": @"updated_at",
@@ -70,8 +70,8 @@
 	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
-+ (NSValueTransformer *)issueURLJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
++ (NSValueTransformer *)issueURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
 }
 
 + (NSValueTransformer *)updatedAtDateJSONTransformer {
