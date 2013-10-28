@@ -198,9 +198,22 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 
 - (RACSignal *)enqueueRequest:(NSURLRequest *)request resultClass:(Class)resultClass fetchAllPages:(BOOL)fetchAllPages {
 	RACSignal *signal = [RACSignal createSignal:^(id<RACSubscriber> subscriber) {
+		RACCompoundDisposable *compoundDisposable = RACCompoundDisposable.compoundDisposable;
+
 		AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+			if ([operation isCancelled]) {
+				[subscriber sendCompleted];
+				return;
+			}
+
 			if (NSProcessInfo.processInfo.environment[OCTClientResponseLoggingEnvironmentKey] != nil) {
 				NSLog(@"%@ %@ %@ => %li %@:\n%@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode, operation.response.allHeaderFields, responseObject);
+			}
+
+			NSString *requestEtag = [operation.request allHTTPHeaderFields][@"If-None-Match"];
+			NSString *responseEtag = [operation.response allHeaderFields][@"Etag"];
+			if ([requestEtag isEqualToString:responseEtag]) {
+				responseObject = nil;
 			}
 
 			RACSignal *thisPageSignal = [[self parsedResponseOfClass:resultClass fromJSON:responseObject]
@@ -232,8 +245,14 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 				nextPageSignal = [self enqueueRequest:nextRequest resultClass:resultClass fetchAllPages:YES];
 			}
 
-			[[thisPageSignal concat:nextPageSignal] subscribe:subscriber];
+			RACDisposable *disposable = [[[RACSignal return:thisPageSignal] concat:nextPageSignal] subscribe:subscriber];
+			[compoundDisposable addDisposable:disposable];
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+			if ([operation isCancelled]) {
+				[subscriber sendCompleted];
+				return;
+			}
+
 			if (NSProcessInfo.processInfo.environment[OCTClientResponseLoggingEnvironmentKey] != nil) {
 				NSLog(@"%@ %@ %@ => FAILED WITH %li", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode);
 			}
@@ -245,13 +264,17 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 		operation.failureCallbackQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 		[self enqueueHTTPRequestOperation:operation];
 
-		return [RACDisposable disposableWithBlock:^{
+		RACDisposable *operationDisposable = [RACDisposable disposableWithBlock:^{
 			[operation cancel];
 		}];
+		[compoundDisposable addDisposable:operationDisposable];
+
+		return compoundDisposable;
 	}];
 	
-	return [[signal
-		replayLazily]
+	return [[[signal
+		publish]
+		autoconnect]
 		setNameWithFormat:@"-enqueueRequest: %@ resultClass: %@ fetchAllPages: %i", request, resultClass, (int)fetchAllPages];
 }
 
