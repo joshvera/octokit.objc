@@ -41,6 +41,7 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return [super.JSONKeyPathsByPropertyKey mtl_dictionaryByAddingEntriesFromDictionary:@{
+		@"gravatarID": @"gravatar_id",
 		@"avatarURL": @"avatar_url",
 		@"publicRepoCount": @"public_repos",
 		@"privateRepoCount": @"owned_private_repos",

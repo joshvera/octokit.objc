@@ -34,6 +34,9 @@
 // The URL for any avatar image.
 @property (atomic, copy, readonly) NSURL *avatarURL;
 
+// The entity's unique gravatar ID.
+@property (atomic, copy, readonly) NSString *gravatarID;
+
 // A reference to a blog associated with this account.
 @property (atomic, copy, readonly) NSString *blog;
 
