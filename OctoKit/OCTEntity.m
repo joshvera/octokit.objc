@@ -24,19 +24,6 @@
 	};
 }
 
-#pragma mark Properties
-
-@synthesize name = _name;
-@synthesize type = _type;
-
-- (NSString *)name {
-	return _name ?: self.login;
-}
-
-- (NSString *)type {
-	return _type ?: @"Organization";
-}
-
 #pragma mark MTLJSONSerializing
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
