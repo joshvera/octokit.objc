@@ -196,15 +196,10 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 - (NSMutableURLRequest *)etagRequestWithRequest:(NSURLRequest *)request {
 	NSMutableURLRequest *mutableRequest = [request mutableCopy];
 	NSCachedURLResponse *cachedResponse = [NSURLCache.sharedURLCache cachedResponseForRequest:request];
+	NSDictionary *headerFields = [(NSHTTPURLResponse *)cachedResponse.response allHeaderFields];
 
-	NSString *cachedEtag = [(NSHTTPURLResponse *)cachedResponse.response allHeaderFields][@"Etag"];
+	NSString *cachedEtag = headerFields[@"Etag"];
 	[mutableRequest setValue:cachedEtag forHTTPHeaderField:@"If-None-Match"];
-
-	if (cachedEtag != nil) {
-		// If an etag is specified, we want 304 responses to be treated as 304s,
-		// not served from NSURLCache with a status of 200.
-		mutableRequest.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
-	}
 
 	return mutableRequest;
 }
