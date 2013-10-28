@@ -14,4 +14,8 @@
 // The git URL of the submodule.
 @property (nonatomic, copy, readonly) NSString *submoduleGitURL;
 
+@property (nonatomic, copy, readonly) NSURL *submoduleTreeURL;
+
+@property (nonatomic, copy, readonly) NSURL *APIURL;
+
 @end
