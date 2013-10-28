@@ -18,6 +18,7 @@
 #import <OctoKit/OCTCommitCommentEvent.h>
 #import <OctoKit/OCTContent.h>
 #import <OctoKit/OCTDirectoryContent.h>
+#import <OctoKit/OCTDiffEntry.h>
 #import <OctoKit/OCTEntity.h>
 #import <OctoKit/OCTEvent.h>
 #import <OctoKit/OCTFileContent.h>
@@ -30,6 +31,8 @@
 #import <OctoKit/OCTNotification.h>
 #import <OctoKit/OCTObject.h>
 #import <OctoKit/OCTOrganization.h>
+#import <OctoKit/OCTUserOrganization.h>
+#import <OctoKit/OCTOwner.h>
 #import <OctoKit/OCTPlan.h>
 #import <OctoKit/OCTPublicKey.h>
 #import <OctoKit/OCTPullRequest.h>
