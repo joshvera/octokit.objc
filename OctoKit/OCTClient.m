@@ -943,7 +943,7 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	NSMutableURLRequest *request = [self requestWithMethod:@"GET" template:template parameters:nil];
 	[request setValue:@"application/vnd.github.beta.html+json" forHTTPHeaderField:@"Accept"];
 
-	return [self enqueueRequest:request resultClass:class];
+	return [[self enqueueRequest:request resultClass:class] oct_parsedResults];
 }
 
 - (RACSignal *)fetchReviewCommentsForPullRequest:(OCTPullRequest *)pullRequest {
