@@ -15,8 +15,6 @@
 @interface OCTEntity : OCTObject
 
 // The full name of this entity.
-//
-// Returns `login` if no name is explicitly set.
 @property (atomic, copy, readonly) NSString *name;
 
 @property (nonatomic, copy, readonly) NSString *type;
