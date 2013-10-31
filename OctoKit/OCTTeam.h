@@ -11,4 +11,11 @@
 
 // Represents a team within an OCTOrganization.
 @interface OCTTeam : OCTEntity
+
+@property (nonatomic, copy, readonly) NSString *slug;
+
+@property (nonatomic, copy, readonly) NSString *permission;
+
+@property (nonatomic, copy, readonly) CSURITemplate *membersURITemplate;
+
 @end
