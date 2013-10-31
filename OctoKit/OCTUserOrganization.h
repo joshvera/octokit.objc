@@ -6,17 +6,17 @@
 //  Copyright (c) 2013 GitHub. All rights reserved.
 //
 
-#import <OctoKit/OctoKit.h>
+#import "OCTObject.h"
 
 @class CSURITemplate;
 
 @interface OCTUserOrganization : OCTObject
 
 // The unique name for this organization, used in GitHub URLs.
-@property (atomic, copy, readonly) NSString *login;
+@property (nonatomic, copy, readonly) NSString *login;
 
 // The URL for an avatar image.
-@property (atomic, copy, readonly) NSURL *avatarURL;
+@property (nonatomic, copy, readonly) NSURL *avatarURL;
 
 // The organization's API URITemplate.
 @property (nonatomic, copy, readonly) CSURITemplate *APIURITemplate;

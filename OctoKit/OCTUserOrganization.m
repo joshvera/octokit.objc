@@ -7,6 +7,7 @@
 //
 
 #import "OCTUserOrganization.h"
+#import "OCTURITemplateTransformer.h"
 
 @implementation OCTUserOrganization
 
