@@ -885,7 +885,7 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	NSString *path = [NSString stringWithFormat:@"repos/%@/%@/readme", repository.ownerLogin, repository.name];
 	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:path parameters:nil notMatchingEtag:nil];
 	
-	return [[self enqueueRequest:request resultClass:OCTContent.class] oct_parsedResults];
+	return [[self enqueueRequest:request resultClass:OCTFileContent.class] oct_parsedResults];
 }
 
 - (RACSignal *)fetchRepositoryWithName:(NSString *)name owner:(NSString *)owner {

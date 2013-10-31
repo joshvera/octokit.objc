@@ -7,7 +7,7 @@
 //
 
 #import "OCTContent.h"
-#import "OCTFileContent.h"
+#import "OCTPartialFileContent.h"
 #import "OCTDirectoryContent.h"
 #import "OCTSymlinkContent.h"
 #import "OCTSubmoduleContent.h"
@@ -22,7 +22,7 @@
 
 + (NSDictionary *)contentClassesByType {
 	return @{
-		@"file": OCTFileContent.class,
+		@"file": OCTPartialFileContent.class,
 		@"dir": OCTDirectoryContent.class,
 		@"symlink": OCTSymlinkContent.class,
 		@"submodule": OCTSubmoduleContent.class,

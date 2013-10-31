@@ -33,6 +33,7 @@
 #import <OctoKit/OCTOrganization.h>
 #import <OctoKit/OCTUserOrganization.h>
 #import <OctoKit/OCTOwner.h>
+#import <OctoKit/OCTPartialFileContent.h>
 #import <OctoKit/OCTPlan.h>
 #import <OctoKit/OCTPublicKey.h>
 #import <OctoKit/OCTPullRequest.h>

@@ -10,10 +10,16 @@
 
 @implementation OCTFileContent
 
+
+
 #pragma mark NSKeyValueCoding
 
-- (BOOL)validateSize:(NSNumber **)sizePtr error:(NSError **)error {
-	return (*sizePtr != nil);
+- (BOOL)validateContent:(NSString **)contentPtr error:(NSError **)error {
+	return (*contentPtr != nil);
+}
+
++ (Class)classForParsingJSONDictionary:(NSDictionary *)JSONDictionary {
+	return self;
 }
 
 @end
