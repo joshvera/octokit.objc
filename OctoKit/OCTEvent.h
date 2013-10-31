@@ -8,6 +8,9 @@
 
 #import "OCTObject.h"
 
+@class OCTEventOwner;
+@class OCTEventRepository;
+
 // A class cluster for GitHub events.
 @interface OCTEvent : OCTObject
 
@@ -22,5 +25,11 @@
 
 // The date that this event occurred.
 @property (nonatomic, copy, readonly) NSDate *date;
+
+@property (nonatomic, copy, readonly) OCTEventOwner *actor;
+
+@property (nonatomic, copy, readonly) OCTEventOwner *organization;
+
+@property (nonatomic, copy, readonly) OCTEventRepository *repository;
 
 @end

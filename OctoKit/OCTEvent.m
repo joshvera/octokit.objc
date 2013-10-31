@@ -15,6 +15,8 @@
 #import "OCTPullRequestCommentEvent.h"
 #import "OCTPushEvent.h"
 #import "OCTRefEvent.h"
+#import "OCTEventOwner.h"
+#import "OCTEventRepository.h"
 
 @interface OCTEvent ()
 
@@ -52,11 +54,26 @@
 		@"actorLogin": @"actor.login",
 		@"organizationLogin": @"org.login",
 		@"date": @"created_at",
+		@"organization": @"org",
+		@"actor": @"actor",
+		@"repository": @"repo"
 	}];
 }
 
 + (NSValueTransformer *)dateJSONTransformer {
 	return [NSValueTransformer valueTransformerForName:OCTDateValueTransformerName];
+}
+
++ (NSValueTransformer *)organizationJSONTransformer {
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTEventOwner.class];
+}
+
++ (NSValueTransformer *)actorJSONTransformer {
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTEventOwner.class];
+}
+
++ (NSValueTransformer *)repositoryJSONTransformer {
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTEventRepository.class];
 }
 
 + (NSValueTransformer *)objectIDJSONTransformer {
