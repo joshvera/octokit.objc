@@ -7,7 +7,6 @@
 //
 
 #import "OCTClient.h"
-#import "OCTContent.h"
 #import "NSDateFormatter+OCTFormattingAdditions.h"
 #import "OCTEvent.h"
 #import "OCTGist.h"
@@ -17,6 +16,7 @@
 #import "OCTUserOrganization.h"
 #import "OCTPublicKey.h"
 #import "OCTRepository.h"
+#import "OCTFileContent.h"
 #import "OCTResponse.h"
 #import "OCTServer.h"
 #import "OCTTeam.h"
