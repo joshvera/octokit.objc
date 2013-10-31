@@ -21,6 +21,8 @@
 #import <OctoKit/OCTDiffEntry.h>
 #import <OctoKit/OCTEntity.h>
 #import <OctoKit/OCTEvent.h>
+#import <OctoKit/OCTEventOwner.h>
+#import <OctoKit/OCTEventRepository.h>
 #import <OctoKit/OCTFileContent.h>
 #import <OctoKit/OCTGist.h>
 #import <OctoKit/OCTGistFile.h>
