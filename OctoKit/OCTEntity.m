@@ -28,22 +28,8 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return [super.JSONKeyPathsByPropertyKey mtl_dictionaryByAddingEntriesFromDictionary:@{
-		@"gravatarID": @"gravatar_id",
-		@"avatarURL": @"avatar_url",
-		@"publicRepoCount": @"public_repos",
-		@"privateRepoCount": @"owned_private_repos",
-		@"diskUsage": @"disk_usage",
 		@"APIURITemplate": @"url",
-		@"HTMLURL": @"html_url",
-		@"followersURITemplate": @"followers_url",
-		@"followingURITemplate": @"following_url",
-		@"gistsURITemplate": @"gists_url",
-		@"starredURITemplate": @"starred_url",
-		@"subscriptionsURITemplate": @"subscriptions_url",
-		@"organizationsURITemplate": @"organizations_url",
 		@"reposURITemplate": @"repos_url",
-		@"eventsURITemplate": @"events_url",
-		@"receivedEventsURITemplate": @"received_events_url"
 	}];
 }
 
@@ -51,55 +37,7 @@
 	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
 }
 
-+ (NSValueTransformer *)repositoriesJSONTransformer {
-	return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:OCTRepository.class];
-}
-
-+ (NSValueTransformer *)avatarURLJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
-}
-
-+ (NSValueTransformer *)planJSONTransformer {
-	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTPlan.class];
-}
-
-+ (NSValueTransformer *)HTMLURLJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
-}
-
-+ (NSValueTransformer *)followersURITemplateJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
-}
-
-+ (NSValueTransformer *)followingURITemplateJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
-}
-
-+ (NSValueTransformer *)gistsURITemplateJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
-}
-
-+ (NSValueTransformer *)starredURITemplateJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
-}
-
-+ (NSValueTransformer *)organizationsURITemplateJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
-}
-
 + (NSValueTransformer *)reposURITemplateJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
-}
-
-+ (NSValueTransformer *)eventsURITemplateJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
-}
-
-+ (NSValueTransformer *)receivedEventsURITemplateJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
-}
-
-+ (NSValueTransformer *)subscriptionsURITemplateJSONTransformer {
 	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
 }
 
@@ -157,12 +95,9 @@
 	// Although some of these keys match JSON key paths, the format of this
 	// external representation is fixed (since it's always old data), thus the
 	// hard-coding.
-	dictionaryValue[@"repositories"] = [self.repositoriesJSONTransformer transformedValue:externalRepresentation[@"repositories"]] ?: NSNull.null;
-	dictionaryValue[@"avatarURL"] = [self.avatarURLJSONTransformer transformedValue:externalRepresentation[@"avatar_url"]] ?: NSNull.null;
 	dictionaryValue[@"publicRepoCount"] = externalRepresentation[@"public_repos"] ?: externalRepresentation[@"public_repo_count"] ?: @0;
 	dictionaryValue[@"privateRepoCount"] = externalRepresentation[@"owned_private_repos"] ?: externalRepresentation[@"owned_private_repo_count"] ?: @0;
 	dictionaryValue[@"diskUsage"] = externalRepresentation[@"disk_usage"] ?: @0;
-	dictionaryValue[@"plan"] = [self.planJSONTransformer transformedValue:externalRepresentation[@"plan"]] ?: NSNull.null;
 
 	return dictionaryValue;
 }

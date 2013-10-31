@@ -6,10 +6,10 @@
 //  Copyright 2010 GitHub. All rights reserved.
 //
 
-#import "OCTEntity.h"
+#import "OCTOwner.h"
 
 // An organization.
-@interface OCTOrganization : OCTEntity
+@interface OCTOrganization : OCTOwner
 
 // The OCTTeams in this organization.
 //

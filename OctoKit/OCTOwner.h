@@ -6,24 +6,42 @@
 //  Copyright (c) 2013 GitHub, Inc. All rights reserved.
 //
 
-#import <OctoKit/OctoKit.h>
+#import "OCTEntity.h"
 
 @class CSURITemplate;
 
 // Represents a GitHub repository owner.
-@interface OCTOwner : OCTObject
+@interface OCTOwner : OCTEntity
 
 // The unique name for this owner, used in GitHub URLs.
 @property (nonatomic, copy, readonly) NSString *login;
 
-// The owner's avatar image URL.
-@property (nonatomic, copy, readonly) NSURL *avatarURL;
+// The email address for this account.
+@property (atomic, copy, readonly) NSString *email;
 
-// The owner's unique gravatar ID.
-@property (nonatomic, copy, readonly) NSString *gravatarID;
+// The URL for any avatar image.
+@property (atomic, copy, readonly) NSURL *avatarURL;
 
-// The owner's API URITemplate.
-@property (nonatomic, copy, readonly) CSURITemplate *APIURITemplate;
+// The entity's unique gravatar ID.
+@property (atomic, copy, readonly) NSString *gravatarID;
+
+// A reference to a blog associated with this account.
+@property (atomic, copy, readonly) NSString *blog;
+
+// The name of a company associated with this account.
+@property (atomic, copy, readonly) NSString *company;
+
+// The total number of collaborators that this account has on their private repositories.
+@property (atomic, assign, readonly) NSUInteger collaborators;
+
+// The number of public repositories owned by this account.
+@property (atomic, assign, readonly) NSUInteger publicRepoCount;
+
+// The number of private repositories owned by this account.
+@property (atomic, assign, readonly) NSUInteger privateRepoCount;
+
+// The number of kilobytes occupied by this account's repositories on disk.
+@property (atomic, assign, readonly) NSUInteger diskUsage;
 
 // The owner's HTML URL.
 @property (nonatomic, copy, readonly) NSURL *HTMLURL;
@@ -60,5 +78,8 @@
 
 // Whether the owner is a site admin.
 @property (nonatomic, assign, readonly, getter = isSiteAdmin) BOOL siteAdmin;
+
+// The plan that this account is on.
+@property (atomic, strong, readonly) OCTPlan *plan;
 
 @end

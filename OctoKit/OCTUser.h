@@ -6,10 +6,10 @@
 //  Copyright 2010 GitHub. All rights reserved.
 //
 
-#import "OCTEntity.h"
+#import "OCTOwner.h"
 
 // A GitHub user.
-@interface OCTUser : OCTEntity
+@interface OCTUser : OCTOwner
 
 // Returns a user that has the given name and email address.
 + (instancetype)userWithName:(NSString *)name email:(NSString *)email;

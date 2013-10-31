@@ -7,6 +7,8 @@
 //
 
 #import "OCTOwner.h"
+#import "OCTURITemplateTransformer.h"
+#import "OCTPlan.h"
 
 @implementation OCTOwner
 
@@ -14,6 +16,8 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return [super.JSONKeyPathsByPropertyKey mtl_dictionaryByAddingEntriesFromDictionary:@{
+		@"publicRepoCount": @"public_repos",
+		@"privateRepoCount": @"owned_private_repos",
 		@"gravatarID": @"gravatar_id",
 		@"avatarURL": @"avatar_url",
 		@"diskUsage": @"disk_usage",
@@ -78,6 +82,10 @@
 
 + (NSValueTransformer *)subscriptionsURITemplateJSONTransformer {
 	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
++ (NSValueTransformer *)planJSONTransformer {
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTPlan.class];
 }
 
 @end
