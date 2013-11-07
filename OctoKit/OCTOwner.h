@@ -43,6 +43,13 @@
 // The number of kilobytes occupied by this account's repositories on disk.
 @property (atomic, assign, readonly) NSUInteger diskUsage;
 
+// The owner's location.
+@property (atomic, copy, readonly) NSString *location;
+
+@property (atomic, assign, readonly) NSUInteger followersCount;
+
+@property (atomic, assign, readonly) NSUInteger followingCount;
+
 // The owner's HTML URL.
 @property (nonatomic, copy, readonly) NSURL *HTMLURL;
 

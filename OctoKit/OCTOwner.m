@@ -32,7 +32,9 @@
 		@"reposURITemplate": @"repos_url",
 		@"eventsURITemplate": @"events_url",
 		@"receivedEventsURITemplate": @"received_events_url",
-		@"siteAdmin": @"site_admin"
+		@"siteAdmin": @"site_admin",
+		@"followingCount": @"following",
+		@"followersCount": @"followers"
 	}];
 }
 
