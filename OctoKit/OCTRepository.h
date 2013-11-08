@@ -77,6 +77,9 @@
 // The repository's number of networks.
 @property (nonatomic, assign, readonly) NSUInteger networkCount;
 
+// The repository's number of stargazers.
+@property (nonatomic, assign, readonly) NSUInteger stargazersCount;
+
 // The default branch's name. For empty repositories, this will be nil.
 @property (nonatomic, copy, readonly) NSString *defaultBranch;
 
