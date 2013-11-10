@@ -23,6 +23,7 @@
 #import <OctoKit/OCTEvent.h>
 #import <OctoKit/OCTEventOwner.h>
 #import <OctoKit/OCTEventRepository.h>
+#import <OctoKit/OCTEventCommit.h>
 #import <OctoKit/OCTFileContent.h>
 #import <OctoKit/OCTGist.h>
 #import <OctoKit/OCTGistFile.h>
