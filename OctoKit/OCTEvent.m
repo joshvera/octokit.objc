@@ -20,8 +20,6 @@
 
 @interface OCTEvent ()
 
-// The event type of the receiver.
-@property (nonatomic, copy, readonly) NSString *type;
 
 @end
 

@@ -32,4 +32,9 @@
 
 @property (nonatomic, copy, readonly) OCTEventRepository *repository;
 
+// The event type of the receiver.
+@property (nonatomic, copy, readonly) NSString *type;
+
+@property (nonatomic, assign, readonly, getter = isPublic) BOOL public;
+
 @end
