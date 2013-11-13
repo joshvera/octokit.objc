@@ -20,6 +20,7 @@
 #import "OCTResponse.h"
 #import "OCTServer.h"
 #import "OCTTeam.h"
+#import "OCTLoginUser.h"
 #import "OCTUser.h"
 #import "OCTNotification.h"
 #import "OCTPullRequest.h"
@@ -59,7 +60,7 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 
 @interface OCTClient ()
 
-@property (nonatomic, strong, readwrite) OCTUser *user;
+@property (nonatomic, strong, readwrite) OCTLoginUser *user;
 @property (nonatomic, getter = isAuthenticated, readwrite) BOOL authenticated;
 
 // An error indicating that a request required a valid user, but no `user`
@@ -103,7 +104,7 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 
 #pragma mark Lifecycle
 
-+ (instancetype)authenticatedClientWithUser:(OCTUser *)user token:(NSString *)token {
++ (instancetype)authenticatedClientWithUser:(OCTLoginUser *)user token:(NSString *)token {
 	NSParameterAssert(user != nil);
 	NSParameterAssert(token != nil);
 
@@ -115,14 +116,14 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	return client;
 }
 
-+ (instancetype)authenticatedClientWithUser:(OCTUser *)user {
++ (instancetype)authenticatedClientWithUser:(OCTLoginUser *)user {
 	OCTClient *client = [[self alloc] initWithServer:user.server];
 	client.authenticated = YES;
 	client.user = user;
 	return client;
 }
 
-+ (instancetype)authenticatedClientWithUser:(OCTUser *)user password:(NSString *)password {
++ (instancetype)authenticatedClientWithUser:(OCTLoginUser *)user password:(NSString *)password {
 	NSParameterAssert(user != nil);
 	NSParameterAssert(password != nil);
 
@@ -133,7 +134,7 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	return client;
 }
 
-+ (instancetype)unauthenticatedClientWithUser:(OCTUser *)user {
++ (instancetype)unauthenticatedClientWithUser:(OCTLoginUser *)user {
 	NSParameterAssert(user != nil);
 
 	OCTClient *client = [[self alloc] initWithServer:user.server];
