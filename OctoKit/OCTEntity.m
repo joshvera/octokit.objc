@@ -15,25 +15,62 @@
 
 @implementation OCTEntity
 
-#pragma mark Class Cluster
-
-+ (NSDictionary *)entityClassesByType {
-	return @{
-		@"User": OCTUser.class,
-		@"Organization": OCTOrganization.class,
-	};
-}
-
 #pragma mark MTLJSONSerializing
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return [super.JSONKeyPathsByPropertyKey mtl_dictionaryByAddingEntriesFromDictionary:@{
+		@"login": @"login",
+		@"avatarURL": @"avatar_url",
+		@"gravatarID": @"gravatar_id",
 		@"APIURITemplate": @"url",
+		@"HTMLURL": @"html_url",
+		@"followersURITemplate": @"followers_url",
+		@"followingURITemplate": @"following_url",
+		@"gistsURITemplate": @"gists_url",
+		@"starredURITemplate": @"starred_url",
+		@"subscriptionsURITemplate": @"subscriptions_url",
+		@"organizationsURITemplate": @"organizations_url",
 		@"reposURITemplate": @"repos_url",
+		@"eventsURITemplate": @"events_url",
+		@"receivedEventsURITemplate": @"received_events_url",
+		@"type": @"type",
+		@"siteAdmin": @"site_admin",
 	}];
 }
 
++ (NSValueTransformer *)avatarURLJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
 + (NSValueTransformer *)APIURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
++ (NSValueTransformer *)HTMLURLJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
++ (NSValueTransformer *)followersURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
++ (NSValueTransformer *)followingURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
++ (NSValueTransformer *)gistsURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
++ (NSValueTransformer *)starredURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
++ (NSValueTransformer *)subscriptionsURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
++ (NSValueTransformer *)organizationsURITemplateJSONTransformer {
 	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
 }
 
@@ -41,73 +78,12 @@
 	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
 }
 
-#pragma mark Merging
-
-- (void)mergeRepositoriesFromModel:(OCTEntity *)entity {
-	[self mergeRepositoriesWithRemoteCounterparts:entity.repositories];
++ (NSValueTransformer *)eventsURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
 }
 
-- (void)mergeRepositoriesWithRemoteCounterparts:(NSArray *)remoteRepositories {
-	if (remoteRepositories == nil) {
-		// A nil array means that repositories were never fetched. An empty
-		// array means that there are no remote repositories, so we should clear
-		// ours out.
-		return;
-	}
-
-	NSArray *localRepositories = [self.repositories copy];
-
-	NSMutableArray *reposToAdd = [remoteRepositories mutableCopy];
-	[reposToAdd removeObjectsInArray:localRepositories];
-	
-	NSMutableArray *reposToRemove = [localRepositories mutableCopy];
-	[reposToRemove removeObjectsInArray:remoteRepositories];
-	
-	NSMutableArray *allRepos = [localRepositories mutableCopy] ?: [NSMutableArray array];
-	[allRepos addObjectsFromArray:reposToAdd];
-	[allRepos removeObjectsInArray:reposToRemove];
-	
-	// update every repo with the data from its remote equivalent
-	for (OCTRepository *repo in allRepos) {
-		NSUInteger index = [remoteRepositories indexOfObject:repo];
-		if (index == NSNotFound) continue;
-		
-		OCTRepository *remoteCounterpart = remoteRepositories[index];
-		[repo mergeValuesForKeysFromModel:remoteCounterpart];
-	}
-	
-	self.repositories = allRepos;
-}
-
-#pragma mark Migration
-
-+ (NSDictionary *)dictionaryValueFromArchivedExternalRepresentation:(NSDictionary *)externalRepresentation version:(NSUInteger)fromVersion {
-	NSMutableDictionary *dictionaryValue = [[super dictionaryValueFromArchivedExternalRepresentation:externalRepresentation version:fromVersion] mutableCopy];
-
-	// These keys will be copied as-is, one-to-one.
-	NSArray *keysToCopy = @[ @"login", @"name", @"email", @"blog", @"company", @"collaborators" ];
-	for (NSString *key in keysToCopy) {
-		if (externalRepresentation[key] == nil) continue;
-
-		dictionaryValue[key] = externalRepresentation[key];
-	}
-
-	// Although some of these keys match JSON key paths, the format of this
-	// external representation is fixed (since it's always old data), thus the
-	// hard-coding.
-	dictionaryValue[@"publicRepoCount"] = externalRepresentation[@"public_repos"] ?: externalRepresentation[@"public_repo_count"] ?: @0;
-	dictionaryValue[@"privateRepoCount"] = externalRepresentation[@"owned_private_repos"] ?: externalRepresentation[@"owned_private_repo_count"] ?: @0;
-	dictionaryValue[@"diskUsage"] = externalRepresentation[@"disk_usage"] ?: @0;
-
-	return dictionaryValue;
-}
-
-+ (Class)classForParsingJSONDictionary:(NSDictionary *)JSONDictionary {
-	NSString *type = JSONDictionary[@"type"] ?: @"Organization";
-
-	Class class = self.entityClassesByType[type];
-	NSAssert(class != Nil, @"No known OCTEntity class for the type '%@'.", type);
-	return class;
++ (NSValueTransformer *)receivedEventsURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
 }
 
 @end

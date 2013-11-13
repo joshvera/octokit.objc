@@ -8,33 +8,57 @@
 
 #import "OCTObject.h"
 
-@class OCTPlan;
 @class CSURITemplate;
 
-// Represents any GitHub object which is capable of owning repositories.
+// Represents a GitHub repository owner.
 @interface OCTEntity : OCTObject
 
-// The full name of this entity.
-@property (atomic, copy, readonly) NSString *name;
+// The unique name for this owner, used in GitHub URLs.
+@property (nonatomic, copy, readonly) NSString *login;
 
-@property (nonatomic, copy, readonly) NSString *type;
+// The URL for any avatar image.
+@property (nonatomic, copy, readonly) NSURL *avatarURL;
 
-// The entity's API URL.
+// The entity's unique gravatar ID.
+@property (nonatomic, copy, readonly) NSString *gravatarID;
+
+// The entity's unique API URITemplate.
 @property (nonatomic, copy, readonly) CSURITemplate *APIURITemplate;
 
-// The entity's repos URITemplate.
+// The owner's HTML URL.
+@property (nonatomic, copy, readonly) NSURL *HTMLURL;
+
+// The owner's followers URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *followersURITemplate;
+
+// The owner's followers URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *followingURITemplate;
+
+// The owner's gists URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *gistsURITemplate;
+
+// The owner's starred repos URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *starredURITemplate;
+
+// The owner's subscriptions URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *subscriptionsURITemplate;
+
+// The owner's organizations URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *organizationsURITemplate;
+
+// The owner's repos URITemplate.
 @property (nonatomic, copy, readonly) CSURITemplate *reposURITemplate;
 
-// The OCTRepository objects associated with this entity.
-//
-// OCTClient endpoints do not actually set this property. It is provided as
-// a convenience for persistence and model merging.
-@property (atomic, copy) NSArray *repositories;
+// The owner's events URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *eventsURITemplate;
 
-// Updates the receiver's repositories with data from the set of remote
-// repositories.
-- (void)mergeRepositoriesWithRemoteCounterparts:(NSArray *)remoteRepositories;
+// The owner's received events URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *receivedEventsURITemplate;
 
-+ (NSDictionary *)entityClassesByType;
+// The owner's type.
+@property (nonatomic, copy, readonly) NSString *type;
+
+// Whether the owner is a site admin.
+@property (nonatomic, assign, readonly, getter = isSiteAdmin) BOOL siteAdmin;
 
 @end
