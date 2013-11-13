@@ -19,8 +19,8 @@
 
 + (NSDictionary *)entityClassesByType {
 	return @{
-		@"User": OCTOwner.class,
-		@"Organization": OCTOwner.class,
+		@"User": OCTUser.class,
+		@"Organization": OCTOrganization.class,
 	};
 }
 
@@ -103,10 +103,10 @@
 }
 
 + (Class)classForParsingJSONDictionary:(NSDictionary *)JSONDictionary {
-	NSString *type = JSONDictionary[@"type"];
-	NSAssert(type != nil, @"No known type for JSON dictionary: '%@'.", JSONDictionary);
+	NSString *type = JSONDictionary[@"type"] ?: @"Organization";
+
 	Class class = self.entityClassesByType[type];
-	NSAssert(class != nil, @"No known OCTEntity class for the type '%@'.", type);
+	NSAssert(class != Nil, @"No known OCTEntity class for the type '%@'.", type);
 	return class;
 }
 
