@@ -8,6 +8,7 @@
 
 #import "OCTContent.h"
 #import "OCTPartialFileContent.h"
+#import "OCTFileContent.h"
 #import "OCTDirectoryContent.h"
 #import "OCTSymlinkContent.h"
 #import "OCTSubmoduleContent.h"
@@ -71,7 +72,13 @@
 		}
 	}
 
-	Class class = self.contentClassesByType[type];
+	Class class;
+	if ([type isEqualToString:@"file"] && JSONDictionary[@"content"] != nil) {
+		class = OCTFileContent.class;
+	} else {
+		class = self.contentClassesByType[type];
+	}
+
 
 	NSAssert(class != Nil, @"No known OCTContent class for the type '%@'.", type);
 	return class;
