@@ -686,7 +686,7 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	[request setValue:nil forHTTPHeaderField:@"Accept-Language"];
 	request = [self etagRequestWithRequest:request];
 
-	return [[self enqueueRequest:request resultClass:OCTUserOrganization.class] oct_parsedResults];
+	return [[self enqueueRequest:request resultClass:OCTSimpleOrganization.class] oct_parsedResults];
 }
 
 - (RACSignal *)fetchOrganizationInfo:(OCTOrganization *)organization {
