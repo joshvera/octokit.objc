@@ -7,7 +7,7 @@
 //
 
 #import "OCTFollowEvent.h"
-#import "OCTOwner.h"
+#import "OCTEntity.h"
 
 @implementation OCTFollowEvent
 
@@ -21,7 +21,7 @@
 }
 
 + (NSValueTransformer *)followeeJSONTransformer {
-	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTOwner.class];
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTEntity.class];
 }
 
 @end

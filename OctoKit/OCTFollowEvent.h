@@ -8,10 +8,10 @@
 
 #import "OCTEvent.h"
 
-@class OCTOwner;
+@class OCTEntity;
 
 @interface OCTFollowEvent : OCTEvent
 
-@property (nonatomic, copy, readonly) OCTOwner *followee;
+@property (nonatomic, copy, readonly) OCTEntity *followee;
 
 @end
