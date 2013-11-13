@@ -15,7 +15,8 @@
 @class OCTRepository;
 @class OCTServer;
 @class OCTTeam;
-@class OCTUser;
+@class OCTLoginUser;
+@class OCTEntity;
 @class OCTIssue;
 @class OCTPullRequest;
 @class RACSignal;
@@ -87,7 +88,7 @@ extern NSString * const OCTClientErrorOneTimePasswordMediumKey;
 // unauthenticated, and will control which username is used for endpoints
 // that require one. For example, this user's login will be used with
 // -fetchUserEventsNotMatchingEtag:.
-@property (nonatomic, strong, readonly) OCTUser *user;
+@property (nonatomic, strong, readonly) OCTLoginUser *user;
 
 // Whether this client supports authenticated endpoints.
 //
@@ -120,7 +121,7 @@ extern NSString * const OCTClientErrorOneTimePasswordMediumKey;
 // token - The authorization token for the given user.
 //
 // Returns a new client.
-+ (instancetype)authenticatedClientWithUser:(OCTUser *)user token:(NSString *)token;
++ (instancetype)authenticatedClientWithUser:(OCTLoginUser *)user token:(NSString *)token;
 
 // Creates a client which can access any endpoints that don't require
 // authentication.
@@ -129,7 +130,7 @@ extern NSString * const OCTClientErrorOneTimePasswordMediumKey;
 //        set to this object. This argument must not be nil.
 //
 // Returns a new client.
-+ (instancetype)unauthenticatedClientWithUser:(OCTUser *)user;
++ (instancetype)unauthenticatedClientWithUser:(OCTLoginUser *)user;
 
 // Creates a mutable URL request, which when sent will conditionally fetch the
 // latest data from the server. If the latest data matches `etag`, nothing is
