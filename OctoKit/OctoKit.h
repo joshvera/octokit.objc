@@ -25,12 +25,14 @@
 #import <OctoKit/OCTEventRepository.h>
 #import <OctoKit/OCTEventCommit.h>
 #import <OctoKit/OCTFileContent.h>
+#import <OctoKit/OCTFollowEvent.h>
 #import <OctoKit/OCTGist.h>
 #import <OctoKit/OCTGistFile.h>
 #import <OctoKit/OCTIssue.h>
 #import <OctoKit/OCTIssueComment.h>
 #import <OctoKit/OCTIssueCommentEvent.h>
 #import <OctoKit/OCTIssueEvent.h>
+#import <OctoKit/OCTMemberEvent.h>
 #import <OctoKit/OCTNotification.h>
 #import <OctoKit/OCTObject.h>
 #import <OctoKit/OCTOrganization.h>
