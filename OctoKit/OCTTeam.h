@@ -10,7 +10,9 @@
 #import "OCTEntity.h"
 
 // Represents a team within an OCTOrganization.
-@interface OCTTeam : OCTEntity
+@interface OCTTeam : OCTObject
+
+@property (nonatomic, copy, readonly) NSString *name;
 
 @property (nonatomic, copy, readonly) NSString *slug;
 
