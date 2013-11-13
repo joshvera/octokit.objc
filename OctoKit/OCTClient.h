@@ -538,12 +538,6 @@ typedef enum : NSUInteger {
 
 @end
 
-@interface OCTClient (Timeline)
-
-- (RACSignal *)fetchTimelineAtPullRequestURITemplate:(CSURITemplate *)template;
-
-@end
-
 @interface OCTClient (Watching)
 
 - (RACSignal *)fetchWatchedRepositories;

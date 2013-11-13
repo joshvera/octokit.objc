@@ -27,7 +27,6 @@
 #import "OCTIssue.h"
 #import "OCTIssueComment.h"
 #import "OCTPullRequestComment.h"
-#import "OCTTimeline.h"
 #import "RACSignal+OCTClientAdditions.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <CSURITemplate/CSURITemplate.h>
@@ -998,20 +997,6 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	[request setValue:@"application/vnd.github.beta.html+json" forHTTPHeaderField:@"Accept"];
 
 	return [[self enqueueRequest:request resultClass:OCTCommit.class] oct_parsedResults];
-}
-
-@end
-
-@implementation OCTClient (Timeline)
-
-- (RACSignal *)fetchTimelineAtPullRequestURITemplate:(CSURITemplate *)template {
-	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
-
-	NSMutableURLRequest *request = [self requestWithMethod:@"GET" template:template parameters:nil];
-	request.URL = [request.URL URLByAppendingPathComponent:@"timeline"];
-	[request setValue:@"application/vnd.github.beta.html+json" forHTTPHeaderField:@"Accept"];
-
-	return [[self enqueueRequest:[self etagRequestWithRequest:request] resultClass:OCTTimeline.class] oct_parsedResults];
 }
 
 @end
