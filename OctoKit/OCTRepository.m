@@ -9,7 +9,7 @@
 #import "OCTRepository.h"
 #import "NSValueTransformer+OCTPredefinedTransformerAdditions.h"
 #import "OCTURITemplateTransformer.h"
-#import "OCTOwner.h"
+#import "OCTEntity.h"
 #import "OCTOrganization.h"
 
 static NSString *const OCTRepositoryHTMLIssuesPath = @"issues";
@@ -111,7 +111,7 @@ static NSString *const OCTRepositoryHTMLIssuesPath = @"issues";
 }
 
 + (NSValueTransformer *)ownerJSONTransformer {
-	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTOwner.class];
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTEntity.class];
 }
 
 + (NSValueTransformer *)organizationJSONTransformer {
