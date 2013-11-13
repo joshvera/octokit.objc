@@ -15,6 +15,7 @@
 #import "OCTPullRequestCommentEvent.h"
 #import "OCTPushEvent.h"
 #import "OCTRefEvent.h"
+#import "OCTFollowEvent.h"
 #import "OCTEventOwner.h"
 #import "OCTEventRepository.h"
 
@@ -37,6 +38,7 @@
 		@"PullRequestEvent": OCTPullRequestEvent.class,
 		@"PullRequestReviewCommentEvent": OCTPullRequestCommentEvent.class,
 		@"PushEvent": OCTPushEvent.class,
+		@"FollowEvent": OCTFollowEvent.class
 	};
 }
 
