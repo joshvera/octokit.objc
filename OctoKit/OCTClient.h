@@ -540,6 +540,6 @@ typedef enum : NSUInteger {
 
 @interface OCTClient (Watching)
 
-- (RACSignal *)fetchWatchedRepositories;
+- (RACSignal *)fetchWatchedRepositoriesForEntity:(OCTEntity *)entity;
 
 @end
