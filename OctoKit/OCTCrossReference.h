@@ -8,7 +8,7 @@
 
 #import "OCTObject.h"
 
-@class OCTUser;
+@class OCTUserEntity;
 @class CSURITemplate;
 
 @interface OCTCrossReference : OCTObject
@@ -33,6 +33,6 @@
 
 @property (nonatomic, copy, readonly) CSURITemplate *targetURITemplate;
 
-@property (nonatomic, copy, readonly) OCTUser *user;
+@property (nonatomic, copy, readonly) OCTUserEntity *user;
 
 @end

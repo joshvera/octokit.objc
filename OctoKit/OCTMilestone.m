@@ -32,7 +32,7 @@
 }
 
 + (NSValueTransformer *)creatorJSONTransformer {
-	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTUser.class];
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTUserEntity.class];
 }
 
 + (NSValueTransformer *)createdAtDateJSONTransformer {

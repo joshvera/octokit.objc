@@ -9,7 +9,7 @@
 #import "OCTObject.h"
 
 @class CSURITemplate;
-@class OCTUser;
+@class OCTUserEntity;
 @class OCTPullRequest;
 @class OCTIssue;
 
@@ -40,6 +40,6 @@
 // The login of the user who created this comment.
 @property (nonatomic, copy, readonly) NSString *commenterLogin;
 
-@property (nonatomic, copy, readonly) OCTUser *user;
+@property (nonatomic, copy, readonly) OCTUserEntity *user;
 
 @end

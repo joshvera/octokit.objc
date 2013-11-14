@@ -11,7 +11,7 @@
 @class OCTRepository;
 @class OCTPullRequest;
 @class CSURITemplate;
-@class OCTUser;
+@class OCTUserEntity;
 @class OCTMilestone;
 
 // The state of the issue. open or closed.
@@ -36,13 +36,13 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, copy, readonly) NSString *HTMLBody;
 
-@property (nonatomic, copy, readonly) OCTUser *assignee;
+@property (nonatomic, copy, readonly) OCTUserEntity *assignee;
 
 @property (nonatomic, copy, readonly) OCTMilestone *milestone;
 
 @property (nonatomic, assign, readonly) OCTIssueState state;
 
-@property (nonatomic, copy, readonly) OCTUser *user;
+@property (nonatomic, copy, readonly) OCTUserEntity *user;
 
 // The webpage URL for this issue.
 @property (nonatomic, copy, readonly) NSURL *HTMLURL;

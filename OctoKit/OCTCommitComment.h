@@ -9,7 +9,7 @@
 #import "OCTObject.h"
 
 @class OCTCommit;
-@class OCTUser;
+@class OCTUserEntity;
 @class CSURITemplate;
 
 // A single comment on a commit.
@@ -50,6 +50,6 @@
 
 @property (atomic, strong) OCTCommit *commit;
 
-@property (nonatomic, copy, readonly) OCTUser *user;
+@property (nonatomic, copy, readonly) OCTUserEntity *user;
 
 @end

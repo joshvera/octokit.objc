@@ -9,7 +9,7 @@
 #import "OCTObject.h"
 
 @class CSURITemplate;
-@class OCTUser;
+@class OCTUserEntity;
 @class OCTPullRequest;
 
 // A single comment on a pull request.
@@ -41,7 +41,7 @@
 // The API URL for the pull request upon which this comment appears.
 @property (nonatomic, copy, readonly) CSURITemplate *pullRequestURITemplate;
 
-@property (nonatomic, copy, readonly) OCTUser *user;
+@property (nonatomic, copy, readonly) OCTUserEntity *user;
 
 @property (nonatomic, copy, readonly) NSString *diffHunk;
 

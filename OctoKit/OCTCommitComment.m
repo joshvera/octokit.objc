@@ -49,7 +49,7 @@
 }
 
 + (NSValueTransformer *)userJSONTransformer {
-	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTUser.class];
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTUserEntity.class];
 }
 
 @end

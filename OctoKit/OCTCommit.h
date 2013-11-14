@@ -8,7 +8,7 @@
 
 #import "OCTObject.h"
 
-@class OCTUser;
+@class OCTUserEntity;
 @class CSURITemplate;
 
 // A commit on a repository
@@ -36,10 +36,10 @@
 @property (nonatomic, copy, readonly) CSURITemplate *commentsURITemplate;
 
 // The commit's author.
-@property (nonatomic, copy, readonly) OCTUser *author;
+@property (nonatomic, copy, readonly) OCTUserEntity *author;
 
 // The commit's committer.
-@property (nonatomic, copy, readonly) OCTUser *committer;
+@property (nonatomic, copy, readonly) OCTUserEntity *committer;
 
 // The commit's total line count.
 @property (nonatomic, assign, readonly) NSUInteger total;

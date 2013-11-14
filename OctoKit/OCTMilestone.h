@@ -8,7 +8,7 @@
 
 #import "OCTObject.h"
 
-@class OCTUser;
+@class OCTUserEntity;
 @class CSURITemplate;
 
 // The state of the milestone. open or closed.
@@ -28,7 +28,7 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, copy, readonly) NSString *milestoneDescription;
 
-@property (nonatomic, copy, readonly) OCTUser *creator;
+@property (nonatomic, copy, readonly) OCTUserEntity *creator;
 
 @property (nonatomic, assign, readonly) NSUInteger openIssuesCount;
 

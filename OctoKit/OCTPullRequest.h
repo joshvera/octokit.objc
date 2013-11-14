@@ -9,7 +9,8 @@
 #import "OCTObject.h"
 
 @class CSURITemplate;
-@class OCTUser;
+@class OCTEntity;
+@class OCTUserEntity;
 @class OCTMilestone;
 @class OCTRepository;
 
@@ -65,7 +66,7 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, copy, readonly) NSDate *updatedAtDate;
 
-@property (nonatomic, copy, readonly) OCTUser *user;
+@property (nonatomic, copy, readonly) OCTUserEntity *user;
 
 @property (nonatomic, copy, readonly) NSString *baseSHA;
 
@@ -73,7 +74,7 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, copy, readonly) OCTRepository *baseRepository;
 
-@property (nonatomic, copy, readonly) OCTUser *baseUser;
+@property (nonatomic, copy, readonly) OCTEntity *baseUser;
 
 @property (nonatomic, copy, readonly) NSString *baseLabel;
 
@@ -83,7 +84,7 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, copy, readonly) OCTRepository *headRepository;
 
-@property (nonatomic, copy, readonly) OCTUser *headUser;
+@property (nonatomic, copy, readonly) OCTEntity *headUser;
 
 @property (nonatomic, copy, readonly) NSString *headLabel;
 
