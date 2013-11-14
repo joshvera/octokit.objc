@@ -9,6 +9,7 @@
 #import "OCTUser.h"
 #import "OCTURITemplateTransformer.h"
 #import "NSValueTransformer+OCTPredefinedTransformerAdditions.h"
+#import "OCTAuthenticatedUser.h"
 
 @implementation OCTUser
 
@@ -42,6 +43,11 @@
 
 + (NSValueTransformer *)updatedAtDateJSONTransformer {
 	return [NSValueTransformer valueTransformerForName:OCTDateValueTransformerName];
+}
+
++ (Class)classForParsingJSONDictionary:(NSDictionary *)JSONDictionary {
+	if (JSONDictionary[@"plan"] != nil) return OCTAuthenticatedUser.class;
+	return self;
 }
 
 @end
