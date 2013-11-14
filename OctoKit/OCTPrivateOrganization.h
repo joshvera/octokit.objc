@@ -12,16 +12,16 @@
 
 @interface OCTPrivateOrganization : OCTOrganization
 
-@property (nonatomic, assign, readonly) NSUInteger totalPrivateReposCount;
+@property (nonatomic, assign, readonly) NSUInteger totalPrivateRepoCount;
 
-@property (nonatomic, assign, readonly) NSUInteger ownedPrivateReposCount;
+@property (nonatomic, assign, readonly) NSUInteger ownedPrivateRepoCount;
 
 @property (nonatomic, assign, readonly) NSUInteger diskUsage;
 
-@property (nonatomic, assign, readonly) NSUInteger collaboratorsCount;
+@property (nonatomic, assign, readonly) NSUInteger collaboratorCount;
 
 @property (nonatomic, copy, readonly) OCTPlan *plan;
 
-@property (nonatomic, assign, readonly) NSUInteger privateGistsCount;
+@property (nonatomic, assign, readonly) NSUInteger privateGistCount;
 
 @end
