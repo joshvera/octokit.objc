@@ -302,6 +302,12 @@
 		D1B766E6183428A70060B595 /* OCTSimpleOrganization.h in Headers */ = {isa = PBXBuildFile; fileRef = D1B766E3183428A70060B595 /* OCTSimpleOrganization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D1B766E7183428A70060B595 /* OCTSimpleOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B766E4183428A70060B595 /* OCTSimpleOrganization.m */; };
 		D1B766E8183428A70060B595 /* OCTSimpleOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B766E4183428A70060B595 /* OCTSimpleOrganization.m */; };
+		D1B766FD18345B540060B595 /* OCTUserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = D1B766FC18345B540060B595 /* OCTUserInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1B766FE18345B540060B595 /* OCTUserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = D1B766FC18345B540060B595 /* OCTUserInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1B7670118345B950060B595 /* OCTOrganizationEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = D1B766FF18345B950060B595 /* OCTOrganizationEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1B7670218345B950060B595 /* OCTOrganizationEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = D1B766FF18345B950060B595 /* OCTOrganizationEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1B7670318345B950060B595 /* OCTOrganizationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B7670018345B950060B595 /* OCTOrganizationEntity.m */; };
+		D1B7670418345B950060B595 /* OCTOrganizationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B7670018345B950060B595 /* OCTOrganizationEntity.m */; };
 		D1C1B30217D830E800F830C8 /* OCTMilestone.h in Headers */ = {isa = PBXBuildFile; fileRef = D1C1B30017D830E800F830C8 /* OCTMilestone.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D1C1B30317D830E800F830C8 /* OCTMilestone.h in Headers */ = {isa = PBXBuildFile; fileRef = D1C1B30017D830E800F830C8 /* OCTMilestone.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D1C1B30417D830E800F830C8 /* OCTMilestone.m in Sources */ = {isa = PBXBuildFile; fileRef = D1C1B30117D830E800F830C8 /* OCTMilestone.m */; };
@@ -847,6 +853,9 @@
 		D1B766DB1834180F0060B595 /* OCTLoginUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTLoginUser.m; sourceTree = "<group>"; };
 		D1B766E3183428A70060B595 /* OCTSimpleOrganization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTSimpleOrganization.h; sourceTree = "<group>"; };
 		D1B766E4183428A70060B595 /* OCTSimpleOrganization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTSimpleOrganization.m; sourceTree = "<group>"; };
+		D1B766FC18345B540060B595 /* OCTUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTUserInfo.h; sourceTree = "<group>"; };
+		D1B766FF18345B950060B595 /* OCTOrganizationEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTOrganizationEntity.h; sourceTree = "<group>"; };
+		D1B7670018345B950060B595 /* OCTOrganizationEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTOrganizationEntity.m; sourceTree = "<group>"; };
 		D1C1B30017D830E800F830C8 /* OCTMilestone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTMilestone.h; sourceTree = "<group>"; };
 		D1C1B30117D830E800F830C8 /* OCTMilestone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTMilestone.m; sourceTree = "<group>"; };
 		D1C986F917D2C6E70001FDFA /* CSURITemplate.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CSURITemplate.xcodeproj; path = External/CSURITemplate/CSURITemplate.xcodeproj; sourceTree = "<group>"; };
@@ -1293,6 +1302,7 @@
 				D0872156169E395F00016ACA /* OCTTeam.m */,
 				D17F68FF1822FA6500A13ECE /* OCTEventRepository.h */,
 				D17F69001822FA6500A13ECE /* OCTEventRepository.m */,
+				D1B766FC18345B540060B595 /* OCTUserInfo.h */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -1420,6 +1430,8 @@
 				D12F33931815C37B00B591B6 /* OCTUserOrganization.m */,
 				D1B766E3183428A70060B595 /* OCTSimpleOrganization.h */,
 				D1B766E4183428A70060B595 /* OCTSimpleOrganization.m */,
+				D1B766FF18345B950060B595 /* OCTOrganizationEntity.h */,
+				D1B7670018345B950060B595 /* OCTOrganizationEntity.m */,
 			);
 			name = Owners;
 			sourceTree = "<group>";
@@ -1466,12 +1478,14 @@
 				D087217D169E395F00016ACA /* OCTObject.h in Headers */,
 				D0872183169E395F00016ACA /* OCTOrganization.h in Headers */,
 				D07DD39517A9940D005EBFE0 /* OCTGistFile.h in Headers */,
+				D1B766FD18345B540060B595 /* OCTUserInfo.h in Headers */,
 				D0872187169E395F00016ACA /* OCTPlan.h in Headers */,
 				D087218B169E395F00016ACA /* OCTPublicKey.h in Headers */,
 				D1C1B30217D830E800F830C8 /* OCTMilestone.h in Headers */,
 				D087218F169E395F00016ACA /* OCTPullRequest.h in Headers */,
 				D17F68ED1822F89500A13ECE /* OCTEventOwner.h in Headers */,
 				D0872193169E395F00016ACA /* OCTPullRequestComment.h in Headers */,
+				D1B7670118345B950060B595 /* OCTOrganizationEntity.h in Headers */,
 				D0872197169E395F00016ACA /* OCTPullRequestCommentEvent.h in Headers */,
 				D087219B169E395F00016ACA /* OCTPullRequestEvent.h in Headers */,
 				D087219F169E395F00016ACA /* OCTPushEvent.h in Headers */,
@@ -1529,12 +1543,14 @@
 				D07DD39017A993AA005EBFE0 /* OCTGist.h in Headers */,
 				D087217E169E395F00016ACA /* OCTObject.h in Headers */,
 				D0872184169E395F00016ACA /* OCTOrganization.h in Headers */,
+				D1B766FE18345B540060B595 /* OCTUserInfo.h in Headers */,
 				D07DD39617A9940D005EBFE0 /* OCTGistFile.h in Headers */,
 				D0872188169E395F00016ACA /* OCTPlan.h in Headers */,
 				D1C1B30317D830E800F830C8 /* OCTMilestone.h in Headers */,
 				D087218C169E395F00016ACA /* OCTPublicKey.h in Headers */,
 				D17F68EE1822F89500A13ECE /* OCTEventOwner.h in Headers */,
 				D0872190169E395F00016ACA /* OCTPullRequest.h in Headers */,
+				D1B7670218345B950060B595 /* OCTOrganizationEntity.h in Headers */,
 				D0872194169E395F00016ACA /* OCTPullRequestComment.h in Headers */,
 				D0872198169E395F00016ACA /* OCTPullRequestCommentEvent.h in Headers */,
 				D087219C169E395F00016ACA /* OCTPullRequestEvent.h in Headers */,
@@ -2026,6 +2042,7 @@
 				D1F574011831871D00B20E3F /* OCTMemberEvent.m in Sources */,
 				D0872195169E395F00016ACA /* OCTPullRequestComment.m in Sources */,
 				D0872199169E395F00016ACA /* OCTPullRequestCommentEvent.m in Sources */,
+				D1B7670318345B950060B595 /* OCTOrganizationEntity.m in Sources */,
 				9CB0587F17933F26002CF498 /* OCTDirectoryContent.m in Sources */,
 				D087219D169E395F00016ACA /* OCTPullRequestEvent.m in Sources */,
 				D08721A1169E395F00016ACA /* OCTPushEvent.m in Sources */,
@@ -2118,6 +2135,7 @@
 				D1F574021831871D00B20E3F /* OCTMemberEvent.m in Sources */,
 				D0872196169E395F00016ACA /* OCTPullRequestComment.m in Sources */,
 				D087219A169E395F00016ACA /* OCTPullRequestCommentEvent.m in Sources */,
+				D1B7670418345B950060B595 /* OCTOrganizationEntity.m in Sources */,
 				9CB0588017933F26002CF498 /* OCTDirectoryContent.m in Sources */,
 				D087219E169E395F00016ACA /* OCTPullRequestEvent.m in Sources */,
 				D08721A2169E395F00016ACA /* OCTPushEvent.m in Sources */,
