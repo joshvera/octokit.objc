@@ -8,6 +8,7 @@
 
 #import "OCTLoginUser.h"
 #import <ReactiveCocoa/EXTKeyPathCoding.h>
+#import "OCTObject+Private.h"
 #import "OCTServer.h"
 
 @implementation OCTLoginUser
