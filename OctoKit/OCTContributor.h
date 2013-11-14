@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 GitHub. All rights reserved.
 //
 
-#import "OCTEntity.h"
+#import "OCTUserEntity.h"
 
-@interface OCTContributor : OCTEntity
+@interface OCTContributor : OCTUserEntity
 
-@property (nonatomic, assign, readonly) NSUInteger constributionCount;
+@property (nonatomic, assign, readonly) NSUInteger contributionCount;
 
 @end
