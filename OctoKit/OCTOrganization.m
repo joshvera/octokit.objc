@@ -18,15 +18,8 @@
 	return [[super 
 		JSONKeyPathsByPropertyKey]
 		mtl_dictionaryByAddingEntriesFromDictionary:@{
-			@"login": @"login",
-			@"avatarURL": @"avatar_url",
-			@"APIURITemplate": @"url",
 			@"HTMLURL": @"html_url",
-			@"reposURITemplate": @"repos_url",
-			@"eventsURITemplate": @"events_url",
 			@"receivedEventsURITemplate": @"received_events_url",
-			@"membersURITemplate": @"members_url",
-			@"publicMembersURITemplate": @"public_members_url",
 			@"type": @"type",
 			@"siteAdmin": @"site_admin",
 			@"name": @"name",
@@ -41,35 +34,11 @@
 		}];
 }
 
-+ (NSValueTransformer *)avatarURLJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
-}
-
-+ (NSValueTransformer *)APIURITemplateJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
-}
-
 + (NSValueTransformer *)HTMLURLJSONTransformer {
 	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
-+ (NSValueTransformer *)reposURITemplateJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
-}
-
-+ (NSValueTransformer *)eventsURITemplateJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
-}
-
 + (NSValueTransformer *)receivedEventsURITemplateJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
-}
-
-+ (NSValueTransformer *)membersURITemplateJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
-}
-
-+ (NSValueTransformer *)publicMembersURITemplateJSONTransformer {
 	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
 }
 
