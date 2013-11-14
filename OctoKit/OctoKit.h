@@ -61,3 +61,5 @@
 #import <OctoKit/OCTUser.h>
 #import <OctoKit/OCTUserEntity.h>
 #import <OctoKit/OCTUserOrganization.h>
+#import <OctoKit/OCTOrganizationEntity.h>
+#import <OctoKit/OCTUserInfo.h>
