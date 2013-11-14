@@ -61,4 +61,6 @@
 // Whether the owner is a site admin.
 @property (nonatomic, assign, readonly, getter = isSiteAdmin) BOOL siteAdmin;
 
++ (NSDictionary *)entityClassesByType;
+
 @end

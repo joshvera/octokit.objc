@@ -10,10 +10,19 @@
 #import "OCTPlan.h"
 #import "OCTRepository.h"
 #import "OCTUser.h"
-#import "OCTOrganization.h"
+#import "OCTUserOrganization.h"
 #import "OCTURITemplateTransformer.h"
 
 @implementation OCTEntity
+
+#pragma mark Class Cluster
+
++ (NSDictionary *)entityClassesByType {
+	return @{
+		@"User": OCTUserEntity.class,
+		@"Organization": OCTOrganizationEntity.class,
+	};
+}
 
 #pragma mark MTLJSONSerializing
 
@@ -84,6 +93,10 @@
 
 + (NSValueTransformer *)receivedEventsURITemplateJSONTransformer {
 	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
++ (Class)classForParsingJSONDictionary:(NSDictionary *)JSONDictionary {
+	return self.entityClassesByType[JSONDictionary[@"type"]];
 }
 
 @end
