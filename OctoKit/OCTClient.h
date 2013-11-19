@@ -284,6 +284,12 @@ typedef enum : NSUInteger {
 
 @interface OCTClient (User)
 
+- (RACSignal *)fetchStarredRepositoriesAtURITemplate:(CSURITemplate *)template;
+
+- (RACSignal *)fetchFollowedUsersAtURITemplate:(CSURITemplate *)template;
+
+- (RACSignal *)fetchFollowersAtURITemplate:(CSURITemplate *)template;
+
 - (RACSignal *)fetchRepositoriesAtURITemplate:(CSURITemplate *)template;
 
 // Fetches the full information of the current `user`.
