@@ -284,6 +284,8 @@ typedef enum : NSUInteger {
 
 @interface OCTClient (User)
 
+- (RACSignal *)fetchUserAtURITemplate:(CSURITemplate *)template;
+
 - (RACSignal *)fetchStarredRepositoriesAtURITemplate:(CSURITemplate *)template;
 
 - (RACSignal *)fetchFollowedUsersAtURITemplate:(CSURITemplate *)template;
