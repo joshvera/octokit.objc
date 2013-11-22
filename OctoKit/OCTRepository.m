@@ -11,6 +11,7 @@
 #import "OCTURITemplateTransformer.h"
 #import "OCTEntity.h"
 #import "OCTOrganization.h"
+#import "OCTForkedRepository.h"
 
 static NSString *const OCTRepositoryHTMLIssuesPath = @"issues";
 
@@ -326,6 +327,14 @@ static NSString *const OCTRepositoryHTMLIssuesPath = @"issues";
 	dictionaryValue[@"HTMLURL"] = [self.HTMLURLJSONTransformer transformedValue:HTMLURLString] ?: NSNull.null;
 
 	return dictionaryValue;
+}
+
++ (Class)classForParsingJSONDictionary:(NSDictionary *)JSON {
+	if (JSON[@"source"] != nil) {
+		return OCTForkedRepository.class;
+	} else {
+		return self;
+	}
 }
 
 @end

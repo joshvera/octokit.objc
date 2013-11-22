@@ -52,6 +52,7 @@
 #import <OctoKit/OCTPushEvent.h>
 #import <OctoKit/OCTRefEvent.h>
 #import <OctoKit/OCTRepository.h>
+#import <OctoKit/OCTForkedRepository.h>
 #import <OctoKit/OCTResponse.h>
 #import <OctoKit/OCTServer.h>
 #import <OctoKit/OCTSubmoduleContent.h>
