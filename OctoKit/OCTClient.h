@@ -489,6 +489,10 @@ typedef enum : NSUInteger {
 // `authenticated`, the signal will error immediately.
 - (RACSignal *)unwatchRepository:(OCTRepository *)repository;
 
+- (RACSignal *)fetchLabelsForRepository:(OCTRepository *)repository;
+
+- (RACSignal *)fetchMilestonesForRepository:(OCTRepository *)repository;
+
 @end
 
 @interface OCTClient (Gist)
