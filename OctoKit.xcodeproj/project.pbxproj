@@ -264,6 +264,10 @@
 		D12F33951815C37B00B591B6 /* OCTUserOrganization.h in Headers */ = {isa = PBXBuildFile; fileRef = D12F33921815C37B00B591B6 /* OCTUserOrganization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D12F33961815C37B00B591B6 /* OCTUserOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = D12F33931815C37B00B591B6 /* OCTUserOrganization.m */; };
 		D12F33971815C37B00B591B6 /* OCTUserOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = D12F33931815C37B00B591B6 /* OCTUserOrganization.m */; };
+		D136BC7018456B28009E6F86 /* OCTLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = D136BC6E18456B28009E6F86 /* OCTLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D136BC7118456B28009E6F86 /* OCTLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = D136BC6E18456B28009E6F86 /* OCTLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D136BC7218456B28009E6F86 /* OCTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D136BC6F18456B28009E6F86 /* OCTLabel.m */; };
+		D136BC7318456B28009E6F86 /* OCTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D136BC6F18456B28009E6F86 /* OCTLabel.m */; };
 		D17F68ED1822F89500A13ECE /* OCTEventOwner.h in Headers */ = {isa = PBXBuildFile; fileRef = D17F68EB1822F89500A13ECE /* OCTEventOwner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D17F68EE1822F89500A13ECE /* OCTEventOwner.h in Headers */ = {isa = PBXBuildFile; fileRef = D17F68EB1822F89500A13ECE /* OCTEventOwner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D17F68EF1822F89500A13ECE /* OCTEventOwner.m in Sources */ = {isa = PBXBuildFile; fileRef = D17F68EC1822F89500A13ECE /* OCTEventOwner.m */; };
@@ -838,6 +842,8 @@
 		D11D80EC17D1AEDC00CA7039 /* OCTDiffSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTDiffSpec.m; sourceTree = "<group>"; };
 		D12F33921815C37B00B591B6 /* OCTUserOrganization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTUserOrganization.h; sourceTree = "<group>"; };
 		D12F33931815C37B00B591B6 /* OCTUserOrganization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTUserOrganization.m; sourceTree = "<group>"; };
+		D136BC6E18456B28009E6F86 /* OCTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTLabel.h; sourceTree = "<group>"; };
+		D136BC6F18456B28009E6F86 /* OCTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTLabel.m; sourceTree = "<group>"; };
 		D17F68EB1822F89500A13ECE /* OCTEventOwner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTEventOwner.h; sourceTree = "<group>"; };
 		D17F68EC1822F89500A13ECE /* OCTEventOwner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTEventOwner.m; sourceTree = "<group>"; };
 		D17F68FF1822FA6500A13ECE /* OCTEventRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTEventRepository.h; sourceTree = "<group>"; };
@@ -1232,6 +1238,8 @@
 			children = (
 				D0872131169E395F00016ACA /* OCTIssue.h */,
 				D0872132169E395F00016ACA /* OCTIssue.m */,
+				D136BC6E18456B28009E6F86 /* OCTLabel.h */,
+				D136BC6F18456B28009E6F86 /* OCTLabel.m */,
 			);
 			name = Issues;
 			sourceTree = "<group>";
@@ -1506,6 +1514,7 @@
 				D08721B9169E395F00016ACA /* OCTUser.h in Headers */,
 				D087229F169E3D6000016ACA /* OctoKit.h in Headers */,
 				D1B766D0183416F30060B595 /* OCTPrivateOrganization.h in Headers */,
+				D136BC7018456B28009E6F86 /* OCTLabel.h in Headers */,
 				8829F2BF17A0DF5300F06991 /* OCTAuthorization.h in Headers */,
 				8848E19D16AF630B005449AB /* OCTNotification.h in Headers */,
 				D0772E7316BD27B5009DFF72 /* NSDateFormatter+OCTFormattingAdditions.h in Headers */,
@@ -1572,6 +1581,7 @@
 				D08721B6169E395F00016ACA /* OCTTeam.h in Headers */,
 				D08721BA169E395F00016ACA /* OCTUser.h in Headers */,
 				D1B766D1183416F30060B595 /* OCTPrivateOrganization.h in Headers */,
+				D136BC7118456B28009E6F86 /* OCTLabel.h in Headers */,
 				D08722A0169E3D6000016ACA /* OctoKit.h in Headers */,
 				8829F2C017A0DF5300F06991 /* OCTAuthorization.h in Headers */,
 				8848E19E16AF630B005449AB /* OCTNotification.h in Headers */,
@@ -2033,6 +2043,7 @@
 				9CB0588B17933F26002CF498 /* OCTSymlinkContent.m in Sources */,
 				D0872163169E395F00016ACA /* OCTCommitCommentEvent.m in Sources */,
 				D0872167169E395F00016ACA /* OCTEntity.m in Sources */,
+				D136BC7218456B28009E6F86 /* OCTLabel.m in Sources */,
 				D1B766D8183417A80060B595 /* OCTAuthenticatedUser.m in Sources */,
 				8829F2C117A0DF5300F06991 /* OCTAuthorization.m in Sources */,
 				D087216B169E395F00016ACA /* OCTEvent.m in Sources */,
@@ -2127,6 +2138,7 @@
 				9CB0588C17933F26002CF498 /* OCTSymlinkContent.m in Sources */,
 				D0872164169E395F00016ACA /* OCTCommitCommentEvent.m in Sources */,
 				D0872168169E395F00016ACA /* OCTEntity.m in Sources */,
+				D136BC7318456B28009E6F86 /* OCTLabel.m in Sources */,
 				D1B766D9183417A80060B595 /* OCTAuthenticatedUser.m in Sources */,
 				8829F2C217A0DF5300F06991 /* OCTAuthorization.m in Sources */,
 				D087216C169E395F00016ACA /* OCTEvent.m in Sources */,
