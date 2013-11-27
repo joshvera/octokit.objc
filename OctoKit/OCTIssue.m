@@ -13,6 +13,7 @@
 #import "NSValueTransformer+OCTPredefinedTransformerAdditions.h"
 #import "OCTUser.h"
 #import "OCTMilestone.h"
+#import "OCTLabel.h"
 
 @interface OCTIssue ()
 
@@ -56,6 +57,7 @@
 		@"reviewCommentsURITemplate": @"review_comments_url",
 		@"commentsURITemplate": @"comments_url",
 		@"commentCount": @"comments",
+		@"labels": @"labels"
 	}];
 }
 
@@ -93,6 +95,10 @@
 
 + (NSValueTransformer *)commentsURITemplateJSONTransformer {
 	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
++ (NSValueTransformer *)labelsJSONTransformer {
+	return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:OCTLabel.class];
 }
 
 @end

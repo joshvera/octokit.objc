@@ -62,4 +62,6 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, assign, readonly) NSUInteger commentCount;
 
+@property (nonatomic, copy, readonly) NSArray *labels;
+
 @end
