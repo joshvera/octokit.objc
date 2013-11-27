@@ -12,15 +12,22 @@
 @implementation OCTLabel
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-	return @{
+	return [[super
+		JSONKeyPathsByPropertyKey]
+		mtl_dictionaryByAddingEntriesFromDictionary:@{
+		@"objectID": @"url",
 		@"APIURITemplate": @"url",
-		@"color": @"color",
+		@"hexColor": @"color",
 		@"name": @"name"
-	};
+	}];
 }
 
 + (NSValueTransformer *)APIURITemplateJSONTransformer {
 	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
++ (NSValueTransformer *)objectIDJSONTransformer {
+	return nil;
 }
 
 @end

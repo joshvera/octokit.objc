@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 GitHub. All rights reserved.
 //
 
-#import <Mantle/Mantle.h>
+#import "OCTObject.h"
 
 @class CSURITemplate;
 
-@interface OCTLabel : MTLModel <MTLJSONSerializing>
+@interface OCTLabel : OCTObject <MTLJSONSerializing>
 
 @property (nonatomic, strong, readonly) CSURITemplate *APIURITemplate;
 
