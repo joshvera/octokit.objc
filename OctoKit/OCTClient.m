@@ -1007,10 +1007,10 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 
 @implementation OCTClient (Issues)
 
-- (RACSignal *)fetchIssuesAtURITemplate:(CSURITemplate *)template {
+- (RACSignal *)fetchIssuesAtURITemplate:(CSURITemplate *)template parameters:(NSDictionary *)parameters {
 	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
 
-	NSMutableURLRequest *request = [self requestWithMethod:@"GET" template:template parameters:nil];
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" template:template parameters:parameters];
 
 	return [[self enqueueRequest:request resultClass:OCTIssue.class] oct_parsedResults];
 }

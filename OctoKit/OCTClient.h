@@ -534,7 +534,7 @@ typedef enum : NSUInteger {
 
 @interface OCTClient (Issues)
 
-- (RACSignal *)fetchIssuesAtURITemplate:(CSURITemplate *)template;
+- (RACSignal *)fetchIssuesAtURITemplate:(CSURITemplate *)template parameters:(NSDictionary *)parameters;
 
 @end
 
