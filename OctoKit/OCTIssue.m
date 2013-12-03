@@ -97,6 +97,21 @@
 	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
 }
 
++ (NSValueTransformer *)stateJSONTransformer {
+	NSDictionary *statesByName = @{
+		@"open": @(OCTIssueStateOpen),
+		@"closed": @(OCTIssueStateClosed),
+	};
+
+	return [MTLValueTransformer
+		reversibleTransformerWithForwardBlock:^(NSString *stateName) {
+			return statesByName[stateName];
+		}
+		reverseBlock:^(NSNumber *state) {
+			return [statesByName allKeysForObject:state].lastObject;
+		}];
+}
+
 + (NSValueTransformer *)labelsJSONTransformer {
 	return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:OCTLabel.class];
 }
