@@ -286,9 +286,7 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 		return compoundDisposable;
 	}];
 	
-	return [[[signal
-		publish]
-		autoconnect]
+	return [signal
 		setNameWithFormat:@"-enqueueRequest: %@ resultClass: %@ fetchAllPages: %i", request, resultClass, (int)fetchAllPages];
 }
 
