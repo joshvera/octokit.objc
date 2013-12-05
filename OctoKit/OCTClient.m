@@ -901,7 +901,22 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	
 	NSString *path = [NSString stringWithFormat:@"repos/%@/%@/readme", repository.ownerLogin, repository.name];
 	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:path parameters:nil notMatchingEtag:nil];
+
+	return [[self enqueueRequest:request resultClass:OCTFileContent.class] oct_parsedResults];
+}
+
+- (RACSignal *)fetchRepositoryReadme:(OCTRepository *)repository asHTML:(BOOL)asHTML {
+	NSParameterAssert(repository != nil);
+	NSParameterAssert(repository.name.length > 0);
+	NSParameterAssert(repository.ownerLogin.length > 0);
 	
+	NSString *path = [NSString stringWithFormat:@"repos/%@/%@/readme", repository.ownerLogin, repository.name];
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:path parameters:nil notMatchingEtag:nil];
+	if (asHTML) {
+		[request setValue:@"application/vnd.github.beta.html" forHTTPHeaderField:@"Accept"];
+		return [[self enqueueRequest:request resultClass:nil] oct_parsedResults];
+	}
+
 	return [[self enqueueRequest:request resultClass:OCTFileContent.class] oct_parsedResults];
 }
 

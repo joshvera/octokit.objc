@@ -471,6 +471,8 @@ typedef enum : NSUInteger {
 // Returns a signal which will send zero or one OCTContent.
 - (RACSignal *)fetchRepositoryReadme:(OCTRepository *)repository;
 
+- (RACSignal *)fetchRepositoryReadme:(OCTRepository *)repository asHTML:(BOOL)asHTML;
+
 // Fetches a specific repository owned by the given `owner` and named `name`.
 //
 // name  - The name of the repository, must be a non-empty string.
