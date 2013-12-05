@@ -416,6 +416,10 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 		} else if ([responseObject isKindOfClass:NSDictionary.class]) {
 			parseJSONDictionary(responseObject);
 			[subscriber sendCompleted];
+		} else if ([responseObject isKindOfClass:NSData.class]) {
+			NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+			[subscriber sendNext:responseString];
+			[subscriber sendCompleted];
 		} else if (responseObject != nil) {
 			NSString *failureReason = [NSString stringWithFormat:NSLocalizedString(@"Response wasn't an array or dictionary (%@): %@", @""), [responseObject class], responseObject];
 			[subscriber sendError:[self parsingErrorWithFailureReason:failureReason]];
