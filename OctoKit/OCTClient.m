@@ -156,6 +156,10 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	if (self == nil) return nil;
 	
 	self.parameterEncoding = AFJSONParameterEncoding;
+
+	[AFHTTPRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"application/vnd.github.beta.html"]];
+	[self registerHTTPOperationClass:AFHTTPRequestOperation.class];
+
 	[AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObjects:@"application/vnd.github.beta+json", @"application/vnd.github.beta.html+json", nil]];
 	[self registerHTTPOperationClass:AFJSONRequestOperation.class];
 	[self setDefaultHeader:@"Accept" value:@"application/vnd.github.beta+json"];
