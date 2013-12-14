@@ -65,3 +65,17 @@ typedef enum : NSUInteger {
 @property (nonatomic, copy, readonly) NSArray *labels;
 
 @end
+
+@interface OCTIssueEdit : MTLModel <MTLJSONSerializing>
+
+@property (nonatomic, copy, readonly) NSString *title;
+
+@property (nonatomic, copy, readonly) NSString *body;
+
+@property (nonatomic, copy, readonly) NSString *assignee;
+
+@property (nonatomic, copy, readonly) NSNumber *milestone;
+
+@property (nonatomic, copy, readonly) NSString *labels;
+
+@end

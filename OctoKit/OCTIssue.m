@@ -117,3 +117,19 @@
 }
 
 @end
+
+@implementation OCTIssueEdit
+
+#pragma mark MTLJSONSerializing
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+	return @{
+		@"title": @"title",
+		@"body": @"body",
+		@"assignee": @"assignee",
+		@"milestone": @"milestone",
+		@"labels": @"labels"
+	};
+}
+
+@end
