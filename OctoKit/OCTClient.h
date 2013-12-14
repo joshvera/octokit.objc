@@ -18,6 +18,7 @@
 @class OCTLoginUser;
 @class OCTEntity;
 @class OCTIssue;
+@class OCTIssueEdit;
 @class OCTPullRequest;
 @class RACSignal;
 @class CSURITemplate;
@@ -535,6 +536,8 @@ typedef enum : NSUInteger {
 @end
 
 @interface OCTClient (Issues)
+
+- (RACSignal *)createIssueAtURITemplate:(CSURITemplate *)issuesTemplate withEdit:(OCTIssueEdit *)edit;
 
 - (RACSignal *)fetchIssuesAtURITemplate:(CSURITemplate *)template parameters:(NSDictionary *)parameters;
 
