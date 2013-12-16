@@ -496,6 +496,8 @@ typedef enum : NSUInteger {
 
 - (RACSignal *)fetchMilestonesForRepository:(OCTRepository *)repository;
 
+- (RACSignal *)fetchCollaboratorsForRepository:(OCTRepository *)repository;
+
 @end
 
 @interface OCTClient (Gist)

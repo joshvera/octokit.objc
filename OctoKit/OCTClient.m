@@ -966,6 +966,15 @@ static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 	return [[self enqueueRequest:request resultClass:OCTMilestone.class] oct_parsedResults];
 }
 
+- (RACSignal *)fetchCollaboratorsForRepository:(OCTRepository *)repository {
+	NSParameterAssert(repository != nil);
+
+	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
+
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" template:repository.collaboratorsURITemplate parameters:nil];
+	return [[self enqueueRequest:request resultClass:OCTMilestone.class] oct_parsedResults];
+}
+
 @end
 
 @implementation OCTClient (Gist)
