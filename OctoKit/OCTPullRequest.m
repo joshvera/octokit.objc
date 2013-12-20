@@ -31,6 +31,15 @@
 		@"remoteID": @"number",
 		@"createdAtDate": @"created_at",
 		@"updatedAtDate": @"updated_at",
+		@"closedAtDate": @"closed_at",
+		@"mergedAtDate": @"merged_at",
+		@"merged": @"merged",
+		@"mergeable": @"mergeable",
+		@"merger": @"merged_by",
+		@"commentCount": @"comments",
+		@"commitCount": @"commits",
+		@"reviewCommentCount": @"review_comments",
+		@"changedFilesCount": @"changed_files",
 		@"additions": @"additions",
 		@"deletions": @"deletions",
 		@"APIURITemplate": @"url",
@@ -82,11 +91,31 @@
 	return [NSValueTransformer valueTransformerForName:OCTDateValueTransformerName];
 }
 
-+ (NSValueTransformer *)userJSONTransformer {
++ (NSValueTransformer *)closedAtDateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTDateValueTransformerName];
+}
+
++ (NSValueTransformer *)mergedAtDateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTDateValueTransformerName];
+}
+
++ (NSValueTransformer *)mergerJSONTransformer {
 	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTUserEntity.class];
 }
 
 + (NSValueTransformer *)assigneeJSONTransformer {
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTUserEntity.class];
+}
+
++ (NSValueTransformer *)mergedJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:MTLBooleanValueTransformerName];
+}
+
++ (NSValueTransformer *)mergeableJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:MTLBooleanValueTransformerName];
+}
+
++ (NSValueTransformer *)userJSONTransformer {
 	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTUserEntity.class];
 }
 

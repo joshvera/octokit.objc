@@ -54,7 +54,7 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, copy, readonly) NSString *HTMLBody;
 
-@property (nonatomic, copy, readonly) NSString *assignee;
+@property (nonatomic, copy, readonly) OCTUserEntity *assignee;
 
 @property (nonatomic, copy, readonly) OCTMilestone *milestone;
 
@@ -65,6 +65,24 @@ typedef enum : NSUInteger {
 @property (nonatomic, copy, readonly) NSDate *createdAtDate;
 
 @property (nonatomic, copy, readonly) NSDate *updatedAtDate;
+
+@property (nonatomic, copy, readonly) NSDate *closedAtDate;
+
+@property (nonatomic, copy, readonly) NSDate *mergedAtDate;
+
+@property (nonatomic, assign, readonly, getter = isMergeable) BOOL mergeable;
+
+@property (nonatomic, assign, readonly, getter = isMerged) BOOL merged;
+
+@property (nonatomic, strong, readonly) OCTUserEntity *merger;
+
+@property (nonatomic, assign, readonly) NSUInteger commentCount;
+
+@property (nonatomic, assign, readonly) NSUInteger reviewCommentCount;
+
+@property (nonatomic, assign, readonly) NSUInteger commitCount;
+
+@property (nonatomic, assign, readonly) NSUInteger changedFilesCount;
 
 @property (nonatomic, copy, readonly) OCTUserEntity *user;
 
