@@ -111,10 +111,6 @@
 	return [NSValueTransformer valueTransformerForName:MTLBooleanValueTransformerName];
 }
 
-+ (NSValueTransformer *)mergeableJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:MTLBooleanValueTransformerName];
-}
-
 + (NSValueTransformer *)userJSONTransformer {
 	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTUserEntity.class];
 }

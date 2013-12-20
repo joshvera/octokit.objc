@@ -70,7 +70,7 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, copy, readonly) NSDate *mergedAtDate;
 
-@property (nonatomic, assign, readonly, getter = isMergeable) BOOL mergeable;
+@property (nonatomic, copy, readonly) NSNumber *mergeable;
 
 @property (nonatomic, assign, readonly, getter = isMerged) BOOL merged;
 
