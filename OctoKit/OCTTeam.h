@@ -10,5 +10,14 @@
 #import "OCTEntity.h"
 
 // Represents a team within an OCTOrganization.
-@interface OCTTeam : OCTEntity
+@interface OCTTeam : OCTObject
+
+@property (nonatomic, copy, readonly) NSString *name;
+
+@property (nonatomic, copy, readonly) NSString *slug;
+
+@property (nonatomic, copy, readonly) NSString *permission;
+
+@property (nonatomic, copy, readonly) CSURITemplate *membersURITemplate;
+
 @end

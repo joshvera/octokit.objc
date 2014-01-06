@@ -79,4 +79,28 @@
 // Returns a signal of zero or one OCTRepository.
 - (RACSignal *)fetchRepositoryWithName:(NSString *)name owner:(NSString *)owner;
 
+
+// Unwatches a user's repository. The user will only receive
+// notifications for discussions in which they're participating in or are
+// @mentions.
+//
+// repository  - The repository to unwatch. Cannot be nil.
+//
+// Returns a signal which will send completed on success. If the client is not
+// `authenticated`, the signal will error immediately.
+- (RACSignal *)unwatchRepository:(OCTRepository *)repository;
+
+- (RACSignal *)fetchLabelsForRepository:(OCTRepository *)repository;
+
+- (RACSignal *)fetchMilestonesForRepository:(OCTRepository *)repository;
+
+- (RACSignal *)fetchCollaboratorsForRepository:(OCTRepository *)repository;
+
+- (RACSignal *)fetchStarredRepositoriesAtURITemplate:(CSURITemplate *)template;
+
+- (RACSignal *)fetchRepositoriesAtURITemplate:(CSURITemplate *)template;
+
+- (RACSignal *)fetchRepositoryReadme:(OCTRepository *)repository asHTML:(BOOL)asHTML;
+
+
 @end

@@ -9,7 +9,7 @@
 #import "OCTClient+Events.h"
 #import "OCTClient+Private.h"
 #import "OCTEvent.h"
-#import "OCTUser.h"
+#import "OCTLoginUser.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 @implementation OCTClient (Events)

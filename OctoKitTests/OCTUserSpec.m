@@ -20,6 +20,17 @@ describe(@"github.com user", ^{
 		@"avatar_url": @"https://github.com/images/error/octocat_happy.gif",
 		@"gravatar_id": @"somehexcode",
 		@"url": @"https://api.github.com/users/octocat",
+		@"html_url": @"https://github.com/octocat",
+		@"followers_url": @"https://api.github.com/users/octocat/followers",
+		@"following_url": @"https://api.github.com/users/octocat/following{/other_user}",
+		@"gists_url": @"https://api.github.com/users/octocat/gists{/gist_id}",
+		@"starred_url": @"https://api.github.com/users/octocat/starred{/owner}{/repo}",
+		@"subscriptions_url": @"https://api.github.com/users/octocat/subscriptions",
+		@"organizations_url": @"https://api.github.com/users/octocat/orgs",
+		@"repos_url": @"https://api.github.com/users/octocat/repos",
+		@"events_url": @"https://api.github.com/users/octocat/events{/privacy}",
+		@"received_events_url": @"https://api.github.com/users/octocat/received_events",
+		@"type": @"User",
 		@"name": @"Mona Lisa Octocat",
 		@"company": @"GitHub",
 		@"blog": @"https://github.com/blog",
@@ -31,9 +42,8 @@ describe(@"github.com user", ^{
 		@"public_gists": @1,
 		@"followers": @20,
 		@"following": @0,
-		@"html_url": @"https://github.com/octocat",
 		@"created_at": @"2008-01-14T04:33:35Z",
-		@"type": @"User"
+		@"updated_at": @"2008-01-14T04:33:35Z",
 	};
 
 	__block OCTUser *user;
@@ -44,15 +54,12 @@ describe(@"github.com user", ^{
 	});
 
 	it(@"should initialize from an external representation", ^{
-		expect(user.server).to.equal(OCTServer.dotComServer);
-		expect(user.login).to.equal(@"octocat");
-		expect(user.name).to.equal(@"Mona Lisa Octocat");
-		expect(user.objectID).to.equal(@"1");
-		expect(user.avatarURL).to.equal([NSURL URLWithString:@"https://github.com/images/error/octocat_happy.gif"]);
-		expect(user.company).to.equal(@"GitHub");
-		expect(user.blog).to.equal(@"https://github.com/blog");
-		expect(user.email).to.equal(@"octocat@github.com");
-		expect(user.publicRepoCount).to.equal(2);
+		expect(user.avatarURL).to.equal([NSURL URLWithString:representation[@"avatar_url"]]);
+		expect(user.company).to.equal(representation[@"company"]);
+		expect(user.blog).to.equal(representation[@"blog"]);
+		expect(user.email).to.equal(representation[@"email"]);
+		expect(user.publicRepoCount).to.equal([representation[@"public_repos"] unsignedIntegerValue]);
+		expect(user.avatarURL).to.equal([NSURL URLWithString:representation[@"avatar_url"]]);
 	});
 
 	itShouldBehaveLike(OCTObjectArchivingSharedExamplesName, ^{
@@ -64,7 +71,7 @@ describe(@"github.com user", ^{
 	});
 
 	it(@"should initialize with a name and email", ^{
-		OCTUser *user = [OCTUser userWithName:@"foobar" email:@"foo@bar.com"];
+		OCTLoginUser *user = [OCTLoginUser userWithName:@"foobar" email:@"foo@bar.com"];
 		expect(user).notTo.beNil();
 
 		expect(user.server).to.equal(OCTServer.dotComServer);
@@ -73,7 +80,7 @@ describe(@"github.com user", ^{
 	});
 	
 	it(@"should initialize with a login and server", ^{
-		OCTUser *user = [OCTUser userWithLogin:@"foo" server:OCTServer.dotComServer];
+		OCTLoginUser *user = [OCTLoginUser userWithLogin:@"foo" server:OCTServer.dotComServer];
 		expect(user).notTo.beNil();
 
 		expect(user.server).to.equal(OCTServer.dotComServer);
@@ -87,7 +94,6 @@ describe(@"enterprise user", ^{
 		@"public_repos": @0,
 		@"public_gists": @0,
 		@"html_url": @"http://10.168.1.109/jspahrsummers",
-		@"gravatar_id": @"cac992bb300ed4f3ed5c2a6049e552f9",
 		@"following": @0,
 		@"avatar_url": @"https://secure.gravatar.com/avatar/cac992bb300ed4f3ed5c2a6049e552f9?d=http://10.168.1.109%2Fimages%2Fgravatars%2Fgravatar-user-420.png",
 		@"url": @"https://10.168.1.109/api/v3/users/jspahrsummers",
@@ -136,7 +142,7 @@ describe(@"enterprise user", ^{
 	it(@"should initialize with a login and server", ^{
 		NSURL *baseURL = [NSURL URLWithString:@"https://10.168.1.109"];
 		OCTServer *server = [OCTServer serverWithBaseURL:baseURL];
-		OCTUser *user = [OCTUser userWithLogin:@"foo" server:server];
+		OCTLoginUser *user = [OCTLoginUser userWithLogin:@"foo" server:server];
 		expect(user).notTo.beNil();
 
 		expect(user.server).to.equal(server);
@@ -146,31 +152,31 @@ describe(@"enterprise user", ^{
 
 describe(@"equality", ^{
 	it(@"should treat users with the same server and login as equals", ^{
-		OCTUser *user1 = [OCTUser userWithLogin:@"joshaber" server:OCTServer.dotComServer];
-		OCTUser *user2 = [OCTUser userWithLogin:@"joshaber" server:OCTServer.dotComServer];
+		OCTLoginUser *user1 = [OCTLoginUser userWithLogin:@"joshaber" server:OCTServer.dotComServer];
+		OCTLoginUser *user2 = [OCTLoginUser userWithLogin:@"joshaber" server:OCTServer.dotComServer];
 		expect([user1 isEqual:user2]).to.beTruthy();
 		expect(user1.hash).to.equal(user2.hash);
 	});
 
 	it(@"shouldn't treat users with different servers or logins as equals", ^{
-		OCTUser *user1 = [OCTUser userWithLogin:@"joshaber1" server:OCTServer.dotComServer];
-		OCTUser *user2 = [OCTUser userWithLogin:@"joshaber" server:OCTServer.dotComServer];
+		OCTLoginUser *user1 = [OCTLoginUser userWithLogin:@"joshaber1" server:OCTServer.dotComServer];
+		OCTLoginUser *user2 = [OCTLoginUser userWithLogin:@"joshaber" server:OCTServer.dotComServer];
 		expect([user1 isEqual:user2]).to.beFalsy();
 
-		OCTUser *user3 = [OCTUser userWithLogin:@"joshaber" server:[OCTServer serverWithBaseURL:[NSURL URLWithString:@"https://google.com"]]];
+		OCTLoginUser *user3 = [OCTLoginUser userWithLogin:@"joshaber" server:[OCTServer serverWithBaseURL:[NSURL URLWithString:@"https://google.com"]]];
 		expect([user2 isEqual:user3]).to.beFalsy();
 	});
 
 	it(@"should prefer objectID equivalence", ^{
-		OCTUser *user1 = [[OCTUser alloc] initWithDictionary:@{
-			@keypath(OCTUser.new, login): @"joshaber",
-			@keypath(OCTUser.new, objectID): @43,
-			@keypath(OCTUser.new, server): OCTServer.dotComServer,
+		OCTLoginUser *user1 = [[OCTLoginUser alloc] initWithDictionary:@{
+			@keypath(OCTLoginUser.new, login): @"joshaber",
+			@keypath(OCTLoginUser.new, objectID): @43,
+			@keypath(OCTLoginUser.new, server): OCTServer.dotComServer,
 		} error:NULL];
-		OCTUser *user2 = [[OCTUser alloc] initWithDictionary:@{
-			@keypath(OCTUser.new, login): @"joshaber1",
-			@keypath(OCTUser.new, objectID): @43,
-			@keypath(OCTUser.new, server): OCTServer.dotComServer,
+		OCTLoginUser *user2 = [[OCTLoginUser alloc] initWithDictionary:@{
+			@keypath(OCTLoginUser.new, login): @"joshaber1",
+			@keypath(OCTLoginUser.new, objectID): @43,
+			@keypath(OCTLoginUser.new, server): OCTServer.dotComServer,
 		} error:NULL];
 		expect(user1).notTo.beNil();
 		expect(user2).notTo.beNil();
@@ -178,11 +184,11 @@ describe(@"equality", ^{
 	});
 
 	it(@"should never treat a user with an ID as equivalent to a user without", ^{
-		OCTUser *user1 = [OCTUser userWithLogin:@"joshaber" server:OCTServer.dotComServer];
-		OCTUser *user2 = [OCTUser modelWithDictionary:@{
-			@keypath(OCTUser.new, login): @"joshaber",
-			@keypath(OCTUser.new, objectID): @42,
-			@keypath(OCTUser.new, server): OCTServer.dotComServer,
+		OCTLoginUser *user1 = [OCTLoginUser userWithLogin:@"joshaber" server:OCTServer.dotComServer];
+		OCTLoginUser *user2 = [OCTLoginUser modelWithDictionary:@{
+			@keypath(OCTLoginUser.new, login): @"joshaber",
+			@keypath(OCTLoginUser.new, objectID): @42,
+			@keypath(OCTLoginUser.new, server): OCTServer.dotComServer,
 		} error:NULL];
 		expect(user1).notTo.equal(user2);
 	});

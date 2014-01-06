@@ -9,6 +9,11 @@
 #import "OCTIssue.h"
 #import "OCTPullRequest.h"
 #import <ReactiveCocoa/EXTKeyPathCoding.h>
+#import "OCTURITemplateTransformer.h"
+#import "NSValueTransformer+OCTPredefinedTransformerAdditions.h"
+#import "OCTUser.h"
+#import "OCTMilestone.h"
+#import "OCTLabel.h"
 
 @interface OCTIssue ()
 
@@ -38,8 +43,21 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return [super.JSONKeyPathsByPropertyKey mtl_dictionaryByAddingEntriesFromDictionary:@{
 		@"HTMLURL": @"html_url",
-		@"objectID": @"number",
 		@"pullRequestHTMLURL": @"pull_request.html_url",
+		@"commentsURITemplate": @"comments_url",
+		@"HTMLBody": @"body_html",
+		@"user": @"user",
+		@"assignee": @"assignee",
+		@"milestone": @"milestone",
+		@"HTMLURL": @"html_url",
+		@"remoteID": @"number",
+		@"createdAtDate": @"created_at",
+		@"updatedAtDate": @"updated_at",
+		@"APIURITemplate": @"url",
+		@"reviewCommentsURITemplate": @"review_comments_url",
+		@"commentsURITemplate": @"comments_url",
+		@"commentCount": @"comments",
+		@"labels": @"labels"
 	}];
 }
 
@@ -49,6 +67,69 @@
 
 + (NSValueTransformer *)pullRequestHTMLURLJSONTransformer {
 	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
++ (NSValueTransformer *)updatedAtDateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTDateValueTransformerName];
+}
+
++ (NSValueTransformer *)createdAtDateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTDateValueTransformerName];
+}
+
++ (NSValueTransformer *)userJSONTransformer {
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTUserEntity.class];
+}
+
++ (NSValueTransformer *)assigneeJSONTransformer {
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTUserEntity.class];
+}
+
++ (NSValueTransformer *)milestoneJSONTransformer {
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTMilestone.class];
+}
+
++ (NSValueTransformer *)APIURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
++ (NSValueTransformer *)commentsURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
++ (NSValueTransformer *)stateJSONTransformer {
+	NSDictionary *statesByName = @{
+		@"open": @(OCTIssueStateOpen),
+		@"closed": @(OCTIssueStateClosed),
+	};
+
+	return [MTLValueTransformer
+		reversibleTransformerWithForwardBlock:^(NSString *stateName) {
+			return statesByName[stateName];
+		}
+		reverseBlock:^(NSNumber *state) {
+			return [statesByName allKeysForObject:state].lastObject;
+		}];
+}
+
++ (NSValueTransformer *)labelsJSONTransformer {
+	return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:OCTLabel.class];
+}
+
+@end
+
+@implementation OCTIssueEdit
+
+#pragma mark MTLJSONSerializing
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+	return @{
+		@"title": @"title",
+		@"body": @"body",
+		@"assignee": @"assignee",
+		@"milestone": @"milestone",
+		@"labels": @"labels"
+	};
 }
 
 @end

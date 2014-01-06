@@ -8,54 +8,59 @@
 
 #import "OCTObject.h"
 
-@class OCTPlan;
+@class CSURITemplate;
 
-// Represents any GitHub object which is capable of owning repositories.
+// Represents a GitHub repository owner.
 @interface OCTEntity : OCTObject
 
-// The unique name for this entity, used in GitHub URLs.
-@property (atomic, copy, readonly) NSString *login;
-
-// The full name of this entity.
-//
-// Returns `login` if no name is explicitly set.
-@property (atomic, copy, readonly) NSString *name;
-
-// The OCTRepository objects associated with this entity.
-//
-// OCTClient endpoints do not actually set this property. It is provided as
-// a convenience for persistence and model merging.
-@property (atomic, copy) NSArray *repositories;
-
-// The email address for this account.
-@property (atomic, copy, readonly) NSString *email;
+// The unique name for this owner, used in GitHub URLs.
+@property (nonatomic, copy, readonly) NSString *login;
 
 // The URL for any avatar image.
-@property (atomic, copy, readonly) NSURL *avatarURL;
+@property (nonatomic, copy, readonly) NSURL *avatarURL;
 
-// A reference to a blog associated with this account.
-@property (atomic, copy, readonly) NSString *blog;
+// The entity's unique gravatar ID.
+@property (nonatomic, copy, readonly) NSString *gravatarID;
 
-// The name of a company associated with this account.
-@property (atomic, copy, readonly) NSString *company;
+// The entity's unique API URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *APIURITemplate;
 
-// The total number of collaborators that this account has on their private repositories.
-@property (atomic, assign, readonly) NSUInteger collaborators;
+// The owner's HTML URL.
+@property (nonatomic, copy, readonly) NSURL *HTMLURL;
 
-// The number of public repositories owned by this account.
-@property (atomic, assign, readonly) NSUInteger publicRepoCount;
+// The owner's followers URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *followersURITemplate;
 
-// The number of private repositories owned by this account.
-@property (atomic, assign, readonly) NSUInteger privateRepoCount;
+// The owner's followers URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *followingURITemplate;
 
-// The number of kilobytes occupied by this account's repositories on disk.
-@property (atomic, assign, readonly) NSUInteger diskUsage;
+// The owner's gists URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *gistsURITemplate;
 
-// The plan that this account is on.
-@property (atomic, strong, readonly) OCTPlan *plan;
+// The owner's starred repos URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *starredURITemplate;
 
-// Updates the receiver's repositories with data from the set of remote
-// repositories.
-- (void)mergeRepositoriesWithRemoteCounterparts:(NSArray *)remoteRepositories;
+// The owner's subscriptions URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *subscriptionsURITemplate;
+
+// The owner's organizations URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *organizationsURITemplate;
+
+// The owner's repos URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *reposURITemplate;
+
+// The owner's events URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *eventsURITemplate;
+
+// The owner's received events URITemplate.
+@property (nonatomic, copy, readonly) CSURITemplate *receivedEventsURITemplate;
+
+// The owner's type.
+@property (nonatomic, copy, readonly) NSString *type;
+
+// Whether the owner is a site admin.
+@property (nonatomic, assign, readonly, getter = isSiteAdmin) BOOL siteAdmin;
+
++ (NSDictionary *)entityClassesByType;
 
 @end

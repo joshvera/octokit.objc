@@ -41,13 +41,13 @@ NSString *etag = @"644b5b0155e6404a9cc4bd9d8b1ae730";
 __block BOOL success;
 __block NSError *error;
 
-__block OCTUser *user;
+__block OCTLoginUser *user;
 
 beforeEach(^{
 	success = NO;
 	error = nil;
 
-	user = [OCTUser userWithLogin:@"octokit-testing-user" server:OCTServer.dotComServer];
+	user = [OCTLoginUser userWithLogin:@"octokit-testing-user" server:OCTServer.dotComServer];
 	expect(user).notTo.beNil();
 });
 
@@ -169,6 +169,9 @@ describe(@"without a user", ^{
 	});
 	
 	it(@"should GET a repository", ^{
+		NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"repository" withExtension:@"json"];
+		NSData *data = [NSData dataWithContentsOfURL:URL];
+		NSDictionary *representation = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
 		stubResponse(@"/repos/octokit/octokit.objc", @"repository.json");
 		
 		RACSignal *request = [client fetchRepositoryWithName:@"octokit.objc" owner:@"octokit"];
@@ -184,11 +187,11 @@ describe(@"without a user", ^{
 		expect(repository.defaultBranch).to.equal(@"master");
 		expect(repository.isPrivate).to.equal(@NO);
 		expect(repository.isFork).to.equal(@NO);
-		expect(repository.datePushed).to.equal([[[ISO8601DateFormatter alloc] init] dateFromString:@"2013-07-08T22:08:31Z"]);
-		expect(repository.SSHURL).to.equal(@"git@github.com:octokit/octokit.objc.git");
-		expect(repository.HTTPSURL).to.equal([NSURL URLWithString:@"https://github.com/octokit/octokit.objc.git"]);
-		expect(repository.gitURL).to.equal([NSURL URLWithString:@"git://github.com/octokit/octokit.objc.git"]);
-		expect(repository.HTMLURL).to.equal([NSURL URLWithString:@"https://github.com/octokit/octokit.objc"]);
+		expect(repository.datePushed).to.equal([[[ISO8601DateFormatter alloc] init] dateFromString:representation[@"pushed_at"]]);
+		expect(repository.SSHURL).to.equal([NSURL URLWithString:representation[@"ssh_url"]]);
+		expect(repository.HTTPSURL).to.equal([NSURL URLWithString:representation[@"clone_url"]]);
+		expect(repository.gitURL).to.equal([NSURL URLWithString:representation[@"git_url"]]);
+		expect(repository.HTMLURL).to.equal([NSURL URLWithString:representation[@"html_url"]]);
 	});
 	
 	it(@"should return nothing if repository is unmodified", ^{
@@ -245,7 +248,6 @@ describe(@"authenticated", ^{
 		expect(notification.objectID).to.equal(@"1");
 		expect(notification.title).to.equal(@"Greetings");
 		expect(notification.threadURL).to.equal([NSURL URLWithString:@"https://api.github.com/notifications/threads/1"]);
-		expect(notification.subjectURL).to.equal([NSURL URLWithString:@"https://api.github.com/repos/pengwynn/octokit/issues/123"]);
 		expect(notification.latestCommentURL).to.equal([NSURL URLWithString:@"https://api.github.com/repos/pengwynn/octokit/issues/comments/123"]);
 		expect(notification.type).to.equal(OCTNotificationTypeIssue);
 		expect(notification.lastUpdatedDate).to.equal([[[ISO8601DateFormatter alloc] init] dateFromString:@"2012-09-25T07:54:41-07:00"]);
@@ -262,8 +264,67 @@ describe(@"authenticated", ^{
 		expect(success).to.beTruthy();
 		expect(error).to.beNil();
 	});
+
+	it(@"should return nothing when marking a notification thread as read", ^{
+		NSURL *URL = [NSURL URLWithString:@"https://github.com/notifications/threads/1"];
+		stubResponseWithStatusCode(URL.path, 205);
+
+		RACSignal *request = [client markNotificationThreadAsReadAtURL:URL];
+	
+		expect([request asynchronousFirstOrDefault:nil success:&success error:&error]).to.beNil();
+		expect(success).to.beTruthy();
+		expect(error).to.beNil();
+	});
+
+	it(@"should return nothing when unwatching a repository", ^{
+		OCTRepository *repository = [[OCTRepository alloc] initWithDictionary:@{
+			@"name": @"github",
+			@"ownerLogin": @"github"
+		} error:NULL];
+
+		NSURL *URL = [NSURL URLWithString:@"https://github.com/repos/github/github/"];
+		NSString *path = [URL.path stringByAppendingPathComponent:@"subscription"];
+		stubResponseWithStatusCode(path, 205);
+
+		RACSignal *request = [client unwatchRepository:repository];
+	
+		expect([request asynchronousFirstOrDefault:nil success:&success error:&error]).to.beNil();
+		expect(success).to.beTruthy();
+		expect(error).to.beNil();
+	});
+
+	it(@"should return nothing when muting a notification thread", ^{
+		NSURL *URL = [NSURL URLWithString:@"https://github.com/notifications/threads/1"];
+		NSString *path = [URL.path stringByAppendingPathComponent:@"subscription"];
+		stubResponseWithStatusCode(path, 205);
+
+		RACSignal *request = [client muteNotificationThreadAtURL:URL];
+
+		expect([request asynchronousFirstOrDefault:nil success:&success error:&error]).to.beNil();
+		expect(success).to.beTruthy();
+		expect(error).to.beNil();
+	});
+
+	it(@"should return nothing when marking a repository's notification threads as read", ^{
+		OCTRepository *repository = [[OCTRepository alloc] initWithDictionary:@{
+			@"name": @"github",
+			@"ownerLogin": @"github"
+		} error:NULL];
+
+		NSString *path = [NSString stringWithFormat:@"/repos/%@/%@/notifications", repository.ownerLogin, repository.name];
+		stubResponseWithStatusCode(path, 205);
+
+		RACSignal *request = [client markNotificationThreadsAsReadForRepository:repository];
+
+		expect([request asynchronousFirstOrDefault:nil success:&success error:&error]).to.beNil();
+		expect(success).to.beTruthy();
+		expect(error).to.beNil();
+	});
 	
 	it(@"should fetch user starred repositories", ^{
+		NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"user_starred" withExtension:@"json"];
+		NSData *data = [NSData dataWithContentsOfURL:URL];
+		NSDictionary *representation = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL][0];
 		stubResponse(@"/user/starred", @"user_starred.json");
 		
 		RACSignal *request = [client fetchUserStarredRepositories];
@@ -272,17 +333,17 @@ describe(@"authenticated", ^{
 		expect(error).to.beNil();
 		
 		expect(repository).to.beKindOf(OCTRepository.class);
-		expect(repository.objectID).to.equal(@"3654804");
-		expect(repository.name).to.equal(@"ThisIsATest");
-		expect(repository.ownerLogin).to.equal(@"octocat");
-		expect(repository.repoDescription).to.beNil();
-		expect(repository.defaultBranch).to.equal(@"master");
-		expect(repository.isPrivate).to.equal(@NO);
-		expect(repository.datePushed).to.equal([[[ISO8601DateFormatter alloc] init] dateFromString:@"2013-03-26T08:31:42Z"]);
-		expect(repository.SSHURL).to.equal(@"git@github.com:octocat/ThisIsATest.git");
-		expect(repository.HTTPSURL).to.equal([NSURL URLWithString:@"https://github.com/octocat/ThisIsATest.git"]);
-		expect(repository.gitURL).to.equal([NSURL URLWithString:@"git://github.com/octocat/ThisIsATest.git"]);
-		expect(repository.HTMLURL).to.equal([NSURL URLWithString:@"https://github.com/octocat/ThisIsATest"]);
+		expect(repository.objectID).to.equal([representation[@"id"] stringValue]);
+		expect(repository.name).to.equal(representation[@"name"]);
+		expect(repository.ownerLogin).to.equal(representation[@"owner"][@"login"]);
+		expect(repository.repoDescription).to.equal(representation[@"description"]);
+		expect(repository.defaultBranch).to.equal(representation[@"default_branch"]);
+		expect(repository.isPrivate).to.equal(representation[@"private"]);
+		expect(repository.datePushed).to.equal([[[ISO8601DateFormatter alloc] init] dateFromString:representation[@"pushed_at"]]);
+		expect(repository.SSHURL).to.equal([NSURL URLWithString:representation[@"ssh_url"]]);
+		expect(repository.HTTPSURL).to.equal([NSURL URLWithString:representation[@"clone_url"]]);
+		expect(repository.gitURL).to.equal([NSURL URLWithString:representation[@"git_url"]]);
+		expect(repository.HTMLURL).to.equal([NSURL URLWithString:representation[@"html_url"]]);
 	});
 	
 	it(@"should return nothing if user starred repositories are unmodified", ^{

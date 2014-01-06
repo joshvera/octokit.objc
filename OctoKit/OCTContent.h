@@ -8,6 +8,8 @@
 
 #import "OCTObject.h"
 
+@class OCTRepository;
+
 // A class cluster for content in a repository, hereforth just “item”. Such as
 // files, directories, symlinks and submodules.
 @interface OCTContent : OCTObject
@@ -21,7 +23,16 @@
 // The relative path from the repository root to the item.
 @property (nonatomic, copy, readonly) NSString *path;
 
+@property (nonatomic, copy, readonly) NSString *relativePath;
+
 // The sha reference of the item.
 @property (nonatomic, copy, readonly) NSString *SHA;
+
+// The type of content which the reciever represents.
+@property (nonatomic, copy, readonly) NSString *type;
+
+@property (atomic, strong) OCTRepository *repository;
+
++ (NSDictionary *)contentClassesByType;
 
 @end

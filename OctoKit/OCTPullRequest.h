@@ -8,7 +8,10 @@
 
 #import "OCTObject.h"
 
-@class OCTUser;
+@class CSURITemplate;
+@class OCTEntity;
+@class OCTUserEntity;
+@class OCTMilestone;
 @class OCTRepository;
 
 // The state of the pull request. open or closed.
@@ -20,6 +23,8 @@ typedef enum : NSUInteger {
     OCTPullRequestStateClosed
 } OCTPullRequestState;
 
+@class CSURITemplate;
+
 // A pull request on a repository.
 @interface OCTPullRequest : OCTObject
 
@@ -29,6 +34,9 @@ typedef enum : NSUInteger {
 // The webpage URL for this pull request.
 @property (nonatomic, copy, readonly) NSURL *HTMLURL;
 
+// The issue URL for this pull request.
+@property (nonatomic, copy, readonly) NSURL *issueURL;
+
 // The diff URL for this pull request.
 @property (nonatomic, copy, readonly) NSURL *diffURL;
 
@@ -36,19 +44,16 @@ typedef enum : NSUInteger {
 @property (nonatomic, copy, readonly) NSURL *patchURL;
 
 // The issue URL for this pull request.
-@property (nonatomic, copy, readonly) NSURL *issueURL;
+@property (nonatomic, copy, readonly) CSURITemplate *issueURITemplate;
 
 // The user that opened this pull request.
-@property (nonatomic, copy, readonly) OCTUser *user;
+@property (nonatomic, copy, readonly) OCTUserEntity *user;
 
 // The title of this pull request.
 @property (nonatomic, copy, readonly) NSString *title;
 
 // The body text for this pull request.
 @property (nonatomic, copy, readonly) NSString *body;
-
-// The user this pull request is assigned to.
-@property (nonatomic, copy, readonly) OCTUser *assignee;
 
 // The date/time this pull request was created.
 @property (nonatomic, copy, readonly) NSDate *creationDate;
@@ -64,6 +69,58 @@ typedef enum : NSUInteger {
 // pull request has not been merged.
 @property (nonatomic, copy, readonly) NSDate *mergedDate;
 
+// The pull request number in its repository.
+@property (nonatomic, assign, readonly) NSUInteger remoteID;
+
+@property (nonatomic, copy, readonly) NSString *HTMLBody;
+
+// The user this pull request is assigned to.
+@property (nonatomic, copy, readonly) OCTUserEntity *assignee;
+
+@property (nonatomic, copy, readonly) OCTMilestone *milestone;
+
+@property (nonatomic, assign, readonly) NSUInteger additions;
+
+@property (nonatomic, assign, readonly) NSUInteger deletions;
+
+@property (nonatomic, copy, readonly) NSDate *createdAtDate;
+
+@property (nonatomic, copy, readonly) NSDate *updatedAtDate;
+
+@property (nonatomic, copy, readonly) NSDate *closedAtDate;
+
+@property (nonatomic, copy, readonly) NSDate *mergedAtDate;
+
+@property (nonatomic, copy, readonly) NSNumber *mergeable;
+
+@property (nonatomic, assign, readonly, getter = isMerged) BOOL merged;
+
+@property (nonatomic, strong, readonly) OCTUserEntity *merger;
+
+@property (nonatomic, assign, readonly) NSUInteger commentCount;
+
+@property (nonatomic, assign, readonly) NSUInteger reviewCommentCount;
+
+@property (nonatomic, assign, readonly) NSUInteger commitCount;
+
+@property (nonatomic, assign, readonly) NSUInteger changedFilesCount;
+
+@property (nonatomic, copy, readonly) NSString *baseSHA;
+
+@property (nonatomic, copy, readonly) NSString *baseRefName;
+
+@property (nonatomic, copy, readonly) OCTEntity *baseUser;
+
+@property (nonatomic, copy, readonly) NSString *baseLabel;
+
+@property (nonatomic, copy, readonly) NSString *headRefName;
+
+@property (nonatomic, copy, readonly) NSString *headSHA;
+
+@property (nonatomic, copy, readonly) OCTEntity *headUser;
+
+@property (nonatomic, copy, readonly) NSString *headLabel;
+
 // The state of this pull request.
 @property (nonatomic, readonly) OCTPullRequestState state;
 
@@ -72,5 +129,15 @@ typedef enum : NSUInteger {
 
 // The repository that the pull request's changes should be pulled into.
 @property (nonatomic, copy, readonly) OCTRepository *baseRepository;
+
+@property (nonatomic, copy, readonly) CSURITemplate *APIURITemplate;
+
+@property (nonatomic, copy, readonly) CSURITemplate *commentsURITemplate;
+
+@property (nonatomic, copy, readonly) CSURITemplate *reviewCommentsURITemplate;
+
+@property (atomic, strong) NSArray *commits;
+
+@property (nonatomic, copy, readonly) CSURITemplate *commitsURITemplate;
 
 @end

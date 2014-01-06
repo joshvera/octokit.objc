@@ -19,6 +19,18 @@
 	return [[self enqueueUserRequestWithMethod:@"GET" relativePath:@"/orgs" parameters:nil resultClass:OCTOrganization.class] oct_parsedResults];
 }
 
+- (RACSignal *)fetchOrganizationsAtURITemplate:(CSURITemplate *)template {
+	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
+
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" template:template parameters:nil];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+	[request setValue:nil forHTTPHeaderField:@"Accept-Language"];
+	request = [self etagRequestWithRequest:request];
+
+	return [[self enqueueRequest:request resultClass:OCTSimpleOrganization.class] oct_parsedResults];
+}
+
+
 - (RACSignal *)fetchOrganizationInfo:(OCTOrganization *)organization {
 	NSURLRequest *request = [self requestWithMethod:@"GET" path:[NSString stringWithFormat:@"orgs/%@", organization.login] parameters:nil notMatchingEtag:nil];
 	return [[self enqueueRequest:request resultClass:OCTOrganization.class] oct_parsedResults];

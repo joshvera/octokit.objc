@@ -16,7 +16,9 @@
 #import "OCTResponse.h"
 #import "OCTServer.h"
 #import "OCTServerMetadata.h"
+#import "OCTLoginUser.h"
 #import "OCTUser.h"
+#import "CSURITemplate.h"
 #import "RACSignal+OCTClientAdditions.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
@@ -48,7 +50,7 @@ static NSString * const OCTClientResponseLoggingEnvironmentKey = @"LOG_API_RESPO
 static NSString * const OCTClientRateLimitLoggingEnvironmentKey = @"LOG_REMAINING_API_CALLS";
 
 @interface OCTClient ()
-@property (nonatomic, strong, readwrite) OCTUser *user;
+@property (nonatomic, strong, readwrite) OCTLoginUser *user;
 @property (nonatomic, copy, readwrite) NSString *token;
 
 // Returns any user agent previously given to +setUserAgent:.
@@ -226,12 +228,18 @@ static NSString *OCTClientOAuthClientSecret = nil;
 	[AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:contentType]];
 
 	self.parameterEncoding = AFJSONParameterEncoding;
+
+	[AFHTTPRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"application/vnd.github.beta.html"]];
+	[self registerHTTPOperationClass:AFHTTPRequestOperation.class];
+
+	[AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObjects:@"application/vnd.github.beta+json", @"application/vnd.github.beta.html+json", nil]];
+
 	[self registerHTTPOperationClass:AFJSONRequestOperation.class];
 
 	return self;
 }
 
-+ (instancetype)unauthenticatedClientWithUser:(OCTUser *)user {
++ (instancetype)unauthenticatedClientWithUser:(OCTLoginUser *)user {
 	NSParameterAssert(user != nil);
 
 	OCTClient *client = [[self alloc] initWithServer:user.server];
@@ -239,7 +247,7 @@ static NSString *OCTClientOAuthClientSecret = nil;
 	return client;
 }
 
-+ (instancetype)authenticatedClientWithUser:(OCTUser *)user token:(NSString *)token {
++ (instancetype)authenticatedClientWithUser:(OCTLoginUser *)user token:(NSString *)token {
 	NSParameterAssert(user != nil);
 	NSParameterAssert(token != nil);
 
@@ -279,7 +287,7 @@ static NSString *OCTClientOAuthClientSecret = nil;
 		array];
 }
 
-+ (RACSignal *)signInAsUser:(OCTUser *)user password:(NSString *)password oneTimePassword:(NSString *)oneTimePassword scopes:(OCTClientAuthorizationScopes)scopes {
++ (RACSignal *)signInAsUser:(OCTLoginUser *)user password:(NSString *)password oneTimePassword:(NSString *)oneTimePassword scopes:(OCTClientAuthorizationScopes)scopes {
 	NSParameterAssert(user != nil);
 	NSParameterAssert(password != nil);
 
@@ -365,7 +373,7 @@ static NSString *OCTClientOAuthClientSecret = nil;
 		concat:[RACSignal defer:^{
 			return [client fetchUserInfo];
 		}]]
-		doNext:^(OCTUser *user) {
+		doNext:^(OCTLoginUser *user) {
 			client.user = user;
 		}]
 		mapReplace:client]
@@ -459,25 +467,38 @@ static NSString *OCTClientOAuthClientSecret = nil;
 
 #pragma mark Request Creation
 
+- (NSMutableURLRequest *)requestWithMethod:(NSString *)method template:(CSURITemplate *)template parameters:(NSDictionary *)parameters {
+	NSParameterAssert(method != nil);
+	NSParameterAssert(template != nil);
+
+	NSMutableURLRequest *request = [self requestWithMethod:method path:@"" parameters:parameters notMatchingEtag:nil];
+
+	NSURL *templateURL = [template URLWithVariables:@{} relativeToBaseURL:nil error:NULL];
+	NSURLComponents *components = [NSURLComponents componentsWithURL:templateURL resolvingAgainstBaseURL:NO];
+	components.query = request.URL.query;
+
+	request.URL = components.URL;
+
+	return [self etagRequestWithRequest:request];
+}
+
 - (NSMutableURLRequest *)requestWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters notMatchingEtag:(NSString *)etag {
 	NSParameterAssert(method != nil);
 	
-	if ([method isEqualToString:@"GET"]) {
-		parameters = [parameters ?: [NSDictionary dictionary] mtl_dictionaryByAddingEntriesFromDictionary:@{
-			@"per_page": @100
-		}];
-	}
-
 	NSMutableURLRequest *request = [self requestWithMethod:method path:[path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] parameters:parameters];
-	if (etag != nil) {
-		[request setValue:etag forHTTPHeaderField:@"If-None-Match"];
 
-		// If an etag is specified, we want 304 responses to be treated as 304s,
-		// not served from NSURLCache with a status of 200.
-		request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
-	}
+	return [self etagRequestWithRequest:request];
+}
 
-	return request;
+- (NSMutableURLRequest *)etagRequestWithRequest:(NSURLRequest *)request {
+	NSMutableURLRequest *mutableRequest = [request mutableCopy];
+	NSCachedURLResponse *cachedResponse = [NSURLCache.sharedURLCache cachedResponseForRequest:request];
+	NSDictionary *headerFields = [(NSHTTPURLResponse *)cachedResponse.response allHeaderFields];
+
+	NSString *cachedEtag = headerFields[@"Etag"];
+	[mutableRequest setValue:cachedEtag forHTTPHeaderField:@"If-None-Match"];
+
+	return mutableRequest;
 }
 
 #pragma mark Request Enqueuing
@@ -485,33 +506,44 @@ static NSString *OCTClientOAuthClientSecret = nil;
 - (RACSignal *)enqueueRequest:(NSURLRequest *)request fetchAllPages:(BOOL)fetchAllPages {
 	RACSignal *signal = [RACSignal create:^(id<RACSubscriber> subscriber) {
 		AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
-			if (NSProcessInfo.processInfo.environment[OCTClientResponseLoggingEnvironmentKey] != nil) {
-				NSLog(@"%@ %@ %@ => %li %@:\n%@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode, operation.response.allHeaderFields, responseObject);
-			}
-
-			if (operation.response.statusCode == OCTClientNotModifiedStatusCode) {
-				// No change in the data.
+			if ([operation isCancelled]) {
 				[subscriber sendCompleted];
 				return;
 			}
 
+			if (NSProcessInfo.processInfo.environment[OCTClientResponseLoggingEnvironmentKey] != nil) {
+				NSLog(@"%@ %@ %@ => %li %@:\n", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode, operation.response.allHeaderFields);
+			}
+
+			NSString *requestEtag = [operation.request allHTTPHeaderFields][@"If-None-Match"];
+			NSString *responseEtag = [operation.response allHeaderFields][@"Etag"];
+			if ([requestEtag isEqualToString:responseEtag]) {
+				responseObject = nil;
+			}
+
 			if (subscriber.disposable.disposed) return;
 			
-			RACSignal *nextPageSignal = [RACSignal empty];
+			RACSignal *nextPageSignal = [RACSignal return:RACSignal.empty];
 			NSURL *nextPageURL = (fetchAllPages ? [self nextPageURLFromOperation:operation] : nil);
 			if (nextPageURL != nil) {
 				// If we got this far, the etag is out of date, so don't pass it on.
 				NSMutableURLRequest *nextRequest = [request mutableCopy];
 				nextRequest.URL = nextPageURL;
+				nextRequest = [self etagRequestWithRequest:nextRequest];
 
 				nextPageSignal = [self enqueueRequest:nextRequest fetchAllPages:YES];
 			}
 
 			[[[RACSignal
-				return:RACTuplePack(operation.response, responseObject)]
+				return:[RACSignal return:RACTuplePack(operation.response, responseObject)]]
 				concat:nextPageSignal]
 				subscribe:subscriber];
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+			if ([operation isCancelled]) {
+				[subscriber sendCompleted];
+				return;
+			}
+
 			if (NSProcessInfo.processInfo.environment[OCTClientResponseLoggingEnvironmentKey] != nil) {
 				NSLog(@"%@ %@ %@ => FAILED WITH %li", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode);
 			}
@@ -539,23 +571,25 @@ static NSString *OCTClientOAuthClientSecret = nil;
 - (RACSignal *)enqueueRequest:(NSURLRequest *)request resultClass:(Class)resultClass fetchAllPages:(BOOL)fetchAllPages {
 	return [[[self
 		enqueueRequest:request fetchAllPages:fetchAllPages]
-		reduceEach:^(NSHTTPURLResponse *response, id responseObject) {
-			__block BOOL loggedRemaining = NO;
+		map:^(RACSignal *signal) {
+			return [signal reduceEach:^(NSHTTPURLResponse *response, id responseObject) {
+				__block BOOL loggedRemaining = NO;
 
-			return [[[self
-				parsedResponseOfClass:resultClass fromJSON:responseObject]
-				map:^(id parsedResult) {
-					OCTResponse *parsedResponse = [[OCTResponse alloc] initWithHTTPURLResponse:response parsedResult:parsedResult];
-					NSAssert(parsedResponse != nil, @"Could not create OCTResponse with response %@ and parsedResult %@", response, parsedResult);
+				return [[[self
+					parsedResponseOfClass:resultClass fromJSON:responseObject]
+					map:^(id parsedResult) {
+						OCTResponse *parsedResponse = [[OCTResponse alloc] initWithHTTPURLResponse:response parsedResult:parsedResult];
+						NSAssert(parsedResponse != nil, @"Could not create OCTResponse with response %@ and parsedResult %@", response, parsedResult);
 
-					return parsedResponse;
-				}]
-				doNext:^(OCTResponse *parsedResponse) {
-					if (NSProcessInfo.processInfo.environment[OCTClientRateLimitLoggingEnvironmentKey] == nil) return;
-					if (loggedRemaining) return;
+						return parsedResponse;
+					}]
+					doNext:^(OCTResponse *parsedResponse) {
+						if (NSProcessInfo.processInfo.environment[OCTClientRateLimitLoggingEnvironmentKey] == nil) return;
+						if (loggedRemaining) return;
 
-					NSLog(@"%@ => %li remaining calls: %li/%li", response.URL, (long)response.statusCode, (long)parsedResponse.remainingRequests, (long)parsedResponse.maximumRequestsPerHour);
-					loggedRemaining = YES;
+						NSLog(@"%@ => %li remaining calls: %li/%li", response.URL, (long)response.statusCode, (long)parsedResponse.remainingRequests, (long)parsedResponse.maximumRequestsPerHour);
+						loggedRemaining = YES;
+					}];
 				}];
 		}]
 		concat];
@@ -585,6 +619,25 @@ static NSString *OCTClientOAuthClientSecret = nil;
 - (NSURL *)nextPageURLFromOperation:(AFHTTPRequestOperation *)operation {
 	NSDictionary *header = operation.response.allHeaderFields;
 	NSString *linksString = header[@"Link"];
+
+	NSURLComponents *components = [NSURLComponents componentsWithURL:operation.response.URL resolvingAgainstBaseURL:NO];
+	NSString *query = components.query;
+	if (linksString == nil && query != nil && operation.responseData.length > 2) {
+
+		NSRegularExpression *expression = [NSRegularExpression regularExpressionWithPattern:@"&page=(\\d+)&" options:0 error:NULL];
+		NSTextCheckingResult *result = [expression firstMatchInString:query options:0 range:NSMakeRange(0, query.length)];
+
+		if (result != nil) {
+			NSRange pageRange = [result rangeAtIndex:1];
+			NSString *page = [query substringWithRange:pageRange];
+			NSUInteger pageNumber = [NSDecimalNumber decimalNumberWithString:page].unsignedIntegerValue;
+			NSString *nextIndex = [@(pageNumber + 1) stringValue];
+
+			components.query = [components.query stringByReplacingCharactersInRange:pageRange withString:nextIndex];
+			return components.URL;
+		}
+	}
+
 	if (linksString.length < 1) return nil;
 
 	NSError *error = nil;
@@ -674,9 +727,15 @@ static NSString *OCTClientOAuthClientSecret = nil;
 		} else if ([responseObject isKindOfClass:NSDictionary.class]) {
 			parseJSONDictionary(responseObject);
 			[subscriber sendCompleted];
+		} else if ([responseObject isKindOfClass:NSData.class]) {
+			NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+			[subscriber sendNext:responseString];
+			[subscriber sendCompleted];
 		} else if (responseObject != nil) {
 			NSString *failureReason = [NSString stringWithFormat:NSLocalizedString(@"Response wasn't an array or dictionary (%@): %@", @""), [responseObject class], responseObject];
 			[subscriber sendError:[self parsingErrorWithFailureReason:failureReason]];
+		} else {
+			[subscriber sendCompleted];
 		}
 	}];
 }
@@ -792,3 +851,4 @@ static NSString *OCTClientOAuthClientSecret = nil;
 }
 
 @end
+

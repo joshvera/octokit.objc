@@ -9,8 +9,14 @@
 #import <AFNetworking/AFNetworking.h>
 
 @class OCTServer;
-@class OCTUser;
+@class OCTTeam;
+@class OCTLoginUser;
+@class OCTEntity;
+@class OCTIssue;
+@class OCTIssueEdit;
+@class OCTPullRequest;
 @class RACSignal;
+@class CSURITemplate;
 
 // The domain for all errors originating in OCTClient.
 extern NSString * const OCTClientErrorDomain;
@@ -137,7 +143,7 @@ typedef enum : NSUInteger {
 // unauthenticated, and will control which username is used for endpoints
 // that require one. For example, this user's login will be used with
 // -fetchUserEventsNotMatchingEtag:.
-@property (nonatomic, strong, readonly) OCTUser *user;
+@property (nonatomic, strong, readonly) OCTLoginUser *user;
 
 // Whether this client supports authenticated endpoints.
 //
@@ -209,7 +215,7 @@ typedef enum : NSUInteger {
 //        set to this object. This must not be nil.
 //
 // Returns a new client.
-+ (instancetype)unauthenticatedClientWithUser:(OCTUser *)user;
++ (instancetype)unauthenticatedClientWithUser:(OCTLoginUser *)user;
 
 // Creates a client which will authenticate as the given user, using the given
 // OAuth token.
@@ -222,7 +228,7 @@ typedef enum : NSUInteger {
 // token - An OAuth token for the given user. This must not be nil.
 //
 // Returns a new client.
-+ (instancetype)authenticatedClientWithUser:(OCTUser *)user token:(NSString *)token;
++ (instancetype)authenticatedClientWithUser:(OCTLoginUser *)user token:(NSString *)token;
 
 // Attempts to authenticate as the given user.
 //
@@ -261,7 +267,7 @@ typedef enum : NSUInteger {
 // Returns a signal which will send an OCTClient then complete on success, or
 // else error. If the server is too old to support this request, an error will
 // be sent with code `OCTClientErrorUnsupportedServer`.
-+ (RACSignal *)signInAsUser:(OCTUser *)user password:(NSString *)password oneTimePassword:(NSString *)oneTimePassword scopes:(OCTClientAuthorizationScopes)scopes;
++ (RACSignal *)signInAsUser:(OCTLoginUser *)user password:(NSString *)password oneTimePassword:(NSString *)oneTimePassword scopes:(OCTClientAuthorizationScopes)scopes;
 
 // Opens the default web browser to the given GitHub server, and prompts the
 // user to sign in.

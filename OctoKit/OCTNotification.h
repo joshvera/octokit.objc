@@ -9,6 +9,13 @@
 #import "OCTObject.h"
 
 @class OCTRepository;
+@class CSURITemplate;
+
+// The domain for all errors originating in OCTNotification
+extern NSString * const OCTNotificationErrorDomain;
+
+// The notification's type could not be identified.
+extern NSInteger const OCTNotificationErrorTypeUnknown;
 
 // The type of the notification.
 //
@@ -32,9 +39,9 @@ typedef enum : NSUInteger {
 // The API URL to the notification's thread.
 @property (nonatomic, readonly, copy) NSURL *threadURL;
 
-// The API URL to the subject that the notification was generated for (e.g., the
+// The API URI template to the subject that the notification was generated for (e.g., the
 // issue or pull request).
-@property (nonatomic, readonly, copy) NSURL *subjectURL;
+@property (nonatomic, readonly, copy) CSURITemplate *subjectURITemplate;
 
 // The API URL to the latest comment in the thread.
 //
@@ -53,5 +60,7 @@ typedef enum : NSUInteger {
 
 // Whether this notification has yet to be read.
 @property (nonatomic, readonly, getter = isUnread) BOOL unread;
+
++ (Class)subjectClassesByType:(OCTNotificationType)type;
 
 @end

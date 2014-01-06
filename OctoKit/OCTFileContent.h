@@ -6,13 +6,10 @@
 //  Copyright (c) 2013 GitHub. All rights reserved.
 //
 
-#import "OCTContent.h"
+#import "OCTPartialFileContent.h"
 
 // A file in a git repository.
-@interface OCTFileContent : OCTContent
-
-// The encoding of the file content.
-@property (nonatomic, copy, readonly) NSString *encoding;
+@interface OCTFileContent : OCTPartialFileContent
 
 // The raw, encoded, content of the file.
 //

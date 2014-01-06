@@ -7,57 +7,47 @@
 //
 
 #import "OCTUser.h"
-#import "OCTServer.h"
-#import <ReactiveCocoa/EXTKeyPathCoding.h>
-#import "OCTObject+Private.h"
+#import "OCTURITemplateTransformer.h"
+#import "NSValueTransformer+OCTPredefinedTransformerAdditions.h"
+#import "OCTAuthenticatedUser.h"
 
 @implementation OCTUser
 
-#pragma mark Lifecycle
-
-+ (instancetype)userWithName:(NSString *)name email:(NSString *)email {
-	NSMutableDictionary *userDict = [NSMutableDictionary dictionary];
-	if (name != nil) userDict[@keypath(OCTUser.new, name)] = name;
-	if (email != nil) userDict[@keypath(OCTUser.new, email)] = email;
-
-	return [self modelWithDictionary:userDict error:NULL];
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+	return [[super
+		JSONKeyPathsByPropertyKey]
+		mtl_dictionaryByAddingEntriesFromDictionary:@{
+			@"name": @"name",
+			@"company": @"company",
+			@"blog": @"blog",
+			@"location": @"location",
+			@"email": @"email",
+			@"hireable": @"hireable",
+			@"bio": @"bio",
+			@"publicRepoCount": @"public_repos",
+			@"followerCount": @"followers",
+			@"followingCount": @"following",
+			@"createdAtDate": @"created_at",
+			@"updatedAtDate": @"updated_at",
+			@"publicGistCount": @"public_gists",
+		}];
 }
 
-+ (instancetype)userWithLogin:(NSString *)login server:(OCTServer *)server {
-	NSMutableDictionary *userDict = [NSMutableDictionary dictionary];
-	if (login != nil) userDict[@keypath(OCTUser.new, login)] = login;
-	if (server.baseURL != nil) userDict[@keypath(OCTUser.new, baseURL)] = server.baseURL;
-
-	return [self modelWithDictionary:userDict error:NULL];
++ (NSValueTransformer *)hireableJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:MTLBooleanValueTransformerName];
 }
 
-#pragma mark MTLModel
-
-- (void)mergeLoginFromModel:(MTLModel *)model {
-	// Don't ever replace the login property, as this could be different
-	// to the login property returned by the API (eg. LDAP logins
-	// have any characters in [a-z0-9-] replaced with '-' for their GitHub
-	// Enterprise 'login').
++ (NSValueTransformer *)createdAtDateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTDateValueTransformerName];
 }
 
-#pragma mark NSObject
-
-- (NSUInteger)hash {
-	if (self.objectID != nil) return self.objectID.hash ^ self.server.hash;
-
-	return self.server.hash ^ self.login.hash;
++ (NSValueTransformer *)updatedAtDateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTDateValueTransformerName];
 }
 
-- (BOOL)isEqual:(OCTUser *)user {
-	if (self == user) return YES;
-	if (![user isKindOfClass:self.class]) return NO;
-
-	BOOL equalServers = [user.server isEqual:self.server];
-	if (!equalServers) return NO;
-
-	if (self.objectID != nil || user.objectID != nil) return [user.objectID isEqual:self.objectID];
-
-	return [user.login isEqual:self.login];
++ (Class)classForParsingJSONDictionary:(NSDictionary *)JSONDictionary {
+	if (JSONDictionary[@"plan"] != nil) return OCTAuthenticatedUser.class;
+	return self;
 }
 
 @end

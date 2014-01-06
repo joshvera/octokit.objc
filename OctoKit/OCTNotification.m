@@ -7,8 +7,17 @@
 //
 
 #import "OCTNotification.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "NSValueTransformer+OCTPredefinedTransformerAdditions.h"
+#import "OCTURITemplateTransformer.h"
 #import "OCTRepository.h"
+#import "OCTCommit.h"
+#import "OCTIssue.h"
+#import "OCTPullRequest.h"
+
+NSString * const OCTNotificationErrorDomain = @"OCTNotificationErrorDomain";
+
+NSInteger const OCTNotificationErrorTypeUnknown = -600;
 
 @implementation OCTNotification
 
@@ -18,7 +27,7 @@
 	return [super.JSONKeyPathsByPropertyKey mtl_dictionaryByAddingEntriesFromDictionary:@{
 		@"title": @"subject.title",
 		@"threadURL": @"url",
-		@"subjectURL": @"subject.url",
+		@"subjectURITemplate": @"subject.url",
 		@"latestCommentURL": @"subject.latest_comment_url",
 		@"type": @"subject.type",
 		@"repository": @"repository",
@@ -42,8 +51,8 @@
 	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
-+ (NSValueTransformer *)subjectURLJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
++ (NSValueTransformer *)subjectURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
 }
 
 + (NSValueTransformer *)latestCommentURLJSONTransformer {
@@ -71,6 +80,28 @@
 		} reverseBlock:^(NSNumber *type) {
 			return [typesByName allKeysForObject:type].lastObject;
 		}];
+}
+
+# pragma mark - Initialization
+
++ (Class)subjectClassesByType:(OCTNotificationType)type {
+	Class class;
+
+	switch (type) {
+		case OCTNotificationTypeCommit:
+			class = OCTCommit.class;
+			break;
+		case OCTNotificationTypeIssue:
+			class = OCTIssue.class;
+			break;
+		case OCTNotificationTypePullRequest:
+			class = OCTPullRequest.class;
+			break;
+		default:
+			break;
+	}
+
+	return class;
 }
 
 @end

@@ -7,17 +7,75 @@
 //
 
 #import "OCTCommit.h"
+#import "OCTUser.h"
+#import "OCTDiffEntry.h"
+#import "NSValueTransformer+OCTPredefinedTransformerAdditions.h"
+#import "OCTURITemplateTransformer.h"
 
 @implementation OCTCommit
 
-#pragma mark MTLJSONSerializing
+#pragma mark - MTLJSONSerializing
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-	return [super.JSONKeyPathsByPropertyKey mtl_dictionaryByAddingEntriesFromDictionary:@{
-		@"SHA": @"sha",
-		@"treeURL": @"tree.url",
-		@"treeSHA": @"tree.sha",
+	return [super.JSONKeyPathsByPropertyKey
+		mtl_dictionaryByAddingEntriesFromDictionary:@{
+			@"objectID": @"sha",
+			@"commitSHA": @"sha",
+			@"SHA": @"sha",
+			@"treeURL": @"tree.url",
+			@"treeSHA": @"tree.sha",
+			@"message": @"commit.message",
+			@"authoredDate": @"commit.author.date",
+			@"committedDate": @"commit.committer.date",
+			@"APIURITemplate": @"url",
+			@"HTMLURL": @"html_url",
+			@"commentsURITemplate": @"comments_url",
+			@"committer": @"committer",
+			@"author": @"author",
+			@"total": @"total",
+			@"additions": @"additions",
+			@"deletions": @"deletions",
+			@"files": @"files",
+		}];
+}
+
++ (NSValueTransformer *)objectIDJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithBlock:^(NSString *objectID) {
+		return objectID;
 	}];
+}
+
++ (NSValueTransformer *)authoredDateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTDateValueTransformerName];
+}
+
++ (NSValueTransformer *)committedDateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTDateValueTransformerName];
+}
+
++ (NSValueTransformer *)APIURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
++ (NSValueTransformer *)HTMLURLJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
++ (NSValueTransformer *)commentsURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
++ (NSValueTransformer *)authorJSONTransformer {
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTUserEntity.class];
+}
+
++ (NSValueTransformer *)committerJSONTransformer {
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTUserEntity.class];
+}
+
+
++ (NSValueTransformer *)filesJSONTransformer {
+	return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:OCTDiffEntry.class];
 }
 
 + (NSValueTransformer *)treeURLJSONTransformer {

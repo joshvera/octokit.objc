@@ -7,19 +7,51 @@
 //
 
 #import "OCTOrganization.h"
-#import "OCTTeam.h"
+#import "OCTURITemplateTransformer.h"
+#import "NSValueTransformer+OCTPredefinedTransformerAdditions.h"
 
 @implementation OCTOrganization
 
-#pragma mark MTLModel
+#pragma mark MTLJSONSerializing
 
-+ (NSValueTransformer *)teamsJSONTransformer {
-	return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:OCTTeam.class];
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+	return [[super 
+		JSONKeyPathsByPropertyKey]
+		mtl_dictionaryByAddingEntriesFromDictionary:@{
+			@"HTMLURL": @"html_url",
+			@"receivedEventsURITemplate": @"received_events_url",
+			@"type": @"type",
+			@"siteAdmin": @"site_admin",
+			@"name": @"name",
+			@"company": @"company",
+			@"blog": @"blog",
+			@"location": @"location",
+			@"email": @"email",
+			@"publicRepoCount": @"public_repos",
+			@"publicGistCount": @"public_gists",
+			@"createdAtDate": @"created_at",
+			@"updatedAtDate": @"updated_at",
+		}];
 }
 
-- (void)mergeTeamsFromModel:(OCTOrganization *)model {
-	// Teams are fetched separately from the actual organization. So when we
-	// merge, the other model's teams will always be nil. Ignore that.
++ (NSValueTransformer *)HTMLURLJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
++ (NSValueTransformer *)receivedEventsURITemplateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTURITemplateValueTransformerName];
+}
+
++ (NSValueTransformer *)siteAdminJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:MTLBooleanValueTransformerName];
+}
+
++ (NSValueTransformer *)createdAtDateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTDateValueTransformerName];
+}
+
++ (NSValueTransformer *)updatedAtDateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:OCTDateValueTransformerName];
 }
 
 @end

@@ -17,4 +17,10 @@
 // not. If no `user` is set, the signal will error immediately.
 - (RACSignal *)fetchUserInfo;
 
+- (RACSignal *)fetchUserAtURITemplate:(CSURITemplate *)template;
+
+- (RACSignal *)fetchFollowedUsersAtURITemplate:(CSURITemplate *)template;
+
+- (RACSignal *)fetchFollowersAtURITemplate:(CSURITemplate *)template;
+
 @end

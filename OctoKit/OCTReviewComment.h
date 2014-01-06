@@ -28,4 +28,6 @@
 // entity (commit/pull request).
 @property (nonatomic, copy, readonly) NSNumber *position;
 
+@property (nonatomic, copy, readonly) NSNumber *line;
+
 @end

@@ -8,7 +8,27 @@
 
 #import "OCTClient.h"
 
+@class OCTRepository;
+
 @interface OCTClient (Notifications)
+
+- (RACSignal *)fetchParticipatingNotificationsNotMatchingEtag:(NSString *)etag;
+
+- (RACSignal *)fetchSubjectAtURITemplate:(CSURITemplate *)template resultClass:(Class)class;
+
+// Mark all notification threads as read for a given repository.
+//
+// repository - The repository to mark as read. Cannot be nil.
+//
+// Returns a signal which will send completed on success. If the client is not
+// `authenticated`, the signal will error immediately.
+- (RACSignal *)markNotificationThreadsAsReadForRepository:(OCTRepository
+  *)repository;
+
+- (RACSignal *)fetchNotificationsForRepository:(OCTRepository *)repository;
+
+- (RACSignal *)fetchNotificationsNotMatchingEtag:(NSString *)etag
+  onlyParticipating:(BOOL)onlyParticipating includeReadNotifications:(BOOL)includeRead updatedSince:(NSDate *)since;
 
 // Conditionally fetch unread notifications for the user. If the latest data
 // matches `etag`, the call does not count toward the API rate limit.

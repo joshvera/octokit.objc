@@ -1,16 +1,16 @@
 //
-//  OCTOrganizationSpec.m
+//  OCTPrivateOrganizationSpec.m
 //  OctoKit
 //
 //  Created by Justin Spahr-Summers on 2012-09-26.
 //  Copyright (c) 2012 GitHub. All rights reserved.
 //
 
-#import "OCTOrganization.h"
+#import "OCTPrivateOrganization.h"
 #import "OCTPlan.h"
 #import "OCTObjectSpec.h"
 
-SpecBegin(OCTOrganization)
+SpecBegin(OCTPrivateOrganization)
 
 NSDictionary *representation = @{
 	@"login": @"github",
@@ -40,10 +40,10 @@ NSDictionary *representation = @{
 	}
 };
 
-__block OCTOrganization *organization;
+__block OCTPrivateOrganization *organization;
 
 before(^{
-	organization = [MTLJSONAdapter modelOfClass:OCTOrganization.class fromJSONDictionary:representation error:NULL];
+	organization = [MTLJSONAdapter modelOfClass:OCTPrivateOrganization.class fromJSONDictionary:representation error:NULL];
 	expect(organization).notTo.beNil();
 });
 
@@ -69,9 +69,9 @@ it(@"should initialize", ^{
 	expect(organization.blog).to.equal(@"https://github.com/blog");
 	expect(organization.email).to.equal(@"octocat@github.com");
 	expect(organization.publicRepoCount).to.equal(2);
-	expect(organization.privateRepoCount).to.equal(100);
+	expect(organization.ownedPrivateRepoCount).to.equal(100);
 	expect(organization.diskUsage).to.equal(10000);
-	expect(organization.collaborators).to.equal(8);
+	expect(organization.collaboratorCount).to.equal(8);
 
 	expect(organization.plan).notTo.beNil();
 	expect(organization.plan.name).to.equal(@"Medium");

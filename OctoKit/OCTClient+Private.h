@@ -83,4 +83,8 @@ extern NSString * const OCTClientAPIVersion;
 // the returned signal.
 + (RACSignal *)authorizeWithServerUsingWebBrowser:(OCTServer *)server scopes:(OCTClientAuthorizationScopes)scopes;
 
+- (NSMutableURLRequest *)requestWithMethod:(NSString *)method template:(CSURITemplate *)template parameters:(NSDictionary *)parameters;
+
+- (NSMutableURLRequest *)etagRequestWithRequest:(NSURLRequest *)request;
+
 @end

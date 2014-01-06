@@ -15,11 +15,12 @@
 #import "OCTPullRequestCommentEvent.h"
 #import "OCTPushEvent.h"
 #import "OCTRefEvent.h"
+#import "OCTFollowEvent.h"
+#import "OCTEventOwner.h"
+#import "OCTEventRepository.h"
 
 @interface OCTEvent ()
 
-// The event type of the receiver.
-@property (nonatomic, copy, readonly) NSString *type;
 
 @end
 
@@ -37,6 +38,7 @@
 		@"PullRequestEvent": OCTPullRequestEvent.class,
 		@"PullRequestReviewCommentEvent": OCTPullRequestCommentEvent.class,
 		@"PushEvent": OCTPushEvent.class,
+		@"FollowEvent": OCTFollowEvent.class
 	};
 }
 
@@ -52,11 +54,26 @@
 		@"actorLogin": @"actor.login",
 		@"organizationLogin": @"org.login",
 		@"date": @"created_at",
+		@"organization": @"org",
+		@"actor": @"actor",
+		@"repository": @"repo"
 	}];
 }
 
 + (NSValueTransformer *)dateJSONTransformer {
 	return [NSValueTransformer valueTransformerForName:OCTDateValueTransformerName];
+}
+
++ (NSValueTransformer *)organizationJSONTransformer {
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTEventOwner.class];
+}
+
++ (NSValueTransformer *)actorJSONTransformer {
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTEventOwner.class];
+}
+
++ (NSValueTransformer *)repositoryJSONTransformer {
+	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTEventRepository.class];
 }
 
 + (NSValueTransformer *)objectIDJSONTransformer {

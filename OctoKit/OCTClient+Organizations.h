@@ -31,4 +31,6 @@
 // not `authenticated`, the signal will error immediately.
 - (RACSignal *)fetchTeamsForOrganization:(OCTOrganization *)organization;
 
+- (RACSignal *)fetchOrganizationsAtURITemplate:(CSURITemplate *)template;
+
 @end

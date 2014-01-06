@@ -7,6 +7,7 @@
 //
 
 #import "OCTPushEvent.h"
+#import "OCTEventCommit.h"
 
 @implementation OCTPushEvent
 
@@ -19,6 +20,7 @@
 		@"previousHeadSHA": @"payload.before",
 		@"currentHeadSHA": @"payload.head",
 		@"branchName": @"payload.ref",
+		@"commits": @"payload.commits"
 	}];
 }
 
@@ -37,6 +39,16 @@
 		reverseBlock:^(NSString *branch) {
 			return [branchRefPrefix stringByAppendingString:branch];
 		}];
+}
+
++ (NSValueTransformer *)commitsJSONTransformer {
+	return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:OCTEventCommit.class];
+}
+
++ (NSValueTransformer *)objectIDJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithBlock:^(NSString *objectID) {
+		return objectID;
+	}];
 }
 
 @end
