@@ -38,7 +38,6 @@ NSString * const OCTClientErrorOneTimePasswordMediumKey = @"OCTClientErrorOneTim
 
 NSString * const OCTClientAPIVersion = @"beta";
 
-static const NSInteger OCTClientNotModifiedStatusCode = 304;
 static NSString * const OCTClientOneTimePasswordHeaderField = @"X-GitHub-OTP";
 
 // An environment variable that, when present, will enable logging of all
@@ -220,8 +219,6 @@ static NSString *OCTClientOAuthClientSecret = nil;
 
 	NSString *userAgent = self.class.userAgent;
 	if (userAgent != nil) [self setDefaultHeader:@"User-Agent" value:userAgent];
-
-	[AFHTTPRequestOperation addAcceptableStatusCodes:[NSIndexSet indexSetWithIndex:OCTClientNotModifiedStatusCode]];
 
 	NSString *contentType = [NSString stringWithFormat:@"application/vnd.github.%@+json", OCTClientAPIVersion];
 	[self setDefaultHeader:@"Accept" value:contentType];
