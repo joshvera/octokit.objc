@@ -294,7 +294,7 @@ static NSString *OCTClientOAuthClientSecret = nil;
 
 	OCTClient *client = [self unauthenticatedClientWithUser:user];
 
-	return [[[[[[[RACSignal
+	return [[[[[[[[RACSignal
 		defer:^{
 			[client setAuthorizationHeaderWithUsername:user.login password:password];
 
@@ -317,6 +317,7 @@ static NSString *OCTClientOAuthClientSecret = nil;
 			return [RACSignal error:error];
 		}]
 		oct_parsedResults]
+		flatten]
 		map:^(OCTAuthorization *authorization) {
 			return [authorization.token copy];
 		}]
