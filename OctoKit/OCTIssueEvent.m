@@ -57,4 +57,8 @@
 	return ([*actionPtr unsignedIntegerValue] != OCTIssueActionUnknown);
 }
 
+- (BOOL)validateIssue:(NSDictionary **)issuePtr error:(NSError **)error {
+	return [*issuePtr isKindOfClass:OCTIssue.class];
+}
+
 @end
