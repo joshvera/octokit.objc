@@ -21,7 +21,14 @@
 }
 
 + (NSValueTransformer *)issueJSONTransformer {
-	return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTIssue.class];
+	NSValueTransformer *transformer = [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:OCTIssue.class];
+
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^ id (NSDictionary *JSONDictionary) {
+		if (![JSONDictionary isKindOfClass:NSDictionary.class]) return nil;
+		return [transformer transformedValue:JSONDictionary];
+	} reverseBlock:^(OCTIssue *issue) {
+		return [transformer reverseTransformedValue:issue];
+	}];
 }
 
 + (NSValueTransformer *)pullRequestJSONTransformer {
