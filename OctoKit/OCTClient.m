@@ -534,7 +534,9 @@ static NSString *OCTClientOAuthClientSecret = nil;
 
 			[[[RACSignal
 				return:[RACSignal return:RACTuplePack(operation.response, responseObject)]]
-				concat:nextPageSignal]
+				concat:[RACSignal defer:^{
+					return nextPageSignal;
+				}]]
 				subscribe:subscriber];
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 			if ([operation isCancelled]) {
