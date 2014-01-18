@@ -351,7 +351,7 @@
 		D152699B187B0B5A00E41B5D /* OCTDiffEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = D1526998187B0B5A00E41B5D /* OCTDiffEntry.m */; };
 		D152699C187B0B5A00E41B5D /* OCTDiffEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = D1526998187B0B5A00E41B5D /* OCTDiffEntry.m */; };
 		D152699F187B0B6C00E41B5D /* OCTMilestone.h in Headers */ = {isa = PBXBuildFile; fileRef = D152699D187B0B6C00E41B5D /* OCTMilestone.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D15269A0187B0B6C00E41B5D /* OCTMilestone.h in Headers */ = {isa = PBXBuildFile; fileRef = D152699D187B0B6C00E41B5D /* OCTMilestone.h */; };
+		D15269A0187B0B6C00E41B5D /* OCTMilestone.h in Headers */ = {isa = PBXBuildFile; fileRef = D152699D187B0B6C00E41B5D /* OCTMilestone.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D15269A1187B0B6C00E41B5D /* OCTMilestone.m in Sources */ = {isa = PBXBuildFile; fileRef = D152699E187B0B6C00E41B5D /* OCTMilestone.m */; };
 		D15269A2187B0B6C00E41B5D /* OCTMilestone.m in Sources */ = {isa = PBXBuildFile; fileRef = D152699E187B0B6C00E41B5D /* OCTMilestone.m */; };
 		D15269A6187B0B8200E41B5D /* OCTServer.h in Headers */ = {isa = PBXBuildFile; fileRef = D15269A4187B0B8200E41B5D /* OCTServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
