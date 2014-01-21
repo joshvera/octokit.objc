@@ -504,17 +504,23 @@ static NSString *OCTClientOAuthClientSecret = nil;
 - (RACSignal *)enqueueRequest:(NSURLRequest *)request fetchAllPages:(BOOL)fetchAllPages {
 	RACSignal *signal = [RACSignal create:^(id<RACSubscriber> subscriber) {
 		AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+			NSString *requestEtag = [operation.request allHTTPHeaderFields][@"If-None-Match"];
+			NSString *responseEtag = [operation.response allHeaderFields][@"Etag"];
+
+			if (NSProcessInfo.processInfo.environment[OCTClientResponseLoggingEnvironmentKey] != nil) {
+				if ([requestEtag isEqualToString:responseEtag]) {
+					NSLog(@"%@ %@ <%@>%p => %d", request.HTTPMethod, request.URL, NSStringFromClass(operation.class), operation, 304);
+				} else {
+					NSLog(@"%@ %@ <%@>%p => %li", request.HTTPMethod, request.URL, NSStringFromClass(operation.class), operation, (long)operation.response.statusCode);
+				}
+			}
+
 			if ([operation isCancelled]) {
 				[subscriber sendCompleted];
 				return;
 			}
 
-			if (NSProcessInfo.processInfo.environment[OCTClientResponseLoggingEnvironmentKey] != nil) {
-				NSLog(@"%@ %@ %@ => %li %@:\n", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode, operation.response.allHeaderFields);
-			}
 
-			NSString *requestEtag = [operation.request allHTTPHeaderFields][@"If-None-Match"];
-			NSString *responseEtag = [operation.response allHeaderFields][@"Etag"];
 			if ([requestEtag isEqualToString:responseEtag]) {
 				responseObject = nil;
 			}
@@ -540,12 +546,15 @@ static NSString *OCTClientOAuthClientSecret = nil;
 				subscribe:subscriber];
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 			if ([operation isCancelled]) {
+				if (NSProcessInfo.processInfo.environment[OCTClientResponseLoggingEnvironmentKey] != nil) {
+					NSLog(@"Cancelled: %@ %@", request.HTTPMethod, request.URL);
+				}
 				[subscriber sendCompleted];
 				return;
 			}
 
 			if (NSProcessInfo.processInfo.environment[OCTClientResponseLoggingEnvironmentKey] != nil) {
-				NSLog(@"%@ %@ %@ => FAILED WITH %li", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode);
+				NSLog(@"%@ %@ => FAILED WITH %li", request.HTTPMethod, request.URL, (long)operation.response.statusCode);
 			}
 
 			[subscriber sendError:[self.class errorFromRequestOperation:operation]];
@@ -782,7 +791,7 @@ static NSString *OCTClientOAuthClientSecret = nil;
 		id JSON = [(AFJSONRequestOperation *)operation responseJSON];
 		if ([JSON isKindOfClass:NSDictionary.class]) {
 			responseDictionary = JSON;
-		} else {
+		} else if (operation.response.statusCode != 304) {
 			NSLog(@"Unexpected JSON for error response: %@", JSON);
 		}
 	}
