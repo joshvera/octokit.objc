@@ -9,7 +9,7 @@
 #import "OCTObject.h"
 
 @class OCTEntity;
-@class OCTOrganization;
+@class OCTPublicOrganization;
 @class CSURITemplate;
 
 // A GitHub repository.
@@ -48,7 +48,7 @@
 // The repository's owner.
 @property (nonatomic, copy, readonly) OCTEntity *owner;
 
-@property (nonatomic, copy, readonly) OCTOrganization *organization;
+@property (nonatomic, copy, readonly) OCTPublicOrganization *organization;
 
 // The repository's homepage.
 @property (nonatomic, copy, readonly) NSString *homepage;

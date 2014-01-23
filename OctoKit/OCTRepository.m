@@ -10,7 +10,7 @@
 #import "NSValueTransformer+OCTPredefinedTransformerAdditions.h"
 #import "OCTURITemplateTransformer.h"
 #import "OCTEntity.h"
-#import "OCTOrganization.h"
+#import "OCTPublicOrganization.h"
 #import "OCTForkedRepository.h"
 
 static NSString *const OCTRepositoryHTMLIssuesPath = @"issues";
