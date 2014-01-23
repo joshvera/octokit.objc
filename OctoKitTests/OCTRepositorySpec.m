@@ -185,7 +185,7 @@ describe(@"from JSON", ^{
 
 		expect(repository.networkCount).to.equal([representation[@"network_count"] unsignedIntegerValue]);
 
-		OCTOrganization *organization = [MTLJSONAdapter modelOfClass:OCTRepository.class fromJSONDictionary:representation[@"organization"] error:NULL];
+		OCTPublicOrganization *organization = [MTLJSONAdapter modelOfClass:OCTRepository.class fromJSONDictionary:representation[@"organization"] error:NULL];
 		expect(repository.organization).to.equal(organization);
 
 		NSDate *createdAtDate = [[[ISO8601DateFormatter alloc] init] dateFromString:representation[@"created_at"]];
