@@ -10,7 +10,7 @@
 #import "OCTPlan.h"
 #import "OCTRepository.h"
 #import "OCTUser.h"
-#import "OCTUserOrganization.h"
+#import "OCTOrganizationOwner.h"
 #import "OCTURITemplateTransformer.h"
 
 @implementation OCTEntity
@@ -20,7 +20,7 @@
 + (NSDictionary *)entityClassesByType {
 	return @{
 		@"User": OCTUserEntity.class,
-		@"Organization": OCTOrganizationEntity.class,
+		@"Organization": OCTOrganizationOwner.class,
 	};
 }
 
