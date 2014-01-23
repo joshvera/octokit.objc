@@ -10,6 +10,7 @@
 
 @class CSURITemplate;
 
+// The simplest representation of an organization returned by the API.
 @interface OCTSimpleOrganization : OCTObject
 
 // The unique name for this owner, used in GitHub URLs.
