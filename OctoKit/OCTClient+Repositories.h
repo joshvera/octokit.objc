@@ -8,7 +8,7 @@
 
 #import "OCTClient.h"
 
-@class OCTOrganization;
+@class OCTPublicOrganization;
 @class OCTRepository;
 @class OCTTeam;
 
@@ -33,7 +33,7 @@
 // Returns a signal which sends zero or more OCTRepository objects. Private
 // repositories will only be included if the client is `authenticated` and the
 // `user` has permission to see them.
-- (RACSignal *)fetchRepositoriesForOrganization:(OCTOrganization *)organization;
+- (RACSignal *)fetchRepositoriesForOrganization:(OCTPublicOrganization *)organization;
 
 // Creates a repository under the user's account.
 //
@@ -46,7 +46,7 @@
 //
 // Returns a signal which sends the new OCTRepository. If the client is not
 // `authenticated`, the signal will error immediately.
-- (RACSignal *)createRepositoryWithName:(NSString *)name organization:(OCTOrganization *)organization team:(OCTTeam *)team description:(NSString *)description private:(BOOL)isPrivate;
+- (RACSignal *)createRepositoryWithName:(NSString *)name organization:(OCTPublicOrganization *)organization team:(OCTTeam *)team description:(NSString *)description private:(BOOL)isPrivate;
 
 // Fetches the content at `relativePath` at the given `reference` from the
 // `repository`.

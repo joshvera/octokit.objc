@@ -8,7 +8,7 @@
 
 #import "OCTClient.h"
 
-@class OCTOrganization;
+@class OCTPublicOrganization;
 @class OCTTeam;
 
 @interface OCTClient (Organizations)
@@ -23,13 +23,13 @@
 // Fetches the specified organization's full information.
 //
 // Returns a signal which sends a new OCTOrganization.
-- (RACSignal *)fetchOrganizationInfo:(OCTOrganization *)organization;
+- (RACSignal *)fetchOrganizationInfo:(OCTPublicOrganization *)organization;
 
 // Fetches the specified organization's teams.
 //
 // Returns a signal which sends zero or more OCTTeam objects. If the client is
 // not `authenticated`, the signal will error immediately.
-- (RACSignal *)fetchTeamsForOrganization:(OCTOrganization *)organization;
+- (RACSignal *)fetchTeamsForOrganization:(OCTPublicOrganization *)organization;
 
 - (RACSignal *)fetchOrganizationsAtURITemplate:(CSURITemplate *)template;
 

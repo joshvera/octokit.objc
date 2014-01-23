@@ -8,7 +8,8 @@
 
 #import "OCTClient+Organizations.h"
 #import "OCTClient+Private.h"
-#import "OCTOrganization.h"
+#import "OCTPublicOrganization.h"
+#import "OCTPrivateOrganization.h"
 #import "OCTTeam.h"
 #import "RACSignal+OCTClientAdditions.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
@@ -16,7 +17,7 @@
 @implementation OCTClient (Organizations)
 
 - (RACSignal *)fetchUserOrganizations {
-	return [[self enqueueUserRequestWithMethod:@"GET" relativePath:@"/orgs" parameters:nil resultClass:OCTOrganization.class] oct_parsedResults];
+	return [[self enqueueUserRequestWithMethod:@"GET" relativePath:@"/orgs" parameters:nil resultClass:OCTPublicOrganization.class] oct_parsedResults];
 }
 
 - (RACSignal *)fetchOrganizationsAtURITemplate:(CSURITemplate *)template {
@@ -31,12 +32,12 @@
 }
 
 
-- (RACSignal *)fetchOrganizationInfo:(OCTOrganization *)organization {
+- (RACSignal *)fetchOrganizationInfo:(OCTPublicOrganization *)organization {
 	NSURLRequest *request = [self requestWithMethod:@"GET" path:[NSString stringWithFormat:@"orgs/%@", organization.login] parameters:nil notMatchingEtag:nil];
-	return [[self enqueueRequest:request resultClass:OCTOrganization.class] oct_parsedResults];
+	return [[self enqueueRequest:request resultClass:OCTPublicOrganization.class] oct_parsedResults];
 }
 
-- (RACSignal *)fetchTeamsForOrganization:(OCTOrganization *)organization {
+- (RACSignal *)fetchTeamsForOrganization:(OCTPublicOrganization *)organization {
 	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
 
 	NSURLRequest *request = [self requestWithMethod:@"GET" path:[NSString stringWithFormat:@"orgs/%@/teams", organization.login] parameters:nil notMatchingEtag:nil];

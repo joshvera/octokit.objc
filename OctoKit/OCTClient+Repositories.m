@@ -9,7 +9,7 @@
 #import "OCTClient+Repositories.h"
 #import "OCTClient+Private.h"
 #import "OCTContent.h"
-#import "OCTOrganization.h"
+#import "OCTPublicOrganization.h"
 #import "OCTRepository.h"
 #import "OCTTeam.h"
 #import "OCTFileContent.h"
@@ -28,7 +28,7 @@
 	return [[self enqueueUserRequestWithMethod:@"GET" relativePath:@"/starred" parameters:nil resultClass:OCTRepository.class] oct_parsedResults];
 }
 
-- (RACSignal *)fetchRepositoriesForOrganization:(OCTOrganization *)organization {
+- (RACSignal *)fetchRepositoriesForOrganization:(OCTPublicOrganization *)organization {
 	NSURLRequest *request = [self requestWithMethod:@"GET" path:[NSString stringWithFormat:@"orgs/%@/repos", organization.login] parameters:nil notMatchingEtag:nil];
 	return [[self enqueueRequest:request resultClass:OCTRepository.class] oct_parsedResults];
 }
@@ -39,7 +39,7 @@
 	return [self createRepositoryWithName:name organization:nil team:nil description:description private:isPrivate];
 }
 
-- (RACSignal *)createRepositoryWithName:(NSString *)name organization:(OCTOrganization *)organization team:(OCTTeam *)team description:(NSString *)description private:(BOOL)isPrivate {
+- (RACSignal *)createRepositoryWithName:(NSString *)name organization:(OCTPublicOrganization *)organization team:(OCTTeam *)team description:(NSString *)description private:(BOOL)isPrivate {
 	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
 
 	NSMutableDictionary *options = [NSMutableDictionary dictionary];
