@@ -154,10 +154,6 @@
 		D087217E169E395F00016ACA /* OCTObject.h in Headers */ = {isa = PBXBuildFile; fileRef = D0872139169E395F00016ACA /* OCTObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D087217F169E395F00016ACA /* OCTObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D087213A169E395F00016ACA /* OCTObject.m */; };
 		D0872180169E395F00016ACA /* OCTObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D087213A169E395F00016ACA /* OCTObject.m */; };
-		D0872183169E395F00016ACA /* OCTOrganization.h in Headers */ = {isa = PBXBuildFile; fileRef = D087213C169E395F00016ACA /* OCTOrganization.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D0872184169E395F00016ACA /* OCTOrganization.h in Headers */ = {isa = PBXBuildFile; fileRef = D087213C169E395F00016ACA /* OCTOrganization.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D0872185169E395F00016ACA /* OCTOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = D087213D169E395F00016ACA /* OCTOrganization.m */; };
-		D0872186169E395F00016ACA /* OCTOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = D087213D169E395F00016ACA /* OCTOrganization.m */; };
 		D0872187169E395F00016ACA /* OCTPlan.h in Headers */ = {isa = PBXBuildFile; fileRef = D087213E169E395F00016ACA /* OCTPlan.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D0872188169E395F00016ACA /* OCTPlan.h in Headers */ = {isa = PBXBuildFile; fileRef = D087213E169E395F00016ACA /* OCTPlan.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D0872189169E395F00016ACA /* OCTPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = D087213F169E395F00016ACA /* OCTPlan.m */; };
@@ -278,8 +274,18 @@
 		D0E3E8C51835A32100EF530F /* meta.json in Resources */ = {isa = PBXBuildFile; fileRef = D0E3E8C31835A32100EF530F /* meta.json */; };
 		D0E41B8716DFF37E00E321CF /* notifications.json in Resources */ = {isa = PBXBuildFile; fileRef = D0E41B8616DFF37E00E321CF /* notifications.json */; };
 		D0E41B8816DFF37E00E321CF /* notifications.json in Resources */ = {isa = PBXBuildFile; fileRef = D0E41B8616DFF37E00E321CF /* notifications.json */; };
+		D10220DB18905B1C00F0A861 /* OCTOrganizationOwner.h in Headers */ = {isa = PBXBuildFile; fileRef = D10220D918905B1C00F0A861 /* OCTOrganizationOwner.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D10220DC18905B1C00F0A861 /* OCTOrganizationOwner.h in Headers */ = {isa = PBXBuildFile; fileRef = D10220D918905B1C00F0A861 /* OCTOrganizationOwner.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D10220DD18905B1C00F0A861 /* OCTOrganizationOwner.m in Sources */ = {isa = PBXBuildFile; fileRef = D10220DA18905B1C00F0A861 /* OCTOrganizationOwner.m */; };
+		D10220DE18905B1C00F0A861 /* OCTOrganizationOwner.m in Sources */ = {isa = PBXBuildFile; fileRef = D10220DA18905B1C00F0A861 /* OCTOrganizationOwner.m */; };
+		D10220E11890637200F0A861 /* OCTUserOrganization.h in Headers */ = {isa = PBXBuildFile; fileRef = D10220DF1890637200F0A861 /* OCTUserOrganization.h */; };
+		D10220E21890637200F0A861 /* OCTUserOrganization.h in Headers */ = {isa = PBXBuildFile; fileRef = D10220DF1890637200F0A861 /* OCTUserOrganization.h */; };
+		D10220E31890637200F0A861 /* OCTUserOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = D10220E01890637200F0A861 /* OCTUserOrganization.m */; };
+		D10220E41890637200F0A861 /* OCTUserOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = D10220E01890637200F0A861 /* OCTUserOrganization.m */; };
 		D10A1F7617D15FDD0073B758 /* OCTCommentSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D10A1F4C17D15BC60073B758 /* OCTCommentSpec.m */; };
 		D10A1F7717D15FDE0073B758 /* OCTCommentSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D10A1F4C17D15BC60073B758 /* OCTCommentSpec.m */; };
+		D115DB8A189071120094FC40 /* OCTFollowableEntityInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = D115DB89189071120094FC40 /* OCTFollowableEntityInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D115DB8B189071120094FC40 /* OCTFollowableEntityInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = D115DB89189071120094FC40 /* OCTFollowableEntityInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D11D80C817D18F7900CA7039 /* OCTCommit.h in Headers */ = {isa = PBXBuildFile; fileRef = D11D80C617D18F7900CA7039 /* OCTCommit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D11D80CA17D18F7900CA7039 /* OCTCommit.m in Sources */ = {isa = PBXBuildFile; fileRef = D11D80C717D18F7900CA7039 /* OCTCommit.m */; };
 		D11D80CB17D18F7900CA7039 /* OCTCommit.m in Sources */ = {isa = PBXBuildFile; fileRef = D11D80C717D18F7900CA7039 /* OCTCommit.m */; };
@@ -295,16 +301,10 @@
 		D12C9BF8187B11F1002D76E1 /* OCTClient+Organizations.h in Headers */ = {isa = PBXBuildFile; fileRef = D12C9BF5187B11F1002D76E1 /* OCTClient+Organizations.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D12C9BF9187B11F1002D76E1 /* OCTClient+Organizations.m in Sources */ = {isa = PBXBuildFile; fileRef = D12C9BF6187B11F1002D76E1 /* OCTClient+Organizations.m */; };
 		D12C9BFA187B11F1002D76E1 /* OCTClient+Organizations.m in Sources */ = {isa = PBXBuildFile; fileRef = D12C9BF6187B11F1002D76E1 /* OCTClient+Organizations.m */; };
-		D12C9BFD187B12B8002D76E1 /* OCTSimpleOrganization.h in Headers */ = {isa = PBXBuildFile; fileRef = D12C9BFB187B12B8002D76E1 /* OCTSimpleOrganization.h */; };
-		D12C9BFE187B12B8002D76E1 /* OCTSimpleOrganization.h in Headers */ = {isa = PBXBuildFile; fileRef = D12C9BFB187B12B8002D76E1 /* OCTSimpleOrganization.h */; };
+		D12C9BFD187B12B8002D76E1 /* OCTSimpleOrganization.h in Headers */ = {isa = PBXBuildFile; fileRef = D12C9BFB187B12B8002D76E1 /* OCTSimpleOrganization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D12C9BFE187B12B8002D76E1 /* OCTSimpleOrganization.h in Headers */ = {isa = PBXBuildFile; fileRef = D12C9BFB187B12B8002D76E1 /* OCTSimpleOrganization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D12C9BFF187B12B8002D76E1 /* OCTSimpleOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = D12C9BFC187B12B8002D76E1 /* OCTSimpleOrganization.m */; };
 		D12C9C00187B12B8002D76E1 /* OCTSimpleOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = D12C9BFC187B12B8002D76E1 /* OCTSimpleOrganization.m */; };
-		D12C9C03187B12D1002D76E1 /* OCTPrivateOrganization.h in Headers */ = {isa = PBXBuildFile; fileRef = D12C9C01187B12D1002D76E1 /* OCTPrivateOrganization.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D12C9C04187B12D1002D76E1 /* OCTPrivateOrganization.h in Headers */ = {isa = PBXBuildFile; fileRef = D12C9C01187B12D1002D76E1 /* OCTPrivateOrganization.h */; };
-		D12C9C05187B12D1002D76E1 /* OCTPrivateOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = D12C9C02187B12D1002D76E1 /* OCTPrivateOrganization.m */; };
-		D12C9C06187B12D1002D76E1 /* OCTPrivateOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = D12C9C02187B12D1002D76E1 /* OCTPrivateOrganization.m */; };
-		D12C9C08187B1445002D76E1 /* OCTPrivateUserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = D12C9C07187B1445002D76E1 /* OCTPrivateUserInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D12C9C09187B1445002D76E1 /* OCTPrivateUserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = D12C9C07187B1445002D76E1 /* OCTPrivateUserInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D12C9C0A187B150A002D76E1 /* OCTContentTreeEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 88746BE517FA0AE40005888A /* OCTContentTreeEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D12C9C0B187B151B002D76E1 /* OCTBlobTreeEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 88746BDF17FA0A360005888A /* OCTBlobTreeEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D12C9C0C187B1524002D76E1 /* OCTBlobTreeEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 88746BE017FA0A360005888A /* OCTBlobTreeEntry.m */; };
@@ -323,10 +323,10 @@
 		D12E47E1187B421D0001B00A /* OCTClient+Keys.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BC04B618403A3200EDD926 /* OCTClient+Keys.m */; };
 		D12E47E2187B42230001B00A /* OCTClient+Repositories.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BC04EF18403BE400EDD926 /* OCTClient+Repositories.m */; };
 		D12E47E3187B42370001B00A /* OCTClient+Keys.h in Headers */ = {isa = PBXBuildFile; fileRef = D0BC04B518403A3200EDD926 /* OCTClient+Keys.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D12F33941815C37B00B591B6 /* OCTUserOrganization.h in Headers */ = {isa = PBXBuildFile; fileRef = D12F33921815C37B00B591B6 /* OCTUserOrganization.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D12F33951815C37B00B591B6 /* OCTUserOrganization.h in Headers */ = {isa = PBXBuildFile; fileRef = D12F33921815C37B00B591B6 /* OCTUserOrganization.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D12F33961815C37B00B591B6 /* OCTUserOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = D12F33931815C37B00B591B6 /* OCTUserOrganization.m */; };
-		D12F33971815C37B00B591B6 /* OCTUserOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = D12F33931815C37B00B591B6 /* OCTUserOrganization.m */; };
+		D12F33941815C37B00B591B6 /* OCTPublicOrganization.h in Headers */ = {isa = PBXBuildFile; fileRef = D12F33921815C37B00B591B6 /* OCTPublicOrganization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D12F33951815C37B00B591B6 /* OCTPublicOrganization.h in Headers */ = {isa = PBXBuildFile; fileRef = D12F33921815C37B00B591B6 /* OCTPublicOrganization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D12F33961815C37B00B591B6 /* OCTPublicOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = D12F33931815C37B00B591B6 /* OCTPublicOrganization.m */; };
+		D12F33971815C37B00B591B6 /* OCTPublicOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = D12F33931815C37B00B591B6 /* OCTPublicOrganization.m */; };
 		D136BC7018456B28009E6F86 /* OCTLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = D136BC6E18456B28009E6F86 /* OCTLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D136BC7118456B28009E6F86 /* OCTLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = D136BC6E18456B28009E6F86 /* OCTLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D136BC7218456B28009E6F86 /* OCTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D136BC6F18456B28009E6F86 /* OCTLabel.m */; };
@@ -385,6 +385,10 @@
 		D15269D5187B100900E41B5D /* OCTClient+Watching.h in Headers */ = {isa = PBXBuildFile; fileRef = D15269D2187B100900E41B5D /* OCTClient+Watching.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D15269D6187B100900E41B5D /* OCTClient+Watching.m in Sources */ = {isa = PBXBuildFile; fileRef = D15269D3187B100900E41B5D /* OCTClient+Watching.m */; };
 		D15269D7187B100900E41B5D /* OCTClient+Watching.m in Sources */ = {isa = PBXBuildFile; fileRef = D15269D3187B100900E41B5D /* OCTClient+Watching.m */; };
+		D15D355918904C7300CC86D8 /* OCTEntityInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = D15D355818904C7300CC86D8 /* OCTEntityInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D15D355A18904C7300CC86D8 /* OCTEntityInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = D15D355818904C7300CC86D8 /* OCTEntityInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D15D356A18904C7E00CC86D8 /* OCTPrivateEntityInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = D15D356918904C7E00CC86D8 /* OCTPrivateEntityInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D15D356B18904C7E00CC86D8 /* OCTPrivateEntityInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = D15D356918904C7E00CC86D8 /* OCTPrivateEntityInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D17F68ED1822F89500A13ECE /* OCTEventOwner.h in Headers */ = {isa = PBXBuildFile; fileRef = D17F68EB1822F89500A13ECE /* OCTEventOwner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D17F68EE1822F89500A13ECE /* OCTEventOwner.h in Headers */ = {isa = PBXBuildFile; fileRef = D17F68EB1822F89500A13ECE /* OCTEventOwner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D17F68EF1822F89500A13ECE /* OCTEventOwner.m in Sources */ = {isa = PBXBuildFile; fileRef = D17F68EC1822F89500A13ECE /* OCTEventOwner.m */; };
@@ -419,16 +423,8 @@
 		D1B766DD1834180F0060B595 /* OCTLoginUser.h in Headers */ = {isa = PBXBuildFile; fileRef = D1B766DA1834180F0060B595 /* OCTLoginUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D1B766DE1834180F0060B595 /* OCTLoginUser.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B766DB1834180F0060B595 /* OCTLoginUser.m */; };
 		D1B766DF1834180F0060B595 /* OCTLoginUser.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B766DB1834180F0060B595 /* OCTLoginUser.m */; };
-		D1B766E5183428A70060B595 /* OCTSimpleOrganization.h in Headers */ = {isa = PBXBuildFile; fileRef = D1B766E3183428A70060B595 /* OCTSimpleOrganization.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D1B766E6183428A70060B595 /* OCTSimpleOrganization.h in Headers */ = {isa = PBXBuildFile; fileRef = D1B766E3183428A70060B595 /* OCTSimpleOrganization.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D1B766E7183428A70060B595 /* OCTSimpleOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B766E4183428A70060B595 /* OCTSimpleOrganization.m */; };
-		D1B766E8183428A70060B595 /* OCTSimpleOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B766E4183428A70060B595 /* OCTSimpleOrganization.m */; };
 		D1B766FD18345B540060B595 /* OCTUserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = D1B766FC18345B540060B595 /* OCTUserInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D1B766FE18345B540060B595 /* OCTUserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = D1B766FC18345B540060B595 /* OCTUserInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D1B7670118345B950060B595 /* OCTOrganizationEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = D1B766FF18345B950060B595 /* OCTOrganizationEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D1B7670218345B950060B595 /* OCTOrganizationEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = D1B766FF18345B950060B595 /* OCTOrganizationEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D1B7670318345B950060B595 /* OCTOrganizationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B7670018345B950060B595 /* OCTOrganizationEntity.m */; };
-		D1B7670418345B950060B595 /* OCTOrganizationEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B7670018345B950060B595 /* OCTOrganizationEntity.m */; };
 		D1C9871117D2CC6D0001FDFA /* libCSURITemplate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C986FF17D2C6E70001FDFA /* libCSURITemplate.a */; };
 		D1C9871417D2CDD90001FDFA /* OCTURITemplateTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = D1C9871217D2CDD90001FDFA /* OCTURITemplateTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D1C9871517D2CDD90001FDFA /* OCTURITemplateTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = D1C9871217D2CDD90001FDFA /* OCTURITemplateTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -907,8 +903,6 @@
 		D0872139169E395F00016ACA /* OCTObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTObject.h; sourceTree = "<group>"; };
 		D087213A169E395F00016ACA /* OCTObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTObject.m; sourceTree = "<group>"; };
 		D087213B169E395F00016ACA /* OCTObject+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCTObject+Private.h"; sourceTree = "<group>"; };
-		D087213C169E395F00016ACA /* OCTOrganization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTOrganization.h; sourceTree = "<group>"; };
-		D087213D169E395F00016ACA /* OCTOrganization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTOrganization.m; sourceTree = "<group>"; };
 		D087213E169E395F00016ACA /* OCTPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTPlan.h; sourceTree = "<group>"; };
 		D087213F169E395F00016ACA /* OCTPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTPlan.m; sourceTree = "<group>"; };
 		D0872140169E395F00016ACA /* OCTPublicKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTPublicKey.h; sourceTree = "<group>"; };
@@ -979,7 +973,12 @@
 		D0DD8EF717BC5C0300657FDA /* OCTGistSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTGistSpec.m; sourceTree = "<group>"; };
 		D0E3E8C31835A32100EF530F /* meta.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = meta.json; sourceTree = "<group>"; };
 		D0E41B8616DFF37E00E321CF /* notifications.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = notifications.json; sourceTree = "<group>"; };
+		D10220D918905B1C00F0A861 /* OCTOrganizationOwner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTOrganizationOwner.h; sourceTree = "<group>"; };
+		D10220DA18905B1C00F0A861 /* OCTOrganizationOwner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTOrganizationOwner.m; sourceTree = "<group>"; };
+		D10220DF1890637200F0A861 /* OCTUserOrganization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTUserOrganization.h; sourceTree = "<group>"; };
+		D10220E01890637200F0A861 /* OCTUserOrganization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTUserOrganization.m; sourceTree = "<group>"; };
 		D10A1F4C17D15BC60073B758 /* OCTCommentSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTCommentSpec.m; sourceTree = "<group>"; };
+		D115DB89189071120094FC40 /* OCTFollowableEntityInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTFollowableEntityInfo.h; sourceTree = "<group>"; };
 		D11D80C617D18F7900CA7039 /* OCTCommit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTCommit.h; sourceTree = "<group>"; };
 		D11D80C717D18F7900CA7039 /* OCTCommit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTCommit.m; sourceTree = "<group>"; };
 		D11D80D817D18F9500CA7039 /* OCTCommitSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTCommitSpec.m; sourceTree = "<group>"; };
@@ -988,14 +987,11 @@
 		D12C9BF6187B11F1002D76E1 /* OCTClient+Organizations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCTClient+Organizations.m"; sourceTree = "<group>"; };
 		D12C9BFB187B12B8002D76E1 /* OCTSimpleOrganization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTSimpleOrganization.h; sourceTree = "<group>"; };
 		D12C9BFC187B12B8002D76E1 /* OCTSimpleOrganization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTSimpleOrganization.m; sourceTree = "<group>"; };
-		D12C9C01187B12D1002D76E1 /* OCTPrivateOrganization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTPrivateOrganization.h; sourceTree = "<group>"; };
-		D12C9C02187B12D1002D76E1 /* OCTPrivateOrganization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTPrivateOrganization.m; sourceTree = "<group>"; };
-		D12C9C07187B1445002D76E1 /* OCTPrivateUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTPrivateUserInfo.h; sourceTree = "<group>"; };
 		D12C9C10187B1543002D76E1 /* OCTComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTComment.m; sourceTree = "<group>"; };
 		D12E47C6187B39080001B00A /* OCTAuthenticatedUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTAuthenticatedUser.h; sourceTree = "<group>"; };
 		D12E47C7187B39080001B00A /* OCTAuthenticatedUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTAuthenticatedUser.m; sourceTree = "<group>"; };
-		D12F33921815C37B00B591B6 /* OCTUserOrganization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTUserOrganization.h; sourceTree = "<group>"; };
-		D12F33931815C37B00B591B6 /* OCTUserOrganization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTUserOrganization.m; sourceTree = "<group>"; };
+		D12F33921815C37B00B591B6 /* OCTPublicOrganization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTPublicOrganization.h; sourceTree = "<group>"; };
+		D12F33931815C37B00B591B6 /* OCTPublicOrganization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTPublicOrganization.m; sourceTree = "<group>"; };
 		D136BC6E18456B28009E6F86 /* OCTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTLabel.h; sourceTree = "<group>"; };
 		D136BC6F18456B28009E6F86 /* OCTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTLabel.m; sourceTree = "<group>"; };
 		D152697E187B06A600E41B5D /* OCTCommitComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTCommitComment.h; sourceTree = "<group>"; };
@@ -1026,6 +1022,8 @@
 		D15269CC187B0FBE00E41B5D /* OCTClient+Commits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCTClient+Commits.m"; sourceTree = "<group>"; };
 		D15269D2187B100900E41B5D /* OCTClient+Watching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCTClient+Watching.h"; sourceTree = "<group>"; };
 		D15269D3187B100900E41B5D /* OCTClient+Watching.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OCTClient+Watching.m"; sourceTree = "<group>"; };
+		D15D355818904C7300CC86D8 /* OCTEntityInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTEntityInfo.h; sourceTree = "<group>"; };
+		D15D356918904C7E00CC86D8 /* OCTPrivateEntityInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTPrivateEntityInfo.h; sourceTree = "<group>"; };
 		D17F68EB1822F89500A13ECE /* OCTEventOwner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTEventOwner.h; sourceTree = "<group>"; };
 		D17F68EC1822F89500A13ECE /* OCTEventOwner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTEventOwner.m; sourceTree = "<group>"; };
 		D17F68FF1822FA6500A13ECE /* OCTEventRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTEventRepository.h; sourceTree = "<group>"; };
@@ -1043,11 +1041,7 @@
 		D1B766D5183417A80060B595 /* OCTAuthenticatedUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTAuthenticatedUser.m; sourceTree = "<group>"; };
 		D1B766DA1834180F0060B595 /* OCTLoginUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTLoginUser.h; sourceTree = "<group>"; };
 		D1B766DB1834180F0060B595 /* OCTLoginUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTLoginUser.m; sourceTree = "<group>"; };
-		D1B766E3183428A70060B595 /* OCTSimpleOrganization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTSimpleOrganization.h; sourceTree = "<group>"; };
-		D1B766E4183428A70060B595 /* OCTSimpleOrganization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTSimpleOrganization.m; sourceTree = "<group>"; };
 		D1B766FC18345B540060B595 /* OCTUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTUserInfo.h; sourceTree = "<group>"; };
-		D1B766FF18345B950060B595 /* OCTOrganizationEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTOrganizationEntity.h; sourceTree = "<group>"; };
-		D1B7670018345B950060B595 /* OCTOrganizationEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTOrganizationEntity.m; sourceTree = "<group>"; };
 		D1C986F917D2C6E70001FDFA /* CSURITemplate.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CSURITemplate.xcodeproj; path = External/CSURITemplate/CSURITemplate.xcodeproj; sourceTree = "<group>"; };
 		D1C9871217D2CDD90001FDFA /* OCTURITemplateTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTURITemplateTransformer.h; sourceTree = "<group>"; };
 		D1C9871317D2CDD90001FDFA /* OCTURITemplateTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTURITemplateTransformer.m; sourceTree = "<group>"; };
@@ -1557,7 +1551,9 @@
 				D0872151169E395F00016ACA /* OCTResponse.m */,
 				7A1F643817F120FF008155CF /* OCTComment.h */,
 				7A1F647017F12851008155CF /* OCTReviewComment.h */,
-				D12C9C07187B1445002D76E1 /* OCTPrivateUserInfo.h */,
+				D15D355818904C7300CC86D8 /* OCTEntityInfo.h */,
+				D15D356918904C7E00CC86D8 /* OCTPrivateEntityInfo.h */,
+				D115DB89189071120094FC40 /* OCTFollowableEntityInfo.h */,
 			);
 			name = "Base Models";
 			sourceTree = "<group>";
@@ -1678,10 +1674,16 @@
 		D12C9BF4187B11E5002D76E1 /* Organizations */ = {
 			isa = PBXGroup;
 			children = (
-				D12C9C01187B12D1002D76E1 /* OCTPrivateOrganization.h */,
-				D12C9C02187B12D1002D76E1 /* OCTPrivateOrganization.m */,
 				D12C9BFB187B12B8002D76E1 /* OCTSimpleOrganization.h */,
 				D12C9BFC187B12B8002D76E1 /* OCTSimpleOrganization.m */,
+				D10220D918905B1C00F0A861 /* OCTOrganizationOwner.h */,
+				D10220DA18905B1C00F0A861 /* OCTOrganizationOwner.m */,
+				D1B766CE183416F30060B595 /* OCTPrivateOrganization.h */,
+				D1B766CF183416F30060B595 /* OCTPrivateOrganization.m */,
+				D12F33921815C37B00B591B6 /* OCTPublicOrganization.h */,
+				D12F33931815C37B00B591B6 /* OCTPublicOrganization.m */,
+				D10220DF1890637200F0A861 /* OCTUserOrganization.h */,
+				D10220E01890637200F0A861 /* OCTUserOrganization.m */,
 				D12C9BF5187B11F1002D76E1 /* OCTClient+Organizations.h */,
 				D12C9BF6187B11F1002D76E1 /* OCTClient+Organizations.m */,
 			);
@@ -1746,20 +1748,10 @@
 				D17F68EC1822F89500A13ECE /* OCTEventOwner.m */,
 				D1B766DA1834180F0060B595 /* OCTLoginUser.h */,
 				D1B766DB1834180F0060B595 /* OCTLoginUser.m */,
-				D087213C169E395F00016ACA /* OCTOrganization.h */,
-				D087213D169E395F00016ACA /* OCTOrganization.m */,
-				D1B766CE183416F30060B595 /* OCTPrivateOrganization.h */,
-				D1B766CF183416F30060B595 /* OCTPrivateOrganization.m */,
 				D0872157169E395F00016ACA /* OCTUser.h */,
 				D0872158169E395F00016ACA /* OCTUser.m */,
 				D1B766C8183416190060B595 /* OCTUserEntity.h */,
 				D1B766C9183416190060B595 /* OCTUserEntity.m */,
-				D12F33921815C37B00B591B6 /* OCTUserOrganization.h */,
-				D12F33931815C37B00B591B6 /* OCTUserOrganization.m */,
-				D1B766E3183428A70060B595 /* OCTSimpleOrganization.h */,
-				D1B766E4183428A70060B595 /* OCTSimpleOrganization.m */,
-				D1B766FF18345B950060B595 /* OCTOrganizationEntity.h */,
-				D1B7670018345B950060B595 /* OCTOrganizationEntity.m */,
 			);
 			name = Owners;
 			sourceTree = "<group>";
@@ -1795,6 +1787,7 @@
 				D15269D4187B100900E41B5D /* OCTClient+Watching.h in Headers */,
 				D12C9BF7187B11F1002D76E1 /* OCTClient+Organizations.h in Headers */,
 				9CB0588517933F26002CF498 /* OCTSubmoduleContent.h in Headers */,
+				D15D355918904C7300CC86D8 /* OCTEntityInfo.h in Headers */,
 				D0BC04BD18403A8800EDD926 /* OCTClient+Events.h in Headers */,
 				D0872161169E395F00016ACA /* OCTCommitCommentEvent.h in Headers */,
 				D0872165169E395F00016ACA /* OCTEntity.h in Headers */,
@@ -1805,6 +1798,8 @@
 				D087216D169E395F00016ACA /* OCTIssue.h in Headers */,
 				D15269B7187B0D2800E41B5D /* OCTReviewComment.h in Headers */,
 				D1F573FF1831871D00B20E3F /* OCTMemberEvent.h in Headers */,
+				D10220E11890637200F0A861 /* OCTUserOrganization.h in Headers */,
+				D115DB8A189071120094FC40 /* OCTFollowableEntityInfo.h in Headers */,
 				9CB0588117933F26002CF498 /* OCTFileContent.h in Headers */,
 				D15269A6187B0B8200E41B5D /* OCTServer.h in Headers */,
 				9CB0587917933F26002CF498 /* OCTContent.h in Headers */,
@@ -1814,17 +1809,14 @@
 				D0872179169E395F00016ACA /* OCTIssueEvent.h in Headers */,
 				D07DD38F17A993AA005EBFE0 /* OCTGist.h in Headers */,
 				D087217D169E395F00016ACA /* OCTObject.h in Headers */,
-				D0872183169E395F00016ACA /* OCTOrganization.h in Headers */,
 				D0BC050418403EA500EDD926 /* OCTClient+Git.h in Headers */,
 				D15269AF187B0BAB00E41B5D /* OCTServerMetadata.h in Headers */,
 				D07DD39517A9940D005EBFE0 /* OCTGistFile.h in Headers */,
 				D1B766FD18345B540060B595 /* OCTUserInfo.h in Headers */,
-				D12C9C08187B1445002D76E1 /* OCTPrivateUserInfo.h in Headers */,
 				D0872187169E395F00016ACA /* OCTPlan.h in Headers */,
 				D087218B169E395F00016ACA /* OCTPublicKey.h in Headers */,
 				D087218F169E395F00016ACA /* OCTPullRequest.h in Headers */,
 				D17F68ED1822F89500A13ECE /* OCTEventOwner.h in Headers */,
-				D1B7670118345B950060B595 /* OCTOrganizationEntity.h in Headers */,
 				D0872197169E395F00016ACA /* OCTPullRequestCommentEvent.h in Headers */,
 				D1526993187B0B2D00E41B5D /* OCTClient+User.h in Headers */,
 				D12C9C0A187B150A002D76E1 /* OCTContentTreeEntry.h in Headers */,
@@ -1844,19 +1836,19 @@
 				D1B766D0183416F30060B595 /* OCTPrivateOrganization.h in Headers */,
 				D12E47E3187B42370001B00A /* OCTClient+Keys.h in Headers */,
 				D136BC7018456B28009E6F86 /* OCTLabel.h in Headers */,
-				D12C9C03187B12D1002D76E1 /* OCTPrivateOrganization.h in Headers */,
 				8848E19D16AF630B005449AB /* OCTNotification.h in Headers */,
 				D0772E7316BD27B5009DFF72 /* NSDateFormatter+OCTFormattingAdditions.h in Headers */,
 				D0772E7716BD2A06009DFF72 /* NSValueTransformer+OCTPredefinedTransformerAdditions.h in Headers */,
 				D1F574221831E30A00B20E3F /* OCTFollowEvent.h in Headers */,
 				D1DC2C9B1840007100D55A32 /* OCTForkedRepository.h in Headers */,
-				D12F33941815C37B00B591B6 /* OCTUserOrganization.h in Headers */,
-				D1B766E5183428A70060B595 /* OCTSimpleOrganization.h in Headers */,
+				D12F33941815C37B00B591B6 /* OCTPublicOrganization.h in Headers */,
 				D11D80C817D18F7900CA7039 /* OCTCommit.h in Headers */,
+				D10220DB18905B1C00F0A861 /* OCTOrganizationOwner.h in Headers */,
 				9CB0588917933F26002CF498 /* OCTSymlinkContent.h in Headers */,
 				D12C9BE2187B10E6002D76E1 /* OCTTreeEntry.h in Headers */,
 				D1CD55191821FFDC00FB4ED7 /* OCTPartialFileContent.h in Headers */,
 				D152699F187B0B6C00E41B5D /* OCTMilestone.h in Headers */,
+				D15D356A18904C7E00CC86D8 /* OCTPrivateEntityInfo.h in Headers */,
 				9CB0587D17933F26002CF498 /* OCTDirectoryContent.h in Headers */,
 				D1526980187B06A600E41B5D /* OCTCommitComment.h in Headers */,
 				D0BC051E184041F800EDD926 /* OCTCommit.h in Headers */,
@@ -1888,12 +1880,13 @@
 				D0872166169E395F00016ACA /* OCTEntity.h in Headers */,
 				D087216A169E395F00016ACA /* OCTEvent.h in Headers */,
 				D1B766DD1834180F0060B595 /* OCTLoginUser.h in Headers */,
+				D10220DC18905B1C00F0A861 /* OCTOrganizationOwner.h in Headers */,
 				D15269B0187B0BAB00E41B5D /* OCTServerMetadata.h in Headers */,
 				D1C9871517D2CDD90001FDFA /* OCTURITemplateTransformer.h in Headers */,
 				D087216E169E395F00016ACA /* OCTIssue.h in Headers */,
 				D1F574001831871D00B20E3F /* OCTMemberEvent.h in Headers */,
 				9CB0588217933F26002CF498 /* OCTFileContent.h in Headers */,
-				D12C9C04187B12D1002D76E1 /* OCTPrivateOrganization.h in Headers */,
+				D15D355A18904C7300CC86D8 /* OCTEntityInfo.h in Headers */,
 				9CB0587A17933F26002CF498 /* OCTContent.h in Headers */,
 				D1B766CB183416190060B595 /* OCTUserEntity.h in Headers */,
 				D17F69021822FA6500A13ECE /* OCTEventRepository.h in Headers */,
@@ -1901,7 +1894,6 @@
 				D087217A169E395F00016ACA /* OCTIssueEvent.h in Headers */,
 				D07DD39017A993AA005EBFE0 /* OCTGist.h in Headers */,
 				D087217E169E395F00016ACA /* OCTObject.h in Headers */,
-				D0872184169E395F00016ACA /* OCTOrganization.h in Headers */,
 				D1B766FE18345B540060B595 /* OCTUserInfo.h in Headers */,
 				D07DD39617A9940D005EBFE0 /* OCTGistFile.h in Headers */,
 				D0BC050518403EA500EDD926 /* OCTClient+Git.h in Headers */,
@@ -1909,21 +1901,21 @@
 				D087218C169E395F00016ACA /* OCTPublicKey.h in Headers */,
 				D17F68EE1822F89500A13ECE /* OCTEventOwner.h in Headers */,
 				D0872190169E395F00016ACA /* OCTPullRequest.h in Headers */,
-				D1B7670218345B950060B595 /* OCTOrganizationEntity.h in Headers */,
 				D152698D187B06BD00E41B5D /* OCTIssueComment.h in Headers */,
 				88CD632E17D8D7EF00E2CD47 /* OCTTree.h in Headers */,
 				88746BE817FA0AE40005888A /* OCTContentTreeEntry.h in Headers */,
 				D0872198169E395F00016ACA /* OCTPullRequestCommentEvent.h in Headers */,
 				D087219C169E395F00016ACA /* OCTPullRequestEvent.h in Headers */,
-				D12C9C09187B1445002D76E1 /* OCTPrivateUserInfo.h in Headers */,
 				D08721A0169E395F00016ACA /* OCTPushEvent.h in Headers */,
 				D08721A4169E395F00016ACA /* OCTRefEvent.h in Headers */,
+				D10220E21890637200F0A861 /* OCTUserOrganization.h in Headers */,
 				D08721A8169E395F00016ACA /* OCTRepository.h in Headers */,
 				88746BE217FA0A360005888A /* OCTBlobTreeEntry.h in Headers */,
 				D08721AC169E395F00016ACA /* OCTResponse.h in Headers */,
 				D0BC04F118403BE400EDD926 /* OCTClient+Repositories.h in Headers */,
 				88746BD117FA0A2C0005888A /* OCTCommitTreeEntry.h in Headers */,
 				D0BC04F718403C5A00EDD926 /* OCTClient+Gists.h in Headers */,
+				D15D356B18904C7E00CC86D8 /* OCTPrivateEntityInfo.h in Headers */,
 				D08721B6169E395F00016ACA /* OCTTeam.h in Headers */,
 				7ACC999D17F220D7001613E7 /* OCTComment.h in Headers */,
 				D08721BA169E395F00016ACA /* OCTUser.h in Headers */,
@@ -1940,9 +1932,9 @@
 				D1DC2C9C1840007100D55A32 /* OCTForkedRepository.h in Headers */,
 				D1526987187B06B400E41B5D /* OCTPullRequestComment.h in Headers */,
 				D12C9BF8187B11F1002D76E1 /* OCTClient+Organizations.h in Headers */,
-				D12F33951815C37B00B591B6 /* OCTUserOrganization.h in Headers */,
-				D1B766E6183428A70060B595 /* OCTSimpleOrganization.h in Headers */,
+				D12F33951815C37B00B591B6 /* OCTPublicOrganization.h in Headers */,
 				D0772E7816BD2A06009DFF72 /* NSValueTransformer+OCTPredefinedTransformerAdditions.h in Headers */,
+				D115DB8B189071120094FC40 /* OCTFollowableEntityInfo.h in Headers */,
 				9CB0588A17933F26002CF498 /* OCTSymlinkContent.h in Headers */,
 				D15269AE187B0BAB00E41B5D /* OCTServer+Private.h in Headers */,
 				D1CD551A1821FFDC00FB4ED7 /* OCTPartialFileContent.h in Headers */,
@@ -2399,13 +2391,13 @@
 				D12C9C11187B1543002D76E1 /* OCTComment.m in Sources */,
 				D0872177169E395F00016ACA /* OCTIssueCommentEvent.m in Sources */,
 				D087217B169E395F00016ACA /* OCTIssueEvent.m in Sources */,
+				D10220DD18905B1C00F0A861 /* OCTOrganizationOwner.m in Sources */,
 				D087217F169E395F00016ACA /* OCTObject.m in Sources */,
-				D0872185169E395F00016ACA /* OCTOrganization.m in Sources */,
 				D0872189169E395F00016ACA /* OCTPlan.m in Sources */,
 				D15269CF187B0FBE00E41B5D /* OCTClient+Commits.m in Sources */,
 				D087218D169E395F00016ACA /* OCTPublicKey.m in Sources */,
 				D0872191169E395F00016ACA /* OCTPullRequest.m in Sources */,
-				D12F33961815C37B00B591B6 /* OCTUserOrganization.m in Sources */,
+				D12F33961815C37B00B591B6 /* OCTPublicOrganization.m in Sources */,
 				D1B766C6183415890060B595 /* OCTContributor.m in Sources */,
 				D1526995187B0B2D00E41B5D /* OCTClient+User.m in Sources */,
 				D152699B187B0B5A00E41B5D /* OCTDiffEntry.m in Sources */,
@@ -2414,13 +2406,12 @@
 				D1F574011831871D00B20E3F /* OCTMemberEvent.m in Sources */,
 				D15269BD187B0F4B00E41B5D /* OCTClient+Comments.m in Sources */,
 				D0872199169E395F00016ACA /* OCTPullRequestCommentEvent.m in Sources */,
-				D1B7670318345B950060B595 /* OCTOrganizationEntity.m in Sources */,
-				D12C9C05187B12D1002D76E1 /* OCTPrivateOrganization.m in Sources */,
 				D1DC2C9D1840007100D55A32 /* OCTForkedRepository.m in Sources */,
 				D12E47E1187B421D0001B00A /* OCTClient+Keys.m in Sources */,
 				9CB0587F17933F26002CF498 /* OCTDirectoryContent.m in Sources */,
 				D087219D169E395F00016ACA /* OCTPullRequestEvent.m in Sources */,
 				D0BC050618403EA500EDD926 /* OCTClient+Git.m in Sources */,
+				D10220E31890637200F0A861 /* OCTUserOrganization.m in Sources */,
 				D0BC05331840420200EDD926 /* OCTRef.m in Sources */,
 				D08721A1169E395F00016ACA /* OCTPushEvent.m in Sources */,
 				88CD632F17D8D7EF00E2CD47 /* OCTTree.m in Sources */,
@@ -2455,7 +2446,6 @@
 				F6CF78D616E993A500A75F63 /* RACSignal+OCTClientAdditions.m in Sources */,
 				D1CD551B1821FFDC00FB4ED7 /* OCTPartialFileContent.m in Sources */,
 				D15269B1187B0BAB00E41B5D /* OCTServerMetadata.m in Sources */,
-				D1B766E7183428A70060B595 /* OCTSimpleOrganization.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2516,27 +2506,25 @@
 				D1B766D9183417A80060B595 /* OCTAuthenticatedUser.m in Sources */,
 				8829F2C217A0DF5300F06991 /* OCTAuthorization.m in Sources */,
 				D087216C169E395F00016ACA /* OCTEvent.m in Sources */,
-				D12C9C06187B12D1002D76E1 /* OCTPrivateOrganization.m in Sources */,
 				D15269B2187B0BAB00E41B5D /* OCTServerMetadata.m in Sources */,
 				D0872170169E395F00016ACA /* OCTIssue.m in Sources */,
 				D17F68F01822F89500A13ECE /* OCTEventOwner.m in Sources */,
 				D15269D7187B100900E41B5D /* OCTClient+Watching.m in Sources */,
 				D0872178169E395F00016ACA /* OCTIssueCommentEvent.m in Sources */,
 				D087217C169E395F00016ACA /* OCTIssueEvent.m in Sources */,
+				D10220DE18905B1C00F0A861 /* OCTOrganizationOwner.m in Sources */,
 				D0872180169E395F00016ACA /* OCTObject.m in Sources */,
-				D0872186169E395F00016ACA /* OCTOrganization.m in Sources */,
 				D087218A169E395F00016ACA /* OCTPlan.m in Sources */,
 				D087218E169E395F00016ACA /* OCTPublicKey.m in Sources */,
 				D0872192169E395F00016ACA /* OCTPullRequest.m in Sources */,
 				D12C9C0E187B1527002D76E1 /* OCTContentTreeEntry.m in Sources */,
 				D152699C187B0B5A00E41B5D /* OCTDiffEntry.m in Sources */,
-				D12F33971815C37B00B591B6 /* OCTUserOrganization.m in Sources */,
+				D12F33971815C37B00B591B6 /* OCTPublicOrganization.m in Sources */,
 				D12C9BFA187B11F1002D76E1 /* OCTClient+Organizations.m in Sources */,
 				D1B766C7183415890060B595 /* OCTContributor.m in Sources */,
 				D11D80CB17D18F7900CA7039 /* OCTCommit.m in Sources */,
 				D1F574021831871D00B20E3F /* OCTMemberEvent.m in Sources */,
 				D087219A169E395F00016ACA /* OCTPullRequestCommentEvent.m in Sources */,
-				D1B7670418345B950060B595 /* OCTOrganizationEntity.m in Sources */,
 				D1526983187B06A600E41B5D /* OCTCommitComment.m in Sources */,
 				D15269D0187B0FBE00E41B5D /* OCTClient+Commits.m in Sources */,
 				D1DC2C9E1840007100D55A32 /* OCTForkedRepository.m in Sources */,
@@ -2544,6 +2532,7 @@
 				9CB0588017933F26002CF498 /* OCTDirectoryContent.m in Sources */,
 				D087219E169E395F00016ACA /* OCTPullRequestEvent.m in Sources */,
 				D0BC050718403EA500EDD926 /* OCTClient+Git.m in Sources */,
+				D10220E41890637200F0A861 /* OCTUserOrganization.m in Sources */,
 				D0BC05341840420200EDD926 /* OCTRef.m in Sources */,
 				D12E47E2187B42230001B00A /* OCTClient+Repositories.m in Sources */,
 				D08721A2169E395F00016ACA /* OCTPushEvent.m in Sources */,
@@ -2576,7 +2565,6 @@
 				D0772E7A16BD2A06009DFF72 /* NSValueTransformer+OCTPredefinedTransformerAdditions.m in Sources */,
 				D1CD551C1821FFDC00FB4ED7 /* OCTPartialFileContent.m in Sources */,
 				D15269BE187B0F4B00E41B5D /* OCTClient+Comments.m in Sources */,
-				D1B766E8183428A70060B595 /* OCTSimpleOrganization.m in Sources */,
 				F6CF78D816E993A500A75F63 /* RACSignal+OCTClientAdditions.m in Sources */,
 				88CD631C17D8D3DE00E2CD47 /* OCTTreeEntry.m in Sources */,
 			);
