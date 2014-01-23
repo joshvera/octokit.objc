@@ -53,10 +53,11 @@
 #import <OctoKit/OCTNotification.h>
 #import <OctoKit/OCTObject.h>
 #import <OctoKit/OCTSimpleOrganization.h>
-#import <OctoKit/OCTOrganization.h>
 #import <OctoKit/OCTPartialFileContent.h>
 #import <OctoKit/OCTPlan.h>
 #import <OctoKit/OCTPrivateOrganization.h>
+#import <OctoKit/OCTPublicOrganization.h>
+#import <OctoKit/OCTUserOrganization.h>
 #import <OctoKit/OCTPublicKey.h>
 #import <OctoKit/OCTPullRequest.h>
 #import <OctoKit/OCTPullRequestComment.h>
@@ -81,7 +82,6 @@
 #import <OctoKit/OCTAuthenticatedUser.h>
 #import <OctoKit/OCTUser.h>
 #import <OctoKit/OCTUserEntity.h>
-#import <OctoKit/OCTUserOrganization.h>
-#import <OctoKit/OCTOrganizationEntity.h>
+#import <OctoKit/OCTOrganizationOwner.h>
 #import <OctoKit/OCTUserInfo.h>
 #import <OctoKit/OCTPrivateUserInfo.h>
