@@ -10,6 +10,12 @@
 #import "OCTPlan.h"
 
 @implementation OCTAuthenticatedUser
+@synthesize totalPrivateRepoCount = _totalPrivateRepoCount;
+@synthesize ownedPrivateRepoCount = _ownedPrivateRepoCount;
+@synthesize diskUsage = _diskUsage;
+@synthesize collaboratorCount = _collaboratorCount;
+@synthesize plan = _plan;
+@synthesize privateGistCount = _privateGistCount;
 
 #pragma mark MTLJSONSerializing
 
