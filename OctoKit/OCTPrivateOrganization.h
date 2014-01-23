@@ -6,22 +6,18 @@
 //  Copyright (c) 2013 GitHub. All rights reserved.
 //
 
-#import "OCTOrganization.h"
+#import "OCTSimpleOrganization.h"
+#import "OCTFollowableEntityInfo.h"
+#import "OCTPrivateEntityInfo.h"
 
 @class OCTPlan;
 
-@interface OCTPrivateOrganization : OCTOrganization
+@interface OCTPrivateOrganization : OCTSimpleOrganization <OCTPrivateEntityInfo, OCTFollowableEntityInfo>
 
-@property (nonatomic, assign, readonly) NSUInteger privateRepoCount;
+// The owner's HTML URL.
+@property (nonatomic, copy, readonly) NSURL *HTMLURL;
 
-@property (nonatomic, assign, readonly) NSUInteger ownedPrivateRepoCount;
-
-@property (nonatomic, assign, readonly) NSUInteger diskUsage;
-
-@property (nonatomic, assign, readonly) NSUInteger collaboratorCount;
-
-@property (nonatomic, copy, readonly) OCTPlan *plan;
-
-@property (nonatomic, assign, readonly) NSUInteger privateGistCount;
+// The private organization's type.
+@property (nonatomic, copy, readonly) NSString *type;
 
 @end
