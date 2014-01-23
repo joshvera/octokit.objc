@@ -12,6 +12,19 @@
 #import "OCTAuthenticatedUser.h"
 
 @implementation OCTUser
+@synthesize name = _name;
+@synthesize company = _company;
+@synthesize blog = _blog;
+@synthesize location = _location;
+@synthesize email = _email;
+@synthesize publicRepoCount = _publicRepoCount;
+@synthesize publicGistCount = _publicGistCount;
+@synthesize createdAtDate = _createdAtDate;
+@synthesize updatedAtDate = _updatedAtDate;
+@synthesize hireable = _hireable;
+@synthesize followerCount = _followerCount;
+@synthesize followingCount = _followingCount;
+@synthesize bio = _bio;
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return [[super
@@ -31,10 +44,6 @@
 			@"updatedAtDate": @"updated_at",
 			@"publicGistCount": @"public_gists",
 		}];
-}
-
-+ (NSValueTransformer *)hireableJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:MTLBooleanValueTransformerName];
 }
 
 + (NSValueTransformer *)createdAtDateJSONTransformer {
