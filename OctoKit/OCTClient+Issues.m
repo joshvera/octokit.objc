@@ -19,7 +19,7 @@
 
 	NSDictionary *parameters = [MTLJSONAdapter JSONDictionaryFromModel:edit];
 	NSURLRequest *request = [self requestWithMethod:@"POST" template:issuesTemplate parameters:parameters];
-	return [[self enqueueRequest:request resultClass:OCTGist.class] oct_parsedResults];
+	return [[self enqueueRequest:request resultClass:OCTIssue.class] oct_parsedResults];
 }
 
 - (RACSignal *)fetchIssuesAtURITemplate:(CSURITemplate *)template parameters:(NSDictionary *)parameters {
