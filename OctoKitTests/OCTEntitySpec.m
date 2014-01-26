@@ -12,7 +12,7 @@
 SpecBegin(OCTEntity)
 
 __block NSDictionary *dict;
-__block OCTEntity<OCTPrivateUserInfo> *entity;
+__block OCTEntity<OCTPrivateEntityInfo> *entity;
 
 	before(^{
 		NSData *data = [NSData dataWithContentsOfFile:@"repository.json"];

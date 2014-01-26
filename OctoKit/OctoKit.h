@@ -84,4 +84,4 @@
 #import <OctoKit/OCTUserEntity.h>
 #import <OctoKit/OCTOrganizationOwner.h>
 #import <OctoKit/OCTUserInfo.h>
-#import <OctoKit/OCTPrivateUserInfo.h>
+#import <OctoKit/OCTPrivateEntityInfo.h>
