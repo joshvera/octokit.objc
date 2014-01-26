@@ -278,8 +278,8 @@
 		D10220DC18905B1C00F0A861 /* OCTOrganizationOwner.h in Headers */ = {isa = PBXBuildFile; fileRef = D10220D918905B1C00F0A861 /* OCTOrganizationOwner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D10220DD18905B1C00F0A861 /* OCTOrganizationOwner.m in Sources */ = {isa = PBXBuildFile; fileRef = D10220DA18905B1C00F0A861 /* OCTOrganizationOwner.m */; };
 		D10220DE18905B1C00F0A861 /* OCTOrganizationOwner.m in Sources */ = {isa = PBXBuildFile; fileRef = D10220DA18905B1C00F0A861 /* OCTOrganizationOwner.m */; };
-		D10220E11890637200F0A861 /* OCTUserOrganization.h in Headers */ = {isa = PBXBuildFile; fileRef = D10220DF1890637200F0A861 /* OCTUserOrganization.h */; };
-		D10220E21890637200F0A861 /* OCTUserOrganization.h in Headers */ = {isa = PBXBuildFile; fileRef = D10220DF1890637200F0A861 /* OCTUserOrganization.h */; };
+		D10220E11890637200F0A861 /* OCTUserOrganization.h in Headers */ = {isa = PBXBuildFile; fileRef = D10220DF1890637200F0A861 /* OCTUserOrganization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D10220E21890637200F0A861 /* OCTUserOrganization.h in Headers */ = {isa = PBXBuildFile; fileRef = D10220DF1890637200F0A861 /* OCTUserOrganization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D10220E31890637200F0A861 /* OCTUserOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = D10220E01890637200F0A861 /* OCTUserOrganization.m */; };
 		D10220E41890637200F0A861 /* OCTUserOrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = D10220E01890637200F0A861 /* OCTUserOrganization.m */; };
 		D10A1F7617D15FDD0073B758 /* OCTCommentSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D10A1F4C17D15BC60073B758 /* OCTCommentSpec.m */; };
