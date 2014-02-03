@@ -12,4 +12,6 @@
 
 - (RACSignal *)fetchCommitsAtPullRequestURITemplate:(CSURITemplate *)template;
 
+- (RACSignal *)fetchCommitsAtURITemplate:(CSURITemplate *)template branchNameOrSHA:(NSString *)branchNameOrSHA perPage:(NSUInteger)perPage;
+
 @end

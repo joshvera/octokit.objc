@@ -21,4 +21,20 @@
 	return [[self enqueueRequest:request resultClass:OCTCommit.class] oct_parsedResults];
 }
 
+- (RACSignal *)fetchCommitsAtURITemplate:(CSURITemplate *)template branchNameOrSHA:(NSString *)branchNameOrSHA perPage:(NSUInteger)perPage {
+	NSParameterAssert(template != nil);
+	NSParameterAssert(branchNameOrSHA != nil);
+	if (!self.authenticated) return [RACSignal error:self.class.authenticationRequiredError];
+
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" template:template parameters:@{
+		@"sha": branchNameOrSHA,
+		@"per_page": @(perPage)
+	}];
+	request.URL = [request.URL URLByAppendingPathComponent:@"commits"];
+
+	[request setValue:@"application/vnd.github.beta.html+json" forHTTPHeaderField:@"Accept"];
+
+	return [[self enqueueRequest:request resultClass:OCTCommit.class] oct_parsedResults];
+}
+
 @end
