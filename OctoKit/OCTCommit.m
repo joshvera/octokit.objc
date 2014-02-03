@@ -27,6 +27,8 @@
 			@"message": @"commit.message",
 			@"authoredDate": @"commit.author.date",
 			@"committedDate": @"commit.committer.date",
+			@"authorName": @"commit.author.name",
+			@"committerName": @"commit.committer.name",
 			@"APIURITemplate": @"url",
 			@"HTMLURL": @"html_url",
 			@"commentsURITemplate": @"comments_url",

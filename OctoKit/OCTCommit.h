@@ -44,10 +44,18 @@
 // The commit's comments URL.
 @property (nonatomic, copy, readonly) CSURITemplate *commentsURITemplate;
 
-// The commit's author.
+// The author's name. May differ from author's name if
+// `author` is nil.
+@property (nonatomic, copy, readonly) NSString *authorName;
+
+// The committer's name. May differ from committer's name
+// if `committer` is nil.
+@property (nonatomic, copy, readonly) NSString *committerName;
+
+// The commit's author. May be nil.
 @property (nonatomic, copy, readonly) OCTUserEntity *author;
 
-// The commit's committer.
+// The commit's committer. May be nil.
 @property (nonatomic, copy, readonly) OCTUserEntity *committer;
 
 // The commit's total line count.
